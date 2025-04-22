@@ -9,26 +9,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Authenticating...</title>
     <script is:inline>
-      // Kodas OAuth autentifikacijai su GitHub
-      const searchParams = new URLSearchParams(window.location.search);
-      const code = searchParams.get('code');
-      const provider = searchParams.get('provider') || 'github';
+      // Funkcija, kuri išparsinina URL parametrus
+      function getParams() {
+        const search = window.location.search.substring(1);
+        return search.split('&').reduce((result, item) => {
+          const parts = item.split('=');
+          result[parts[0]] = decodeURIComponent(parts[1]);
+          return result;
+        }, {});
+      }
       
+      // Gauti parametrus iš URL
+      const params = getParams();
+      const code = params.code || '';
+      const provider = params.provider || 'github';
+      const state = params.state || '';
+      
+      // Siųsti autentifikacijos duomenis tėviniam langui
       if (window.opener) {
+        // Format šiek tiek skiriasi nuo ankstesnio
         window.opener.postMessage(
-          `authorization:${provider}:success:${JSON.stringify({
-            provider,
-            code,
-          })}`,
+          {
+            type: 'auth',
+            payload: {
+              provider,
+              code,
+              state
+            }
+          },
           window.location.origin
         );
         window.close();
       } else {
+        console.log('No opener found - redirecting to admin');
         window.location.replace('/admin/');
       }
     </script>
   </head>
   <body>
-    <h1>Authenticating, please wait...</h1>
+    <h1>Authenticating with GitHub, please wait...</h1>
+    <p>This window should close automatically. If it doesn't, you can close it manually and return to the admin panel.</p>
   </body>
 </html> 

@@ -3,6 +3,8 @@ backend:
   repo: apostrafo/cdoaas
   branch: main
   auth_scope: repo
+  base_url: https://api.netlify.com
+  use_graphql: true
 
 media_folder: "public/uploads"
 public_folder: "/uploads"

@@ -11,24 +11,28 @@
   </head>
   <body>
     <!-- Include the script that builds the page and powers Decap CMS -->
-    <script is:inline src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script is:inline src="https://unpkg.com/decap-cms@2.10.192/dist/decap-cms.js"></script>
     
     <!-- Script that manually sets the config path -->
     <script is:inline>
+      // Set base URL for correct paths
+      window.CMS_MANUAL_INIT = true;
+      
       // Checks if config.yml exists at the appropriate path
       fetch('/admin/config.yml')
         .then(response => {
           if (!response.ok) {
             console.error('Config file is missing or not accessible:', response.status);
             // Fallback to _config endpoint if direct config.yml is not available
-            window.CMS_MANUAL_INIT = true;
             window.decapCmsConfig = {
               config: {
                 backend: {
                   name: 'github',
                   repo: 'apostrafo/cdoaas',
                   branch: 'main',
-                  auth_scope: 'repo'
+                  auth_scope: 'repo',
+                  base_url: 'https://api.netlify.com',
+                  use_graphql: true
                 },
                 media_folder: 'public/uploads',
                 public_folder: '/uploads',
@@ -59,13 +63,27 @@
                 ]
               }
             };
+          } else {
+            return response.text().then(config => {
+              window.decapCmsConfig = {
+                load_config_file: false,
+                config: jsyaml.load(config)
+              };
+            });
           }
-          
-          window.CMS && window.CMS.init();
         })
         .catch(error => {
           console.error('Error checking config file:', error);
+        })
+        .finally(() => {
+          // Initialize CMS with proper configuration
+          window.CMS.init({
+            config: window.decapCmsConfig.config
+          });
         });
     </script>
+    
+    <!-- Include yaml parser -->
+    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
   </body>
 </html> 

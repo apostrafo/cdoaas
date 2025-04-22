@@ -13,6 +13,12 @@
   to = "/admin/:splat"
   status = 200
 
+# Special redirect for OAuth callback
+[[redirects]]
+  from = "/callback"
+  to = "/admin/oauth-callback"
+  status = 200
+
 # Handle 404 errors by serving the 404.html page
 [[redirects]]
   from = "/*"
