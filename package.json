@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node copy-admin-config.js",
     "preview": "astro preview",
     "astro": "astro",
     "create-free-demo": "node create-free-demo.js"

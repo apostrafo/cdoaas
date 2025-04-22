@@ -1,3 +1,7 @@
+---
+// Išjungiame Astro JS optimizacijas admin puslapiui
+---
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -7,6 +11,61 @@
   </head>
   <body>
     <!-- Include the script that builds the page and powers Decap CMS -->
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script is:inline src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    
+    <!-- Script that manually sets the config path -->
+    <script is:inline>
+      // Checks if config.yml exists at the appropriate path
+      fetch('/admin/config.yml')
+        .then(response => {
+          if (!response.ok) {
+            console.error('Config file is missing or not accessible:', response.status);
+            // Fallback to _config endpoint if direct config.yml is not available
+            window.CMS_MANUAL_INIT = true;
+            window.decapCmsConfig = {
+              config: {
+                backend: {
+                  name: 'github',
+                  repo: 'apostrafo/cdoaas',
+                  branch: 'main',
+                  auth_scope: 'repo'
+                },
+                media_folder: 'public/uploads',
+                public_folder: '/uploads',
+                i18n: {
+                  structure: 'multiple_folders',
+                  locales: ['lt', 'en'],
+                  default_locale: 'lt'
+                },
+                collections: [
+                  {
+                    name: 'about',
+                    label: 'Apie mus',
+                    i18n: true,
+                    files: [
+                      {
+                        label: 'Apie mus',
+                        name: 'about',
+                        file: 'content/about.md',
+                        i18n: true,
+                        fields: [
+                          { label: 'Pavadinimas', name: 'title', widget: 'string', i18n: true },
+                          { label: 'Turinys', name: 'body', widget: 'markdown', i18n: true }
+                        ]
+                      }
+                    ]
+                  },
+                  // Kitos kolekcijos...
+                ]
+              }
+            };
+          }
+          
+          window.CMS && window.CMS.init();
+        })
+        .catch(error => {
+          console.error('Error checking config file:', error);
+        });
+    </script>
   </body>
 </html> 

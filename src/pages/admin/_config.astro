@@ -1,0 +1,24 @@
+---
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Nustatome kelią iki config.yml failo
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const configPath = path.join(__dirname, '../../../../public/admin/config.yml');
+
+// Perskaitome config.yml turinį
+let configContent = '';
+try {
+  configContent = fs.readFileSync(configPath, 'utf-8');
+} catch (error) {
+  console.error('Error reading config.yml file:', error);
+  configContent = 'Error: Could not read config file';
+}
+
+// Nustatome tinkamą turinio tipą
+Astro.response.headers.set('Content-Type', 'text/yaml');
+---
+
+{configContent} 

@@ -2,7 +2,6 @@ import { defineConfig } from "astro/config";
 
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
-import netlify from "@astrojs/netlify";
 
 // https://astro.build/config
 const isProd = process.env.NODE_ENV === "production";
@@ -12,16 +11,14 @@ export default defineConfig({
   integrations: [react(), tailwind()],
   site: "https://cdoaas.com",
   base: "/",
-  output: "server",
-  adapter: netlify(),
-  // Išsaugome admin katalogą kaip statinį
+  output: "static",
+  // Specifiniai nustatymai admin panelei
   build: {
     format: 'directory',
     assets: 'assets'
   },
   vite: {
     build: {
-      // Išsaugokime originalius failus admin kataloge
       assetsInlineLimit: 0
     }
   }
