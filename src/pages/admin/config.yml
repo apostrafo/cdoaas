@@ -1,0 +1,88 @@
+backend:
+  name: github
+  repo: apostrafo/cdoaas
+  branch: main
+  auth_scope: repo
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+i18n:
+  structure: multiple_folders
+  locales: [lt, en]
+  default_locale: lt
+
+collections:
+  - name: "about"
+    label: "Apie mus"
+    i18n: true
+    files:
+      - label: "Apie mus"
+        name: "about"
+        file: "content/about.md"
+        i18n: true
+        fields:
+          - { label: "Pavadinimas", name: "title", widget: "string", i18n: true }
+          - { label: "Turinys", name: "body", widget: "markdown", i18n: true }
+
+  - name: "services"
+    label: "Paslaugos"
+    i18n: true
+    files:
+      - label: "Paslaugų puslapis"
+        name: "services"
+        file: "content/services.md"
+        i18n: true
+        fields:
+          - { label: "Pavadinimas", name: "title", widget: "string", i18n: true }
+          - { label: "Subtitras", name: "subtitle", widget: "string", i18n: true }
+          - { label: "Turinys", name: "body", widget: "markdown", i18n: true }
+  
+  - name: "approach"
+    label: "Mūsų požiūris"
+    i18n: true
+    files:
+      - label: "Požiūrio puslapis"
+        name: "approach"
+        file: "content/approach.md"
+        i18n: true
+        fields:
+          - { label: "Pavadinimas", name: "title", widget: "string", i18n: true }
+          - { label: "Subtitras", name: "subtitle", widget: "string", i18n: true }
+          - { label: "Turinys", name: "body", widget: "markdown", i18n: true }
+
+  - name: "tools"
+    label: "Rekomenduojami įrankiai"
+    i18n: true
+    files:
+      - label: "Įrankių sąrašas"
+        name: "tools_list"
+        file: "data/tools.json"
+        format: "json"
+        fields:
+          - label: "Įrankiai"
+            name: "tools"
+            widget: "list"
+            i18n: true
+            fields:
+              - { label: "Pavadinimas", name: "title", widget: "string", i18n: true }
+              - { label: "Aprašymas", name: "description", widget: "text", i18n: true }
+              - { label: "Ikona", name: "icon", widget: "string", i18n: true }
+              - { label: "Kategorija", name: "category", widget: "string", i18n: true }
+              - { label: "Nuoroda", name: "url", widget: "string", i18n: true }
+              - { label: "Fono spalva", name: "background", widget: "string", i18n: true }
+              - { label: "Ikonos spalva", name: "iconColor", widget: "string", i18n: true }
+
+  - name: "blog"
+    label: "Blog įrašai"
+    folder: "content/blog"
+    create: true
+    slug: "{{slug}}"
+    i18n: true
+    fields:
+      - { label: "Pavadinimas", name: "title", widget: "string", i18n: true }
+      - { label: "Data", name: "date", widget: "datetime", i18n: true }
+      - { label: "Autorius", name: "author", widget: "string", i18n: true }
+      - { label: "Nuotrauka", name: "image", widget: "image", i18n: true }
+      - { label: "Ištrauka", name: "excerpt", widget: "text", i18n: true }
+      - { label: "Turinys", name: "body", widget: "markdown", i18n: true } 

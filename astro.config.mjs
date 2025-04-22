@@ -14,4 +14,15 @@ export default defineConfig({
   base: "/",
   output: "server",
   adapter: netlify(),
+  // Išsaugome admin katalogą kaip statinį
+  build: {
+    format: 'directory',
+    assets: 'assets'
+  },
+  vite: {
+    build: {
+      // Išsaugokime originalius failus admin kataloge
+      assetsInlineLimit: 0
+    }
+  }
 });
