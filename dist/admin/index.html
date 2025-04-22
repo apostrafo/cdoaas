@@ -1,11 +1,11 @@
-<!DOCTYPE html><html> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>CDOaaS - Content Management</title><!-- Include js-yaml parser before CMS --><script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script><!-- Add Netlify Identity Widget --><script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script><link rel="stylesheet" href="/assets/about.czx8eBZM.css"></head> <body> <div id="nc-root"></div> <!-- Script that loads and configures CMS --> <script>
+<!DOCTYPE html><html> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>CDOaaS - Content Management</title><!-- Include js-yaml parser before CMS --><script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script><link rel="stylesheet" href="/assets/about.czx8eBZM.css"></head> <body> <div id="nc-root"></div> <!-- Script that loads and configures CMS --> <script>
       // Load config first to make sure it's available
       fetch('/admin/config.yml')
         .then(response => response.text())
         .then(configText => {
           // Load the Decap CMS script after we have the config
           const script = document.createElement('script');
-          script.src = 'https://unpkg.com/netlify-cms@2.10.192/dist/netlify-cms.js';
+          script.src = 'https://unpkg.com/decap-cms@3.1.3/dist/decap-cms.js';
           script.onload = function() {
             // Initialize CMS with simple config
             window.CMS.init();
