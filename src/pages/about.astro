@@ -6,8 +6,10 @@ import FeaturesAbout from "../components/about/features"
 import TeamAbout from "../components/about/team"
 import TestimonialAbout from "../components/about/testimonials"
 import FooterAbout from "../components/about/footer"
----
 
+// Importuojame about.md turinį
+const aboutContent = await import('../../content/about.md');
+---
 
 <Layout title="About Us Page">
 	<main>
@@ -15,6 +17,17 @@ import FooterAbout from "../components/about/footer"
     <FeaturesAbout client:only="react" />
     <TestimonialAbout client:only="react" />
     <TeamAbout client:only="react" />
+    
+    <!-- Pridedame about.md turinį -->
+    <section class="py-12 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="prose prose-lg mx-auto">
+          <h1>{aboutContent.frontmatter.title}</h1>
+          <div set:html={aboutContent.compiledContent()} />
+        </div>
+      </div>
+    </section>
+    
     <FooterAbout client:only="react" />
   </main>
 </Layout>

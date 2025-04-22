@@ -2,6 +2,9 @@
 import Layout from "../layouts/Layout.astro";
 import CDONavbar from "../components/cdoNavbar";
 import Footer from "../components/footer.tsx";
+
+// Importuojame tools.json duomenis
+import toolsData from "../../data/tools.json";
 ---
 
 <Layout title="Tools & Resources | CDO as a Service">
@@ -77,65 +80,27 @@ import Footer from "../components/footer.tsx";
         </div>
         
         <div class="flex flex-wrap">
-          <!-- Category 1 -->
-          <div class="w-full md:w-4/12 px-4 mb-8">
-            <div class="relative flex flex-col min-w-0 break-words bg-white w-full shadow-lg rounded-lg">
-              <div class="px-6 py-6">
-                <div class="text-center">
-                  <div class="inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-blue-100">
-                    <i class="fas fa-chart-line text-2xl text-blue-500"></i>
+          {/* Dinamiškai generuojame įrankių korteles iš tools.json */}
+          {toolsData.tools.map((tool) => (
+            <div class="w-full md:w-4/12 px-4 mb-8">
+              <div class="relative flex flex-col min-w-0 break-words bg-white w-full shadow-lg rounded-lg">
+                <div class="px-6 py-6">
+                  <div class="text-center">
+                    <div class={`inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-${tool.background}`}>
+                      <i class={`fas fa-${tool.icon} text-2xl text-${tool.iconColor}`}></i>
+                    </div>
+                    <h5 class="text-xl font-bold" data-i18n={`tools.${tool.category}`}>{tool.title}</h5>
+                    <p class="mt-2 mb-4 text-gray-600" data-i18n={`tools.${tool.category}Description`}>
+                      {tool.description}
+                    </p>
+                    <a href={tool.url} class="text-blue-500 hover:text-blue-700 font-semibold" data-i18n="tools.viewResources">
+                      View Resources →
+                    </a>
                   </div>
-                  <h5 class="text-xl font-bold" data-i18n="tools.assessment">Data Maturity Assessment</h5>
-                  <p class="mt-2 mb-4 text-gray-600" data-i18n="tools.assessmentDescription">
-                    Evaluate your organization's current data maturity level with this quick self-assessment tool.
-                  </p>
-                  <a href="#" class="text-blue-500 hover:text-blue-700 font-semibold" data-i18n="tools.viewResources">
-                    View Resources →
-                  </a>
                 </div>
               </div>
             </div>
-          </div>
-          
-          <!-- Category 2 -->
-          <div class="w-full md:w-4/12 px-4 mb-8">
-            <div class="relative flex flex-col min-w-0 break-words bg-white w-full shadow-lg rounded-lg">
-              <div class="px-6 py-6">
-                <div class="text-center">
-                  <div class="inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-green-100">
-                    <i class="fas fa-shield-alt text-2xl text-green-500"></i>
-                  </div>
-                  <h5 class="text-xl font-bold" data-i18n="tools.calculator">ROI Calculator</h5>
-                  <p class="mt-2 mb-4 text-gray-600" data-i18n="tools.calculatorDescription">
-                    Calculate the potential return on investment from data-driven decisions with this interactive calculator.
-                  </p>
-                  <a href="#" class="text-blue-500 hover:text-blue-700 font-semibold" data-i18n="tools.viewResources">
-                    View Resources →
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Category 3 -->
-          <div class="w-full md:w-4/12 px-4 mb-8">
-            <div class="relative flex flex-col min-w-0 break-words bg-white w-full shadow-lg rounded-lg">
-              <div class="px-6 py-6">
-                <div class="text-center">
-                  <div class="inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-red-100">
-                    <i class="fas fa-chart-pie text-2xl text-red-500"></i>
-                  </div>
-                  <h5 class="text-xl font-bold" data-i18n="tools.handbook">Data Governance Handbook</h5>
-                  <p class="mt-2 mb-4 text-gray-600" data-i18n="tools.handbookDescription">
-                    Download our free guide on data governance best practices for small and medium enterprises.
-                  </p>
-                  <a href="#" class="text-blue-500 hover:text-blue-700 font-semibold" data-i18n="tools.viewResources">
-                    View Resources →
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

@@ -33,126 +33,126 @@
   <rect width="1000" height="600" fill="white" />
   
   <!-- Title -->
-  <text x="500" y="50" font-family="Arial" font-size="28" font-weight="bold" text-anchor="middle" fill="#235789">CDOaaS Service Tiers</text>
-  <text x="500" y="80" font-family="Arial" font-size="16" text-anchor="middle" fill="#666">Flexible engagement options to meet your organization's needs</text>
+  <text x="500" y="50" font-family="Arial" font-size="28" font-weight="bold" text-anchor="middle" fill="#235789">CDOaaS paslaugų lygiai</text>
+  <text x="500" y="80" font-family="Arial" font-size="16" text-anchor="middle" fill="#666">Lankstūs bendradarbiavimo variantai, atitinkantys jūsų organizacijos poreikius</text>
   
   <!-- Tier 1: Strategic Advisory -->
   <g transform="translate(50, 120)">
     <rect width="280" height="400" rx="10" ry="10" fill="white" stroke="#ddd" stroke-width="2" filter="url(#shadow)" />
     <rect x="0" y="0" width="280" height="80" rx="10" ry="10" fill="url(#tier1-gradient)" />
-    <text x="140" y="35" font-family="Arial" font-size="22" font-weight="bold" text-anchor="middle" fill="white">Strategic Advisory</text>
-    <text x="140" y="60" font-family="Arial" font-size="16" text-anchor="middle" fill="white">Entry Tier</text>
+    <text x="140" y="35" font-family="Arial" font-size="22" font-weight="bold" text-anchor="middle" fill="white">Strateginės konsultacijos</text>
+    <text x="140" y="60" font-family="Arial" font-size="16" text-anchor="middle" fill="white">Pradinis lygis</text>
     
     <!-- Price -->
     <text x="140" y="110" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#235789">€2,500 - €5,000</text>
-    <text x="140" y="135" font-family="Arial" font-size="14" text-anchor="middle" fill="#666">per month</text>
+    <text x="140" y="135" font-family="Arial" font-size="14" text-anchor="middle" fill="#666">per mėnesį</text>
     
     <!-- Features -->
     <g transform="translate(20, 160)">
       <circle cx="12" cy="12" r="6" fill="#235789" />
-      <text x="30" y="16" font-family="Arial" font-size="14" fill="#333">Data strategy development</text>
+      <text x="30" y="16" font-family="Arial" font-size="14" fill="#333">Duomenų strategijos kūrimas</text>
       
       <circle cx="12" cy="42" r="6" fill="#235789" />
-      <text x="30" y="46" font-family="Arial" font-size="14" fill="#333">Monthly advisory sessions</text>
+      <text x="30" y="46" font-family="Arial" font-size="14" fill="#333">Mėnesinės konsultacijos</text>
       
       <circle cx="12" cy="72" r="6" fill="#235789" />
-      <text x="30" y="76" font-family="Arial" font-size="14" fill="#333">Technology selection</text>
+      <text x="30" y="76" font-family="Arial" font-size="14" fill="#333">Technologijų pasirinkimas</text>
       
       <circle cx="12" cy="102" r="6" fill="#235789" />
-      <text x="30" y="106" font-family="Arial" font-size="14" fill="#333">Quarterly assessments</text>
+      <text x="30" y="106" font-family="Arial" font-size="14" fill="#333">Ketvirtiniai vertinimai</text>
       
       <circle cx="12" cy="132" r="6" fill="#235789" />
-      <text x="30" y="136" font-family="Arial" font-size="14" fill="#333">Executive presentations</text>
+      <text x="30" y="136" font-family="Arial" font-size="14" fill="#333">Pristatymai vadovams</text>
       
       <circle cx="12" cy="162" r="6" fill="#235789" />
-      <text x="30" y="166" font-family="Arial" font-size="14" fill="#333">Best practice guidance</text>
+      <text x="30" y="166" font-family="Arial" font-size="14" fill="#333">Gerųjų praktikų gairės</text>
     </g>
     
     <!-- Who For -->
     <rect x="20" y="330" width="240" height="50" rx="5" ry="5" fill="#f1f5f9" />
-    <text x="140" y="350" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#235789">Ideal for:</text>
-    <text x="140" y="370" font-family="Arial" font-size="14" text-anchor="middle" fill="#666">Organizations starting their data journey</text>
+    <text x="140" y="350" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#235789">Idealiai tinka:</text>
+    <text x="140" y="370" font-family="Arial" font-size="14" text-anchor="middle" fill="#666">Organizacijoms, pradedančioms duomenų kelionę</text>
   </g>
   
   <!-- Tier 2: Embedded Leadership -->
   <g transform="translate(360, 120)">
     <rect width="280" height="400" rx="10" ry="10" fill="white" stroke="#ddd" stroke-width="2" filter="url(#shadow)" />
     <rect x="0" y="0" width="280" height="80" rx="10" ry="10" fill="url(#tier2-gradient)" />
-    <text x="140" y="35" font-family="Arial" font-size="22" font-weight="bold" text-anchor="middle" fill="white">Embedded Leadership</text>
-    <text x="140" y="60" font-family="Arial" font-size="16" text-anchor="middle" fill="white">Professional Tier</text>
+    <text x="140" y="35" font-family="Arial" font-size="22" font-weight="bold" text-anchor="middle" fill="white">Įterptinė lyderystė</text>
+    <text x="140" y="60" font-family="Arial" font-size="16" text-anchor="middle" fill="white">Profesionalus lygis</text>
     
     <!-- Price -->
     <text x="140" y="110" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#3C6997">€5,000 - €10,000</text>
-    <text x="140" y="135" font-family="Arial" font-size="14" text-anchor="middle" fill="#666">per month</text>
+    <text x="140" y="135" font-family="Arial" font-size="14" text-anchor="middle" fill="#666">per mėnesį</text>
     
     <!-- Features -->
     <g transform="translate(20, 160)">
       <circle cx="12" cy="12" r="6" fill="#3C6997" />
-      <text x="30" y="16" font-family="Arial" font-size="14" fill="#333">All Strategic Advisory features</text>
+      <text x="30" y="16" font-family="Arial" font-size="14" fill="#333">Visos Strateginių konsultacijų funkcijos</text>
       
       <circle cx="12" cy="42" r="6" fill="#3C6997" />
-      <text x="30" y="46" font-family="Arial" font-size="14" fill="#333">Dedicated CDO (1-2 days/week)</text>
+      <text x="30" y="46" font-family="Arial" font-size="14" fill="#333">Dedikuotas CDO (1-2 dienas/savaitę)</text>
       
       <circle cx="12" cy="72" r="6" fill="#3C6997" />
-      <text x="30" y="76" font-family="Arial" font-size="14" fill="#333">Hands-on project leadership</text>
+      <text x="30" y="76" font-family="Arial" font-size="14" fill="#333">Praktinis projektų vadovavimas</text>
       
       <circle cx="12" cy="102" r="6" fill="#3C6997" />
-      <text x="30" y="106" font-family="Arial" font-size="14" fill="#333">Data governance implementation</text>
+      <text x="30" y="106" font-family="Arial" font-size="14" fill="#333">Duomenų valdymo įgyvendinimas</text>
       
       <circle cx="12" cy="132" r="6" fill="#3C6997" />
-      <text x="30" y="136" font-family="Arial" font-size="14" fill="#333">Team mentoring & development</text>
+      <text x="30" y="136" font-family="Arial" font-size="14" fill="#333">Komandos ugdymas ir vystymas</text>
       
       <circle cx="12" cy="162" r="6" fill="#3C6997" />
-      <text x="30" y="166" font-family="Arial" font-size="14" fill="#333">Monthly progress reporting</text>
+      <text x="30" y="166" font-family="Arial" font-size="14" fill="#333">Mėnesinės pažangos ataskaitos</text>
     </g>
     
     <!-- Who For -->
     <rect x="20" y="330" width="240" height="50" rx="5" ry="5" fill="#f1f5f9" />
-    <text x="140" y="350" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#3C6997">Ideal for:</text>
-    <text x="140" y="370" font-family="Arial" font-size="14" text-anchor="middle" fill="#666">Growing organizations with active projects</text>
+    <text x="140" y="350" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#3C6997">Idealiai tinka:</text>
+    <text x="140" y="370" font-family="Arial" font-size="14" text-anchor="middle" fill="#666">Augančioms organizacijoms su aktyviais projektais</text>
   </g>
   
   <!-- Tier 3: Full CDO Function -->
   <g transform="translate(670, 120)">
     <rect width="280" height="400" rx="10" ry="10" fill="white" stroke="#ddd" stroke-width="2" filter="url(#shadow)" />
     <rect x="0" y="0" width="280" height="80" rx="10" ry="10" fill="url(#tier3-gradient)" />
-    <text x="140" y="35" font-family="Arial" font-size="22" font-weight="bold" text-anchor="middle" fill="white">Full CDO Function</text>
-    <text x="140" y="60" font-family="Arial" font-size="16" text-anchor="middle" fill="white">Enterprise Tier</text>
+    <text x="140" y="35" font-family="Arial" font-size="22" font-weight="bold" text-anchor="middle" fill="white">Pilna CDO funkcija</text>
+    <text x="140" y="60" font-family="Arial" font-size="16" text-anchor="middle" fill="white">Įmonės lygis</text>
     
     <!-- Price -->
     <text x="140" y="110" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#5D8DBF">€10,000+</text>
-    <text x="140" y="135" font-family="Arial" font-size="14" text-anchor="middle" fill="#666">per month</text>
+    <text x="140" y="135" font-family="Arial" font-size="14" text-anchor="middle" fill="#666">per mėnesį</text>
     
     <!-- Features -->
     <g transform="translate(20, 160)">
       <circle cx="12" cy="12" r="6" fill="#5D8DBF" />
-      <text x="30" y="16" font-family="Arial" font-size="14" fill="#333">All Embedded Leadership features</text>
+      <text x="30" y="16" font-family="Arial" font-size="14" fill="#333">Visos Įterptinės lyderystės funkcijos</text>
       
       <circle cx="12" cy="42" r="6" fill="#5D8DBF" />
-      <text x="30" y="46" font-family="Arial" font-size="14" fill="#333">Dedicated CDO (3-5 days/week)</text>
+      <text x="30" y="46" font-family="Arial" font-size="14" fill="#333">Dedikuotas CDO (3-5 dienas/savaitę)</text>
       
       <circle cx="12" cy="72" r="6" fill="#5D8DBF" />
-      <text x="30" y="76" font-family="Arial" font-size="14" fill="#333">Enterprise data architecture</text>
+      <text x="30" y="76" font-family="Arial" font-size="14" fill="#333">Įmonės duomenų architektūra</text>
       
       <circle cx="12" cy="102" r="6" fill="#5D8DBF" />
-      <text x="30" y="106" font-family="Arial" font-size="14" fill="#333">Advanced analytics & AI adoption</text>
+      <text x="30" y="106" font-family="Arial" font-size="14" fill="#333">Pažangios analitikos ir DI adaptavimas</text>
       
       <circle cx="12" cy="132" r="6" fill="#5D8DBF" />
-      <text x="30" y="136" font-family="Arial" font-size="14" fill="#333">Executive team representation</text>
+      <text x="30" y="136" font-family="Arial" font-size="14" fill="#333">Atstovavimas vadovų komandoje</text>
       
       <circle cx="12" cy="162" r="6" fill="#5D8DBF" />
-      <text x="30" y="166" font-family="Arial" font-size="14" fill="#333">Full data team leadership</text>
+      <text x="30" y="166" font-family="Arial" font-size="14" fill="#333">Pilnas duomenų komandos vadovavimas</text>
     </g>
     
     <!-- Who For -->
     <rect x="20" y="330" width="240" height="50" rx="5" ry="5" fill="#f1f5f9" />
-    <text x="140" y="350" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#5D8DBF">Ideal for:</text>
-    <text x="140" y="370" font-family="Arial" font-size="14" text-anchor="middle" fill="#666">Enterprises requiring dedicated leadership</text>
+    <text x="140" y="350" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#5D8DBF">Idealiai tinka:</text>
+    <text x="140" y="370" font-family="Arial" font-size="14" text-anchor="middle" fill="#666">Įmonėms, kurioms reikia dedikuotos lyderystės</text>
   </g>
   
   <!-- Bottom Text -->
   <g transform="translate(500, 540)">
-    <text x="0" y="0" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#235789">All service tiers include flexible terms and knowledge transfer</text>
-    <text x="0" y="25" font-family="Arial" font-size="14" text-anchor="middle" fill="#666">Contact us for a customized solution tailored to your specific needs</text>
+    <text x="0" y="0" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#235789">Visi paslaugų lygiai apima lanksčias sąlygas ir žinių perdavimą</text>
+    <text x="0" y="25" font-family="Arial" font-size="14" text-anchor="middle" fill="#666">Susisiekite su mumis dėl pritaikyto sprendimo, atitinkančio jūsų specifinius poreikius</text>
   </g>
 </svg> 

@@ -1,0 +1,31 @@
+{
+  "tools": [
+    {
+      "title": "Data Maturity Assessment",
+      "description": "Evaluate your organization's current data maturity level with this quick self-assessment tool.",
+      "icon": "chart-line",
+      "category": "assessment",
+      "url": "#",
+      "background": "blue-100",
+      "iconColor": "blue-500"
+    },
+    {
+      "title": "ROI Calculator",
+      "description": "Calculate the potential return on investment from data-driven decisions with this interactive calculator.",
+      "icon": "shield-alt",
+      "category": "calculator",
+      "url": "#",
+      "background": "green-100",
+      "iconColor": "green-500"
+    },
+    {
+      "title": "Data Governance Handbook",
+      "description": "Download our free guide on data governance best practices for small and medium enterprises.",
+      "icon": "chart-pie",
+      "category": "handbook",
+      "url": "#",
+      "background": "red-100",
+      "iconColor": "red-500"
+    }
+  ]
+} 

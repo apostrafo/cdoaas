@@ -1,0 +1,99 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CDONavbar from "../../components/cdoNavbar";
+import Footer from "../../components/footer.tsx";
+
+// Gauti [slug] parametrą iš URL
+export async function getStaticPaths() {
+  const posts = await Astro.glob('../../../content/blog/*.md');
+  
+  return posts.map(post => ({
+    params: {
+      slug: post.file.split('/').pop().replace('.md', '')
+    },
+    props: {
+      post
+    }
+  }));
+}
+
+const { post } = Astro.props;
+---
+
+<Layout title={`${post.frontmatter.title} | CDO as a Service Blog`}>
+  <main>
+    <CDONavbar client:only="react" />
+    
+    <!-- Blog post header -->
+    <div class="relative pt-20 pb-32 flex content-center items-center justify-center min-h-[50vh]">
+      {post.frontmatter.image ? (
+        <div class="absolute top-0 w-full h-full bg-center bg-cover" style={`background-image: url('${post.frontmatter.image}');`}>
+          <span class="w-full h-full absolute opacity-50 bg-black"></span>
+        </div>
+      ) : (
+        <div class="absolute top-0 w-full h-full bg-center bg-cover bg-gray-800">
+          <span class="w-full h-full absolute opacity-50 bg-black"></span>
+        </div>
+      )}
+      
+      <div class="container relative mx-auto px-4">
+        <div class="items-center flex flex-wrap">
+          <div class="w-full lg:w-8/12 px-4 ml-auto mr-auto text-center">
+            <div class="text-white">
+              <h1 class="text-5xl font-semibold">{post.frontmatter.title}</h1>
+              <p class="mt-4 text-lg text-gray-300">
+                {new Date(post.frontmatter.date).toLocaleDateString()} - {post.frontmatter.author}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Blog post content -->
+    <section class="relative py-20 bg-gray-100">
+      <div class="container mx-auto px-4">
+        <div class="w-full lg:w-8/12 mx-auto">
+          <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg p-8">
+            <div class="prose prose-lg max-w-none">
+              <div set:html={post.compiledContent()} />
+            </div>
+            
+            <!-- Author info and share buttons -->
+            <div class="mt-12 pt-8 border-t border-gray-200">
+              <div class="flex flex-wrap items-center">
+                <div class="w-full md:w-6/12">
+                  <h6 class="text-lg font-semibold">About the Author</h6>
+                  <p class="text-gray-600">{post.frontmatter.author}</p>
+                </div>
+                <div class="w-full md:w-6/12 text-right">
+                  <h6 class="text-lg font-semibold">Share this post</h6>
+                  <div class="flex justify-end space-x-4 mt-2">
+                    <a href={`https://twitter.com/intent/tweet?text=${post.frontmatter.title}&url=${Astro.url}`} class="text-blue-400 hover:text-blue-600">
+                      <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${Astro.url}`} class="text-blue-700 hover:text-blue-900">
+                      <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href={`https://www.facebook.com/sharer/sharer.php?u=${Astro.url}`} class="text-blue-800 hover:text-blue-900">
+                      <i class="fab fa-facebook text-xl"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Back to blog button -->
+          <div class="text-center">
+            <a href="/blog" class="bg-blue-500 text-white font-bold px-6 py-4 rounded hover:bg-blue-600 transition-all inline-block">
+              ← Back to All Articles
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <Footer client:only="react" />
+  </main>
+</Layout> 
