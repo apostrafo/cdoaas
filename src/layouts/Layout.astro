@@ -94,46 +94,37 @@ const { title = "CDO as a Service", metaDescription } = Astro.props;
     <!-- Script to remove promotional banner -->
     <script is:inline>
       document.addEventListener('DOMContentLoaded', function() {
-        // Function to remove the promotional banner
+        // Function to remove the promotional banner with a more targeted approach
         function removePromoBanner() {
-          // Look for elements containing the text from the promo banner
-          const elements = document.querySelectorAll('*');
-          for (let i = 0; i < elements.length; i++) {
-            const el = elements[i];
-            if (el.textContent && el.textContent.includes('Be Strong in 2025') && el.textContent.includes('All-Access Pass')) {
-              // Found the banner, remove it
+          // First try to find specific Creative Tim promo elements
+          const promoElements = document.querySelectorAll('.ct-docs-navbar-top, .fixed-top.ct-docs-navbar');
+          promoElements.forEach(el => {
+            if (el.textContent && el.textContent.includes('All-Access Pass')) {
               el.style.display = 'none';
-              // If we find a specific parent that seems to be the container, remove that too
-              let parent = el.parentElement;
-              for (let j = 0; j < 3; j++) { // Check up to 3 levels up
-                if (parent && (parent.classList.contains('promo-bar') || 
-                   parent.classList.contains('announcement') || 
-                   parent.classList.contains('banner') ||
-                   parent.style.position === 'fixed')) {
-                  parent.style.display = 'none';
-                  break;
-                }
-                if (parent) parent = parent.parentElement;
-              }
             }
-          }
+          });
+          
+          // Look for elements with common promotional banner classes
+          const bannerClasses = ['promo-banner', 'announcement-bar', 'top-banner', 'promo-bar', 'ct-promo'];
+          bannerClasses.forEach(className => {
+            const elements = document.getElementsByClassName(className);
+            for (let i = 0; i < elements.length; i++) {
+              elements[i].style.display = 'none';
+            }
+          });
+          
+          // Look for only div/nav/header elements with specific position/style attributes that might be the banner
+          const possibleBanners = document.querySelectorAll('div[style*="position: fixed"][style*="top:0"], nav[style*="position: fixed"][style*="top:0"], header[style*="position: fixed"][style*="top:0"]');
+          possibleBanners.forEach(el => {
+            if (el.textContent && (el.textContent.includes('All-Access Pass') || el.textContent.includes('Be Strong in 2025'))) {
+              el.style.display = 'none';
+            }
+          });
         }
         
-        // Run immediately
-        removePromoBanner();
-        
-        // Also run after a short delay to catch any dynamically added elements
+        // Run on page load with delays to catch dynamic elements
         setTimeout(removePromoBanner, 500);
         setTimeout(removePromoBanner, 1500);
-        setTimeout(removePromoBanner, 3000);
-        
-        // Create a MutationObserver to watch for dynamically added banners
-        const observer = new MutationObserver(function(mutations) {
-          removePromoBanner();
-        });
-        
-        // Start observing the document with the configured parameters
-        observer.observe(document.body, { childList: true, subtree: true });
       });
     </script>
     
