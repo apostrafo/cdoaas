@@ -1,8 +1,6 @@
 backend:
-  name: github
-  repo: apostrafo/cdoaas
+  name: git-gateway
   branch: main
-  auth_scope: repo
 
 media_folder: "public/uploads"
 public_folder: "/uploads"
