@@ -2,9 +2,6 @@ backend:
   name: github
   repo: apostrafo/cdoaas
   branch: main
-  auth_scope: repo
-  base_url: https://api.netlify.com
-  use_graphql: true
 
 media_folder: "public/uploads"
 public_folder: "/uploads"
@@ -22,7 +19,6 @@ collections:
       - label: "Apie mus"
         name: "about"
         file: "content/about.md"
-        i18n: true
         fields:
           - { label: "Pavadinimas", name: "title", widget: "string", i18n: true }
           - { label: "Turinys", name: "body", widget: "markdown", i18n: true }
@@ -34,7 +30,6 @@ collections:
       - label: "Paslaugų puslapis"
         name: "services"
         file: "content/services.md"
-        i18n: true
         fields:
           - { label: "Pavadinimas", name: "title", widget: "string", i18n: true }
           - { label: "Subtitras", name: "subtitle", widget: "string", i18n: true }
@@ -47,7 +42,6 @@ collections:
       - label: "Požiūrio puslapis"
         name: "approach"
         file: "content/approach.md"
-        i18n: true
         fields:
           - { label: "Pavadinimas", name: "title", widget: "string", i18n: true }
           - { label: "Subtitras", name: "subtitle", widget: "string", i18n: true }

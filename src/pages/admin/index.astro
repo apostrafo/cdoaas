@@ -8,82 +8,35 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CDOaaS - Content Management</title>
+    <!-- Include js-yaml parser before CMS -->
+    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
   </head>
   <body>
-    <!-- Include the script that builds the page and powers Decap CMS -->
-    <script is:inline src="https://unpkg.com/decap-cms@2.10.192/dist/decap-cms.js"></script>
+    <div id="nc-root"></div>
     
-    <!-- Script that manually sets the config path -->
+    <!-- Script that loads and configures CMS -->
     <script is:inline>
-      // Set base URL for correct paths
-      window.CMS_MANUAL_INIT = true;
-      
-      // Checks if config.yml exists at the appropriate path
+      // Load config first to make sure it's available
       fetch('/admin/config.yml')
-        .then(response => {
-          if (!response.ok) {
-            console.error('Config file is missing or not accessible:', response.status);
-            // Fallback to _config endpoint if direct config.yml is not available
-            window.decapCmsConfig = {
-              config: {
-                backend: {
-                  name: 'github',
-                  repo: 'apostrafo/cdoaas',
-                  branch: 'main',
-                  auth_scope: 'repo',
-                  base_url: 'https://api.netlify.com',
-                  use_graphql: true
-                },
-                media_folder: 'public/uploads',
-                public_folder: '/uploads',
-                i18n: {
-                  structure: 'single_file',
-                  locales: ['lt', 'en'],
-                  default_locale: 'lt'
-                },
-                collections: [
-                  {
-                    name: 'about',
-                    label: 'Apie mus',
-                    i18n: true,
-                    files: [
-                      {
-                        label: 'Apie mus',
-                        name: 'about',
-                        file: 'content/about.md',
-                        i18n: true,
-                        fields: [
-                          { label: 'Pavadinimas', name: 'title', widget: 'string', i18n: true },
-                          { label: 'Turinys', name: 'body', widget: 'markdown', i18n: true }
-                        ]
-                      }
-                    ]
-                  },
-                  // Kitos kolekcijos...
-                ]
-              }
-            };
-          } else {
-            return response.text().then(config => {
-              window.decapCmsConfig = {
-                load_config_file: false,
-                config: jsyaml.load(config)
-              };
-            });
-          }
+        .then(response => response.text())
+        .then(configText => {
+          // Load the Decap CMS script after we have the config
+          const script = document.createElement('script');
+          script.src = 'https://unpkg.com/netlify-cms@2.10.192/dist/netlify-cms.js';
+          script.onload = function() {
+            // Initialize CMS with simple config
+            window.CMS.init();
+          };
+          document.body.appendChild(script);
         })
         .catch(error => {
-          console.error('Error checking config file:', error);
-        })
-        .finally(() => {
-          // Initialize CMS with proper configuration
-          window.CMS.init({
-            config: window.decapCmsConfig.config
-          });
+          document.body.innerHTML = `<div style="color: red; padding: 20px;">
+            <h1>Error loading CMS config</h1>
+            <p>${error.message}</p>
+            <p>Please check your network connection and try again.</p>
+          </div>`;
+          console.error('Error loading config:', error);
         });
     </script>
-    
-    <!-- Include yaml parser -->
-    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
   </body>
 </html> 
