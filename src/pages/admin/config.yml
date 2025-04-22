@@ -12,6 +12,55 @@ i18n:
   default_locale: lt
 
 collections:
+  - name: "pages"
+    label: "Pagrindiniai puslapiai"
+    i18n: true
+    files:
+      - label: "Pagrindiniai puslapiai"
+        name: "pages"
+        file: "content/pages.md"
+        fields:
+          - label: "Pagrindinis puslapis"
+            name: "index"
+            widget: "object"
+            i18n: true
+            fields:
+              - { label: "Meta Title", name: "title", widget: "string", i18n: true }
+              - { label: "Meta Description", name: "description", widget: "string", i18n: true }
+              - { label: "Antraštė", name: "heading", widget: "string", i18n: true }
+              - { label: "Poraštė", name: "subheading", widget: "string", i18n: true }
+              - { label: "CTA mygtukas", name: "cta_button", widget: "string", i18n: true }
+              
+          - label: "Kontaktų puslapis"
+            name: "contact"
+            widget: "object" 
+            i18n: true
+            fields:
+              - { label: "Meta Title", name: "title", widget: "string", i18n: true }
+              - { label: "Meta Description", name: "description", widget: "string", i18n: true }
+              - { label: "Antraštė", name: "heading", widget: "string", i18n: true }
+              - { label: "Poraštė", name: "subheading", widget: "string", i18n: true }
+              
+          - label: "Atvejų studijos"
+            name: "case_studies"
+            widget: "object"
+            i18n: true
+            fields:
+              - { label: "Meta Title", name: "title", widget: "string", i18n: true }
+              - { label: "Meta Description", name: "description", widget: "string", i18n: true }
+              - { label: "Antraštė", name: "heading", widget: "string", i18n: true }
+              - { label: "Poraštė", name: "subheading", widget: "string", i18n: true }
+              
+          - label: "Įrankiai"
+            name: "tools"
+            widget: "object"
+            i18n: true
+            fields:
+              - { label: "Meta Title", name: "title", widget: "string", i18n: true }
+              - { label: "Meta Description", name: "description", widget: "string", i18n: true }
+              - { label: "Antraštė", name: "heading", widget: "string", i18n: true }
+              - { label: "Poraštė", name: "subheading", widget: "string", i18n: true }
+
   - name: "about"
     label: "Apie mus"
     i18n: true
@@ -48,9 +97,9 @@ collections:
           - { label: "Turinys", name: "body", widget: "markdown", i18n: true }
 
   - name: "tools"
-    label: "Rekomenduojami įrankiai"
+    label: "Įrankiai ir duomenys"
     i18n: true
-    files:
+    files:      
       - label: "Įrankių sąrašas"
         name: "tools_list"
         file: "data/tools.json"

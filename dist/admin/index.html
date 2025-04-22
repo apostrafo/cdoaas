@@ -1,23 +1,4 @@
----
-// Išjungiame Astro JS optimizacijas admin puslapiui
----
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CDOaaS - Content Management</title>
-    <!-- Include js-yaml parser before CMS -->
-    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
-    <!-- Add Netlify Identity Widget -->
-    <script is:inline src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  </head>
-  <body>
-    <div id="nc-root"></div>
-    
-    <!-- Script that loads and configures CMS -->
-    <script is:inline>
+<!DOCTYPE html><html> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>CDOaaS - Content Management</title><!-- Include js-yaml parser before CMS --><script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script><!-- Add Netlify Identity Widget --><script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script><link rel="stylesheet" href="/assets/about.czx8eBZM.css"></head> <body> <div id="nc-root"></div> <!-- Script that loads and configures CMS --> <script>
       // Load config first to make sure it's available
       fetch('/admin/config.yml')
         .then(response => response.text())
@@ -39,6 +20,4 @@
           </div>`;
           console.error('Error loading config:', error);
         });
-    </script>
-  </body>
-</html> 
+    </script> </body> </html>
