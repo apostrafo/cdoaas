@@ -25,6 +25,32 @@ collections:
           - { label: "Pavadinimas", name: "title", widget: "string", i18n: true }
           - { label: "Turinys", name: "body", widget: "markdown", i18n: true }
 
+  - name: "services"
+    label: "Paslaugos"
+    i18n: true
+    files:
+      - label: "Paslaugų puslapis"
+        name: "services"
+        file: "content/services.md"
+        i18n: true
+        fields:
+          - { label: "Pavadinimas", name: "title", widget: "string", i18n: true }
+          - { label: "Subtitras", name: "subtitle", widget: "string", i18n: true }
+          - { label: "Turinys", name: "body", widget: "markdown", i18n: true }
+  
+  - name: "approach"
+    label: "Mūsų požiūris"
+    i18n: true
+    files:
+      - label: "Požiūrio puslapis"
+        name: "approach"
+        file: "content/approach.md"
+        i18n: true
+        fields:
+          - { label: "Pavadinimas", name: "title", widget: "string", i18n: true }
+          - { label: "Subtitras", name: "subtitle", widget: "string", i18n: true }
+          - { label: "Turinys", name: "body", widget: "markdown", i18n: true }
+
   - name: "tools"
     label: "Rekomenduojami įrankiai"
     i18n: true

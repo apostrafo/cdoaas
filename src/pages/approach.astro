@@ -8,6 +8,9 @@ import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
+// Importuojame approach.md turinį
+const approachContent = await import('../../content/approach.md');
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const projectRoot = join(__dirname, '../../');
@@ -30,16 +33,27 @@ const approachPrinciplesSvg = readFileSync(join(projectRoot, 'public/img/approac
         <div class="items-center flex flex-wrap">
           <div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
             <div class="text-white">
-              <h1 class="text-5xl font-semibold" data-i18n="approach.title">Our Approach</h1>
-              <p class="mt-4 text-lg" data-i18n="approach.subtitle">A proven methodology for data leadership success</p>
+              <h1 class="text-5xl font-semibold" data-i18n="approach.title">{approachContent.frontmatter.title}</h1>
+              <p class="mt-4 text-lg" data-i18n="approach.subtitle">{approachContent.frontmatter.subtitle}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
     
-    <!-- Introduction section -->
+    <!-- Markdown turinys -->
     <section class="pb-20 bg-gray-100 -mt-24">
+      <div class="container mx-auto px-4">
+        <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg p-8 mt-16">
+          <div class="prose prose-lg max-w-none">
+            <div set:html={approachContent.compiledContent()} />
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Introduction section -->
+    <section class="pb-20 bg-gray-100">
       <div class="container mx-auto px-4">
         <div class="flex flex-wrap">
           <div class="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
@@ -79,36 +93,6 @@ const approachPrinciplesSvg = readFileSync(join(projectRoot, 'public/img/approac
                   We customize our approach to fit your organization's specific needs, industry context, and current data maturity level.
                 </p>
               </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="flex flex-wrap items-center mt-16">
-          <div class="w-full md:w-5/12 px-4 mr-auto ml-auto">
-            <div class="text-gray-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-gray-100">
-              <i class="fas fa-graduation-cap text-xl"></i>
-            </div>
-            <h3 class="text-3xl font-semibold" data-i18n="approach.knowledge.heading">Knowledge Transfer</h3>
-            <p class="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700" data-i18n="approach.knowledge.paragraph1">
-              A key principle of our approach is building data leadership capability within your organization. We don't just do the work for you - we transfer knowledge and skills to your team throughout every engagement.
-            </p>
-            <p class="text-lg font-light leading-relaxed mt-0 mb-4 text-gray-700" data-i18n="approach.knowledge.paragraph2">
-              This ensures that you develop self-sufficiency over time and aren't permanently dependent on external consultants. Our success is measured by your team's increased data capability.
-            </p>
-          </div>
-          <div class="w-full md:w-4/12 px-4 mr-auto ml-auto">
-            <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-blue-400">
-              <img alt="Knowledge Transfer" class="w-full align-middle rounded-t-lg" src="/img/knowledge-transfer.jpg">
-              <blockquote class="relative p-8 mb-4">
-                <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 583 95" class="absolute left-0 w-full block h-95-px -top-94-px">
-                  <polygon points="-30,95 583,95 583,65" class="text-blue-400 fill-current"></polygon>
-                </svg>
-                <h4 class="text-xl font-bold text-white" data-i18n="approach.capability.quote.title">Capability Building</h4>
-                <p class="text-md font-light mt-2 text-white" data-i18n="approach.capability.quote.text">
-                  "The CDOaaS team didn't just deliver solutions - they taught our team how to maintain and evolve them, which has been invaluable."
-                </p>
-                <p class="text-md font-semibold mt-4 text-white" data-i18n="approach.capability.quote.author">— IT Director, Manufacturing Company</p>
-              </blockquote>
             </div>
           </div>
         </div>
@@ -228,4 +212,5 @@ const approachPrinciplesSvg = readFileSync(join(projectRoot, 'public/img/approac
     
     <Footer client:only="react" />
   </main>
+</Layout> 
 </Layout> 
