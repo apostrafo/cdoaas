@@ -1,10 +1,10 @@
 import { defineConfig } from "astro/config";
 
 import react from "@astrojs/react";
+import tailwind from "@astrojs/tailwind";
+import netlify from "@astrojs/netlify";
 
 // https://astro.build/config
-import tailwind from "@astrojs/tailwind";
-
 const isProd = process.env.NODE_ENV === "production";
 
 // https://astro.build/config
@@ -12,4 +12,6 @@ export default defineConfig({
   integrations: [react(), tailwind()],
   site: "https://cdoaas.com",
   base: "/",
+  output: "server",
+  adapter: netlify(),
 });

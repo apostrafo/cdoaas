@@ -1,0 +1,9 @@
+{
+  "name": "netlify-local-plugins",
+  "description": "This file is used to install dependencies for Netlify Visual Editor",
+  "version": "1.0.0",
+  "dependencies": {
+    "@astrojs/netlify": "^4.1.1",
+    "@netlify/astro": "^5.0.0"
+  }
+} 

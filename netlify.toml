@@ -2,6 +2,11 @@
   publish = "dist"
   command = "npm run build"
 
+# Enable Netlify Visual Editor
+[visual]
+  framework = "astro"
+  devCommand = "npm run dev"
+
 # Handle 404 errors by serving the 404.html page
 [[redirects]]
   from = "/*"
