@@ -91,6 +91,52 @@ const { title = "CDO as a Service", metaDescription } = Astro.props;
       });
     </script>
     
+    <!-- Script to remove promotional banner -->
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Function to remove the promotional banner
+        function removePromoBanner() {
+          // Look for elements containing the text from the promo banner
+          const elements = document.querySelectorAll('*');
+          for (let i = 0; i < elements.length; i++) {
+            const el = elements[i];
+            if (el.textContent && el.textContent.includes('Be Strong in 2025') && el.textContent.includes('All-Access Pass')) {
+              // Found the banner, remove it
+              el.style.display = 'none';
+              // If we find a specific parent that seems to be the container, remove that too
+              let parent = el.parentElement;
+              for (let j = 0; j < 3; j++) { // Check up to 3 levels up
+                if (parent && (parent.classList.contains('promo-bar') || 
+                   parent.classList.contains('announcement') || 
+                   parent.classList.contains('banner') ||
+                   parent.style.position === 'fixed')) {
+                  parent.style.display = 'none';
+                  break;
+                }
+                if (parent) parent = parent.parentElement;
+              }
+            }
+          }
+        }
+        
+        // Run immediately
+        removePromoBanner();
+        
+        // Also run after a short delay to catch any dynamically added elements
+        setTimeout(removePromoBanner, 500);
+        setTimeout(removePromoBanner, 1500);
+        setTimeout(removePromoBanner, 3000);
+        
+        // Create a MutationObserver to watch for dynamically added banners
+        const observer = new MutationObserver(function(mutations) {
+          removePromoBanner();
+        });
+        
+        // Start observing the document with the configured parameters
+        observer.observe(document.body, { childList: true, subtree: true });
+      });
+    </script>
+    
     <!-- Google Tag Manager -->
     <script>
       (function (w, d, s, l, i) {
