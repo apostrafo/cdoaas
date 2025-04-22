@@ -10,33 +10,29 @@
     <title>CDOaaS - Content Management</title>
     <!-- Include js-yaml parser before CMS -->
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+    <!-- Include Decap CMS directly -->
+    <script is:inline src="https://unpkg.com/decap-cms@3.0.12/dist/decap-cms.js"></script>
   </head>
   <body>
     <div id="nc-root"></div>
     
     <!-- Script that loads and configures CMS -->
     <script is:inline>
-      // Load config first to make sure it's available
-      fetch('/admin/config.yml')
-        .then(response => response.text())
-        .then(configText => {
-          // Load the Decap CMS script after we have the config
-          const script = document.createElement('script');
-          script.src = 'https://unpkg.com/decap-cms@3.1.3/dist/decap-cms.js';
-          script.onload = function() {
-            // Initialize CMS with simple config
-            window.CMS.init();
-          };
-          document.body.appendChild(script);
-        })
-        .catch(error => {
-          document.body.innerHTML = `<div style="color: red; padding: 20px;">
-            <h1>Error loading CMS config</h1>
-            <p>${error.message}</p>
-            <p>Please check your network connection and try again.</p>
-          </div>`;
-          console.error('Error loading config:', error);
-        });
+      // Initialize CMS when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+        // Optional: Print the CMS config for debugging
+        fetch('/admin/config.yml')
+          .then(response => response.text())
+          .then(content => {
+            console.log('Config loaded successfully');
+          })
+          .catch(error => {
+            console.error('Error loading config:', error);
+          });
+        
+        // Initialize CMS
+        window.CMS.init();
+      });
     </script>
   </body>
 </html> 
