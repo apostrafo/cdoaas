@@ -1,0 +1,288 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CDONavbar from '../components/cdoNavbar';
+import Footer from '../components/footer.tsx';
+import { getTranslation } from '../utils/translations';
+
+// Get language from URL parameter or default to English
+const lang = Astro.url.searchParams.get('lang') || 'en';
+const isLt = lang === 'lt';
+
+// Add debug logs like in services.astro
+console.log("Current language from URL:", lang);
+console.log("Is Lithuanian:", isLt);
+
+// Create translation function with current language
+const t = (key) => getTranslation(key, lang);
+
+// Update link URLs to include language parameter
+const contactLink = isLt ? "/contact?lang=lt" : "/contact?lang=en";
+---
+
+<Layout title={`${t('cases.title')} | CDO as a Service`}>
+  <CDONavbar client:only="react" />
+
+  <main>
+    <!-- Page header -->
+    <header class="page-header bg-blue-700 py-16 md:py-24">
+      <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto text-center">
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-4" data-i18n="cases.title">{t('cases.title')}</h1>
+          <p class="text-xl text-blue-200" data-i18n="cases.subtitle">{t('cases.subtitle')}</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Introduction section -->
+    <section class="py-12 md:py-16">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4" data-i18n="cases.intro.title">{t('cases.intro.title')}</h2>
+          <p class="text-lg text-gray-700" data-i18n="cases.intro.description">
+            {t('cases.intro.description')}
+          </p>
+          <div class="grid grid-cols-3 gap-8 mt-10">
+            <div class="text-center">
+              <div class="text-4xl font-bold text-blue-600">75+</div>
+              <p class="text-gray-600" data-i18n="common.projects">{t('common.projects')}</p>
+            </div>
+            <div class="text-center">
+              <div class="text-4xl font-bold text-blue-600">€12M+</div>
+              <p class="text-gray-600" data-i18n="common.valueGenerated">{t('common.valueGenerated')}</p>
+            </div>
+            <div class="text-center">
+              <div class="text-4xl font-bold text-blue-600">96%</div>
+              <p class="text-gray-600" data-i18n="common.clientSatisfaction">{t('common.clientSatisfaction')}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Case Study 1 -->
+    <section id="case-study-1" class="py-12 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="lg:flex items-center gap-12">
+          <div class="lg:w-1/2 mb-8 lg:mb-0">
+            <img src="/img/case-study1.jpg" alt={t('cases.case1.title')} class="rounded-lg shadow-lg w-full">
+          </div>
+          <div class="lg:w-1/2">
+            <div class="inline-block px-3 py-1 text-sm font-semibold bg-blue-100 text-blue-800 rounded-full mb-4" data-i18n="cases.industry.manufacturing">{t('cases.industry.manufacturing')}</div>
+            <h3 class="text-2xl md:text-3xl font-bold mb-4" data-i18n="cases.case1.title">{t('cases.case1.title')}</h3>
+            <p class="mb-4"><strong data-i18n="cases.label.challenge">{t('cases.label.challenge')}</strong> <span data-i18n="cases.case1.challenge">{t('cases.case1.challenge')}</span></p>
+            <p class="mb-4"><strong data-i18n="cases.label.solution">{t('cases.label.solution')}</strong> <span data-i18n="cases.case1.solution1">{t('cases.case1.solution1')}</span></p>
+            <ul class="list-disc pl-5 mb-6 space-y-1">
+              <li data-i18n="cases.case1.solution2">{t('cases.case1.solution2')}</li>
+              <li data-i18n="cases.case1.solution3">{t('cases.case1.solution3')}</li>
+              <li data-i18n="cases.case1.solution4">{t('cases.case1.solution4')}</li>
+              <li data-i18n="cases.case1.solution5">{t('cases.case1.solution5')}</li>
+            </ul>
+            <p class="mb-4"><strong data-i18n="cases.label.results">{t('cases.label.results')}</strong></p>
+            <div class="grid grid-cols-3 gap-4 mt-4">
+              <div class="text-center p-4 bg-white rounded-lg shadow">
+                <div class="text-2xl font-bold text-blue-600">37%</div>
+                <p class="text-sm" data-i18n="cases.case1.metric1">{t('cases.case1.metric1')}</p>
+              </div>
+              <div class="text-center p-4 bg-white rounded-lg shadow">
+                <div class="text-2xl font-bold text-blue-600">€420K</div>
+                <p class="text-sm" data-i18n="cases.case1.metric2">{t('cases.case1.metric2')}</p>
+              </div>
+              <div class="text-center p-4 bg-white rounded-lg shadow">
+                <div class="text-2xl font-bold text-blue-600">15%</div>
+                <p class="text-sm" data-i18n="cases.case1.metric3">{t('cases.case1.metric3')}</p>
+              </div>
+            </div>
+            <a href="#" class="inline-block mt-6 px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors" data-i18n="cases.readMore">{t('cases.readMore')}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Case Study 2 -->
+    <section id="case-study-2" class="py-12">
+      <div class="container mx-auto px-4">
+        <div class="lg:flex items-center gap-12 flex-row-reverse">
+          <div class="lg:w-1/2 mb-8 lg:mb-0">
+            <img src="/img/case-study2.jpg" alt={t('cases.case2.title')} class="rounded-lg shadow-lg w-full">
+          </div>
+          <div class="lg:w-1/2">
+            <div class="inline-block px-3 py-1 text-sm font-semibold bg-green-100 text-green-800 rounded-full mb-4" data-i18n="cases.industry.healthcare">{t('cases.industry.healthcare')}</div>
+            <h3 class="text-2xl md:text-3xl font-bold mb-4" data-i18n="cases.case2.title">{t('cases.case2.title')}</h3>
+            <p class="mb-4"><strong data-i18n="cases.label.challenge">{t('cases.label.challenge')}</strong> <span data-i18n="cases.case2.challenge">{t('cases.case2.challenge')}</span></p>
+            <p class="mb-4"><strong data-i18n="cases.label.solution">{t('cases.label.solution')}</strong> <span data-i18n="cases.case2.solution1">{t('cases.case2.solution1')}</span></p>
+            <ul class="list-disc pl-5 mb-6 space-y-1">
+              <li data-i18n="cases.case2.solution2">{t('cases.case2.solution2')}</li>
+              <li data-i18n="cases.case2.solution3">{t('cases.case2.solution3')}</li>
+              <li data-i18n="cases.case2.solution4">{t('cases.case2.solution4')}</li>
+              <li data-i18n="cases.case2.solution5">{t('cases.case2.solution5')}</li>
+              <li data-i18n="cases.case2.solution6">{t('cases.case2.solution6')}</li>
+            </ul>
+            <p class="mb-4"><strong data-i18n="cases.label.results">{t('cases.label.results')}</strong></p>
+            <div class="grid grid-cols-3 gap-4 mt-4">
+              <div class="text-center p-4 bg-white rounded-lg shadow">
+                <div class="text-2xl font-bold text-green-600">92%</div>
+                <p class="text-sm" data-i18n="cases.case2.metric1">{t('cases.case2.metric1')}</p>
+              </div>
+              <div class="text-center p-4 bg-white rounded-lg shadow">
+                <div class="text-2xl font-bold text-green-600">100%</div>
+                <p class="text-sm" data-i18n="cases.case2.metric2">{t('cases.case2.metric2')}</p>
+              </div>
+              <div class="text-center p-4 bg-white rounded-lg shadow">
+                <div class="text-2xl font-bold text-green-600">23%</div>
+                <p class="text-sm" data-i18n="cases.case2.metric3">{t('cases.case2.metric3')}</p>
+              </div>
+            </div>
+            <a href="#" class="inline-block mt-6 px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors" data-i18n="cases.readMore">{t('cases.readMore')}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Case Study 3 -->
+    <section id="case-study-3" class="py-12 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="lg:flex items-center gap-12">
+          <div class="lg:w-1/2 mb-8 lg:mb-0">
+            <img src="/img/case-study3.jpg" alt={t('cases.case3.title')} class="rounded-lg shadow-lg w-full">
+          </div>
+          <div class="lg:w-1/2">
+            <div class="inline-block px-3 py-1 text-sm font-semibold bg-purple-100 text-purple-800 rounded-full mb-4" data-i18n="cases.industry.retail">{t('cases.industry.retail')}</div>
+            <h3 class="text-2xl md:text-3xl font-bold mb-4" data-i18n="cases.case3.title">{t('cases.case3.title')}</h3>
+            <p class="mb-4"><strong data-i18n="cases.label.challenge">{t('cases.label.challenge')}</strong> <span data-i18n="cases.case3.challenge">{t('cases.case3.challenge')}</span></p>
+            <p class="mb-4"><strong data-i18n="cases.label.solution">{t('cases.label.solution')}</strong> <span data-i18n="cases.case3.solution1">{t('cases.case3.solution1')}</span></p>
+            <ul class="list-disc pl-5 mb-6 space-y-1">
+              <li data-i18n="cases.case3.solution2">{t('cases.case3.solution2')}</li>
+              <li data-i18n="cases.case3.solution3">{t('cases.case3.solution3')}</li>
+              <li data-i18n="cases.case3.solution4">{t('cases.case3.solution4')}</li>
+              <li data-i18n="cases.case3.solution5">{t('cases.case3.solution5')}</li>
+            </ul>
+            <p class="mb-4"><strong data-i18n="cases.label.results">{t('cases.label.results')}</strong></p>
+            <div class="grid grid-cols-3 gap-4 mt-4">
+              <div class="text-center p-4 bg-white rounded-lg shadow">
+                <div class="text-2xl font-bold text-purple-600">32%</div>
+                <p class="text-sm" data-i18n="cases.case3.metric1">{t('cases.case3.metric1')}</p>
+              </div>
+              <div class="text-center p-4 bg-white rounded-lg shadow">
+                <div class="text-2xl font-bold text-purple-600">18%</div>
+                <p class="text-sm" data-i18n="cases.case3.metric2">{t('cases.case3.metric2')}</p>
+              </div>
+              <div class="text-center p-4 bg-white rounded-lg shadow">
+                <div class="text-2xl font-bold text-purple-600">€280K</div>
+                <p class="text-sm" data-i18n="cases.case3.metric3">{t('cases.case3.metric3')}</p>
+              </div>
+            </div>
+            <a href="#" class="inline-block mt-6 px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors" data-i18n="cases.readMore">{t('cases.readMore')}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Case Study 4 -->
+    <section id="case-study-4" class="py-12">
+      <div class="container mx-auto px-4">
+        <div class="lg:flex items-center gap-12 flex-row-reverse">
+          <div class="lg:w-1/2 mb-8 lg:mb-0">
+            <img src="/img/case-study4.jpg" alt={t('cases.case4.title')} class="rounded-lg shadow-lg w-full">
+          </div>
+          <div class="lg:w-1/2">
+            <div class="inline-block px-3 py-1 text-sm font-semibold bg-yellow-100 text-yellow-800 rounded-full mb-4" data-i18n="cases.industry.financial">{t('cases.industry.financial')}</div>
+            <h3 class="text-2xl md:text-3xl font-bold mb-4" data-i18n="cases.case4.title">{t('cases.case4.title')}</h3>
+            <p class="mb-4"><strong data-i18n="cases.label.challenge">{t('cases.label.challenge')}</strong> <span data-i18n="cases.case4.challenge">{t('cases.case4.challenge')}</span></p>
+            <p class="mb-4"><strong data-i18n="cases.label.solution">{t('cases.label.solution')}</strong> <span data-i18n="cases.case4.solution1">{t('cases.case4.solution1')}</span></p>
+            <ul class="list-disc pl-5 mb-6 space-y-1">
+              <li data-i18n="cases.case4.solution2">{t('cases.case4.solution2')}</li>
+              <li data-i18n="cases.case4.solution3">{t('cases.case4.solution3')}</li>
+              <li data-i18n="cases.case4.solution4">{t('cases.case4.solution4')}</li>
+              <li data-i18n="cases.case4.solution5">{t('cases.case4.solution5')}</li>
+            </ul>
+            <p class="mb-4"><strong data-i18n="cases.label.results">{t('cases.label.results')}</strong></p>
+            <div class="grid grid-cols-3 gap-4 mt-4">
+              <div class="text-center p-4 bg-white rounded-lg shadow">
+                <div class="text-2xl font-bold text-yellow-600">65%</div>
+                <p class="text-sm" data-i18n="cases.case4.metric1">{t('cases.case4.metric1')}</p>
+              </div>
+              <div class="text-center p-4 bg-white rounded-lg shadow">
+                <div class="text-2xl font-bold text-yellow-600">22%</div>
+                <p class="text-sm" data-i18n="cases.case4.metric2">{t('cases.case4.metric2')}</p>
+              </div>
+              <div class="text-center p-4 bg-white rounded-lg shadow">
+                <div class="text-2xl font-bold text-yellow-600">8%</div>
+                <p class="text-sm" data-i18n="cases.case4.metric3">{t('cases.case4.metric3')}</p>
+              </div>
+            </div>
+            <a href="#" class="inline-block mt-6 px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors" data-i18n="cases.readMore">{t('cases.readMore')}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials section (optional) -->
+    <section class="py-20 bg-gray-900 text-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold" data-i18n="cases.testimonials.title">{t('cases.testimonials.title')}</h2>
+          <p class="mt-4 text-gray-400 max-w-2xl mx-auto" data-i18n="cases.testimonials.subtitle">{t('cases.testimonials.subtitle')}</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-gray-800 p-8 rounded-lg relative">
+            <div class="text-5xl text-blue-500 absolute -top-4 left-4 opacity-50">"</div>
+            <p class="italic mb-6" data-i18n="cases.testimonial1.text">{t('cases.testimonial1.text')}</p>
+            <div class="flex items-center">
+              <img src="/img/testimonial1.jpg" alt="Testimonial" class="w-12 h-12 rounded-full mr-4">
+              <div>
+                <h4 class="font-bold" data-i18n="cases.testimonial1.name">{t('cases.testimonial1.name')}</h4>
+                <p class="text-gray-400 text-sm" data-i18n="cases.testimonial1.position">{t('cases.testimonial1.position')}</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-gray-800 p-8 rounded-lg relative">
+            <div class="text-5xl text-blue-500 absolute -top-4 left-4 opacity-50">"</div>
+            <p class="italic mb-6" data-i18n="cases.testimonial2.text">{t('cases.testimonial2.text')}</p>
+            <div class="flex items-center">
+              <img src="/img/testimonial2.jpg" alt="Testimonial" class="w-12 h-12 rounded-full mr-4">
+              <div>
+                <h4 class="font-bold" data-i18n="cases.testimonial2.name">{t('cases.testimonial2.name')}</h4>
+                <p class="text-gray-400 text-sm" data-i18n="cases.testimonial2.position">{t('cases.testimonial2.position')}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA section -->
+    <section class="py-16 bg-blue-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto text-center">
+          <h2 class="text-3xl font-bold mb-4" data-i18n="cases.cta.title">{t('cases.cta.title')}</h2>
+          <p class="text-xl mb-8 max-w-2xl mx-auto" data-i18n="cases.cta.description">{t('cases.cta.description')}</p>
+          <div class="text-center mt-8">
+            <a href={contactLink} class="inline-block px-8 py-4 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors" data-i18n="cases.cta.button">{t('cases.cta.button')}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer client:only="react" />
+</Layout>
+
+<script>
+  // Add client-side script to handle language parameter on link clicks
+  document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentLang = urlParams.get('lang') || localStorage.getItem('preferred_language') || 'en';
+    
+    // Log for debugging
+    console.log('Page loaded with language:', currentLang);
+    
+    // Make sure all links include the language parameter
+    document.querySelectorAll('a[href]:not([href^="#"]):not([href^="http"]):not([href^="mailto"])').forEach(link => {
+      const href = link.getAttribute('href');
+      if (href && !href.includes('lang=')) {
+        const separator = href.includes('?') ? '&' : '?';
+        link.setAttribute('href', `${href}${separator}lang=${currentLang}`);
+      }
+    });
+  });
+</script> 

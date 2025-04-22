@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600">
+  <defs>
+    <linearGradient id="stage1-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#235789" />
+      <stop offset="100%" stop-color="#3C6997" />
+    </linearGradient>
+    <linearGradient id="stage2-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3C6997" />
+      <stop offset="100%" stop-color="#5D8DBF" />
+    </linearGradient>
+    <linearGradient id="stage3-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#5D8DBF" />
+      <stop offset="100%" stop-color="#45AEB1" />
+    </linearGradient>
+    <linearGradient id="stage4-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#45AEB1" />
+      <stop offset="100%" stop-color="#38C7C9" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.3" />
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="900" height="600" fill="white" />
+  
+  <!-- Title -->
+  <text x="450" y="50" font-family="Arial" font-size="28" font-weight="bold" text-anchor="middle" fill="#235789">Data Maturity Model</text>
+  <text x="450" y="80" font-family="Arial" font-size="16" text-anchor="middle" fill="#666">A step-by-step approach to data transformation</text>
+  
+  <!-- Stage 1: Foundation -->
+  <g transform="translate(100, 150)">
+    <rect width="160" height="300" rx="10" ry="10" fill="url(#stage1-gradient)" filter="url(#shadow)" />
+    <text x="80" y="40" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="white">1. Foundation</text>
+    
+    <rect x="15" y="60" width="130" height="220" rx="5" ry="5" fill="white" fill-opacity="0.9" />
+    <text x="80" y="85" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#235789">Data Strategy</text>
+    
+    <g transform="translate(25, 100)">
+      <circle cx="10" cy="10" r="5" fill="#235789" />
+      <text x="25" y="15" font-family="Arial" font-size="12" fill="#333">Data inventory</text>
+      
+      <circle cx="10" cy="35" r="5" fill="#235789" />
+      <text x="25" y="40" font-family="Arial" font-size="12" fill="#333">Business alignment</text>
+      
+      <circle cx="10" cy="60" r="5" fill="#235789" />
+      <text x="25" y="65" font-family="Arial" font-size="12" fill="#333">Gap assessment</text>
+      
+      <circle cx="10" cy="85" r="5" fill="#235789" />
+      <text x="25" y="90" font-family="Arial" font-size="12" fill="#333">Key priorities</text>
+      
+      <circle cx="10" cy="110" r="5" fill="#235789" />
+      <text x="25" y="115" font-family="Arial" font-size="12" fill="#333">Infrastructure</text>
+      
+      <circle cx="10" cy="135" r="5" fill="#235789" />
+      <text x="25" y="140" font-family="Arial" font-size="12" fill="#333">Basic reporting</text>
+      
+      <circle cx="10" cy="160" r="5" fill="#235789" />
+      <text x="25" y="165" font-family="Arial" font-size="12" fill="#333">Data roles</text>
+    </g>
+  </g>
+  
+  <!-- Stage 2: Governance -->
+  <g transform="translate(280, 150)">
+    <rect width="160" height="300" rx="10" ry="10" fill="url(#stage2-gradient)" filter="url(#shadow)" />
+    <text x="80" y="40" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="white">2. Governance</text>
+    
+    <rect x="15" y="60" width="130" height="220" rx="5" ry="5" fill="white" fill-opacity="0.9" />
+    <text x="80" y="85" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#3C6997">Data Management</text>
+    
+    <g transform="translate(25, 100)">
+      <circle cx="10" cy="10" r="5" fill="#3C6997" />
+      <text x="25" y="15" font-family="Arial" font-size="12" fill="#333">Data quality</text>
+      
+      <circle cx="10" cy="35" r="5" fill="#3C6997" />
+      <text x="25" y="40" font-family="Arial" font-size="12" fill="#333">Metadata mgmt</text>
+      
+      <circle cx="10" cy="60" r="5" fill="#3C6997" />
+      <text x="25" y="65" font-family="Arial" font-size="12" fill="#333">Data policies</text>
+      
+      <circle cx="10" cy="85" r="5" fill="#3C6997" />
+      <text x="25" y="90" font-family="Arial" font-size="12" fill="#333">Master data</text>
+      
+      <circle cx="10" cy="110" r="5" fill="#3C6997" />
+      <text x="25" y="115" font-family="Arial" font-size="12" fill="#333">Data catalogs</text>
+      
+      <circle cx="10" cy="135" r="5" fill="#3C6997" />
+      <text x="25" y="140" font-family="Arial" font-size="12" fill="#333">Data ownership</text>
+      
+      <circle cx="10" cy="160" r="5" fill="#3C6997" />
+      <text x="25" y="165" font-family="Arial" font-size="12" fill="#333">Data standards</text>
+    </g>
+  </g>
+  
+  <!-- Stage 3: Analytics -->
+  <g transform="translate(460, 150)">
+    <rect width="160" height="300" rx="10" ry="10" fill="url(#stage3-gradient)" filter="url(#shadow)" />
+    <text x="80" y="40" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="white">3. Analytics</text>
+    
+    <rect x="15" y="60" width="130" height="220" rx="5" ry="5" fill="white" fill-opacity="0.9" />
+    <text x="80" y="85" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#5D8DBF">Business Insights</text>
+    
+    <g transform="translate(25, 100)">
+      <circle cx="10" cy="10" r="5" fill="#5D8DBF" />
+      <text x="25" y="15" font-family="Arial" font-size="12" fill="#333">Self-service BI</text>
+      
+      <circle cx="10" cy="35" r="5" fill="#5D8DBF" />
+      <text x="25" y="40" font-family="Arial" font-size="12" fill="#333">Advanced visuals</text>
+      
+      <circle cx="10" cy="60" r="5" fill="#5D8DBF" />
+      <text x="25" y="65" font-family="Arial" font-size="12" fill="#333">Predictive models</text>
+      
+      <circle cx="10" cy="85" r="5" fill="#5D8DBF" />
+      <text x="25" y="90" font-family="Arial" font-size="12" fill="#333">Data storytelling</text>
+      
+      <circle cx="10" cy="110" r="5" fill="#5D8DBF" />
+      <text x="25" y="115" font-family="Arial" font-size="12" fill="#333">Statistical analysis</text>
+      
+      <circle cx="10" cy="135" r="5" fill="#5D8DBF" />
+      <text x="25" y="140" font-family="Arial" font-size="12" fill="#333">KPI frameworks</text>
+      
+      <circle cx="10" cy="160" r="5" fill="#5D8DBF" />
+      <text x="25" y="165" font-family="Arial" font-size="12" fill="#333">Data science</text>
+    </g>
+  </g>
+  
+  <!-- Stage 4: AI -->
+  <g transform="translate(640, 150)">
+    <rect width="160" height="300" rx="10" ry="10" fill="url(#stage4-gradient)" filter="url(#shadow)" />
+    <text x="80" y="40" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="white">4. AI & Automation</text>
+    
+    <rect x="15" y="60" width="130" height="220" rx="5" ry="5" fill="white" fill-opacity="0.9" />
+    <text x="80" y="85" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#45AEB1">Advanced Capabilities</text>
+    
+    <g transform="translate(25, 100)">
+      <circle cx="10" cy="10" r="5" fill="#45AEB1" />
+      <text x="25" y="15" font-family="Arial" font-size="12" fill="#333">Machine learning</text>
+      
+      <circle cx="10" cy="35" r="5" fill="#45AEB1" />
+      <text x="25" y="40" font-family="Arial" font-size="12" fill="#333">AI applications</text>
+      
+      <circle cx="10" cy="60" r="5" fill="#45AEB1" />
+      <text x="25" y="65" font-family="Arial" font-size="12" fill="#333">Process automation</text>
+      
+      <circle cx="10" cy="85" r="5" fill="#45AEB1" />
+      <text x="25" y="90" font-family="Arial" font-size="12" fill="#333">Real-time analytics</text>
+      
+      <circle cx="10" cy="110" r="5" fill="#45AEB1" />
+      <text x="25" y="115" font-family="Arial" font-size="12" fill="#333">NLP & computer vision</text>
+      
+      <circle cx="10" cy="135" r="5" fill="#45AEB1" />
+      <text x="25" y="140" font-family="Arial" font-size="12" fill="#333">Prescriptive insights</text>
+      
+      <circle cx="10" cy="160" r="5" fill="#45AEB1" />
+      <text x="25" y="165" font-family="Arial" font-size="12" fill="#333">MLOps & model mgmt</text>
+    </g>
+  </g>
+  
+  <!-- Progress Arrows -->
+  <g>
+    <path d="M 260 300 L 280 300" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+    <path d="M 440 300 L 460 300" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+    <path d="M 620 300 L 640 300" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+  </g>
+  
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" 
+        markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#666" />
+    </marker>
+  </defs>
+  
+  <!-- Bottom Description -->
+  <g transform="translate(450, 500)">
+    <text x="0" y="0" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#235789">Progression through data maturity stages</text>
+    <text x="0" y="25" font-family="Arial" font-size="14" text-anchor="middle" fill="#666">Each stage builds on previous capabilities, with a focus on business value at every level</text>
+    <text x="0" y="50" font-family="Arial" font-size="14" text-anchor="middle" fill="#666">Organizations can be at different stages across different departments</text>
+  </g>
+</svg> 

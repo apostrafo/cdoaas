@@ -1,0 +1,95 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CDONavbar from "../components/cdoNavbar";
+import Footer from "../components/footer.tsx";
+---
+
+<Layout title="Blog | CDO as a Service">
+  <main>
+    <CDONavbar client:only="react" />
+    
+    <!-- page header -->
+    <div class="relative pt-20 pb-32 flex content-center items-center justify-center min-h-[75vh]">
+      <div class="absolute top-0 w-full h-full bg-center bg-cover" style="background-image: url('/img/blog-header.jpg');">
+        <span class="w-full h-full absolute opacity-50 bg-black"></span>
+      </div>
+      <div class="container relative mx-auto px-4">
+        <div class="items-center flex flex-wrap">
+          <div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
+            <div class="text-white">
+              <h1 class="text-5xl font-semibold" data-i18n="blog.title">Blog</h1>
+              <p class="mt-4 text-lg" data-i18n="blog.subtitle">Insights on data leadership</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Blog Section -->
+    <section class="pb-20 bg-gray-100 -mt-24">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-wrap items-center mt-32">
+          <div class="w-full md:w-5/12 px-4 mr-auto ml-auto">
+            <h3 class="text-3xl mb-2 font-semibold leading-normal" data-i18n="blog.comingSoon">
+              Coming Soon
+            </h3>
+            <p class="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700" data-i18n="blog.description">
+              Our blog is currently under development. We'll be sharing insights on data leadership, governance, analytics, and more.
+            </p>
+            <p class="text-lg font-light leading-relaxed mt-0 mb-4 text-gray-700" data-i18n="blog.comingSoonMessage">
+              In the meantime, sign up for our newsletter to receive our latest articles and insights directly in your inbox.
+            </p>
+          </div>
+          <div class="w-full md:w-4/12 px-4 mr-auto ml-auto">
+            <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-blue-500">
+              <img alt="Blog coming soon" class="w-full align-middle rounded-t-lg" src="/img/coming-soon.jpg" />
+              <blockquote class="relative p-8 mb-4">
+                <h4 class="text-xl font-bold text-white">Subscribe to our Newsletter</h4>
+                <p class="text-md font-light mt-2 text-white" data-i18n="blog.newsletter.description">
+                  Get the latest insights on data leadership, governance, and analytics delivered to your inbox.
+                </p>
+                <form class="mt-6">
+                  <div class="relative flex w-full flex-wrap items-stretch">
+                    <input type="email" class="z-10 h-12 relative rounded-l border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white text-sm outline-none focus:outline-none w-full" placeholder="Email" aria-label="Email" required />
+                    <button type="submit" class="z-10 h-12 leading-snug font-normal absolute bg-indigo-600 text-white rounded-r text-base items-center justify-center w-auto px-6 py-3 -ml-px">
+                      Subscribe
+                    </button>
+                  </div>
+                </form>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Blog Posts Grid - Coming Soon -->
+    <section class="pt-20 pb-48">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-wrap justify-center text-center mb-24">
+          <div class="w-full lg:w-6/12 px-4">
+            <h2 class="text-4xl font-semibold" data-i18n="blog.featuredPosts">Featured Posts</h2>
+            <p class="text-lg leading-relaxed m-4 text-gray-600" data-i18n="blog.featuredPostsDescription">
+              Our most popular articles and insights on data leadership
+            </p>
+          </div>
+        </div>
+        
+        <!-- Empty state - Coming Soon -->
+        <div class="flex flex-wrap justify-center">
+          <div class="w-full text-center py-16">
+            <div class="inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-gray-100">
+              <i class="fas fa-clock text-xl text-gray-500"></i>
+            </div>
+            <h5 class="text-xl font-bold" data-i18n="blog.comingSoon">Coming Soon</h5>
+            <p class="mt-2 text-gray-600 max-w-lg mx-auto" data-i18n="blog.comingSoonMessage">
+              In the meantime, sign up for our newsletter to receive our latest articles and insights directly in your inbox.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <Footer client:only="react" />
+  </main>
+</Layout> 

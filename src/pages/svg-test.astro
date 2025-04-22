@@ -1,0 +1,142 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CDONavbar from "../components/cdoNavbar";
+import Footer from "../components/footer.tsx";
+
+// Fetch SVG contents directly
+import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const projectRoot = join(__dirname, '../../');
+
+// Read SVG files
+const serviceTiersSvg = readFileSync(join(projectRoot, 'public/img/service-tiers.svg'), 'utf-8');
+const comparisonChartSvg = readFileSync(join(projectRoot, 'public/img/comparison-chart.svg'), 'utf-8');
+const dataMaturitvModelSvg = readFileSync(join(projectRoot, 'public/img/data-maturity-model.svg'), 'utf-8');
+const approachPrinciplesSvg = readFileSync(join(projectRoot, 'public/img/approach-principles.svg'), 'utf-8');
+---
+
+<Layout title="SVG Test | CDO as a Service">
+  <main>
+    <CDONavbar client:only="react" />
+    
+    <!-- page header -->
+    <div class="relative pt-20 pb-32 flex content-center items-center justify-center min-h-[50vh]">
+      <div class="absolute top-0 w-full h-full bg-center bg-cover" style="background-color: #235789;">
+        <span class="w-full h-full absolute opacity-50 bg-black"></span>
+      </div>
+      <div class="container relative mx-auto px-4">
+        <div class="items-center flex flex-wrap">
+          <div class="w-full px-4 ml-auto mr-auto text-center">
+            <div class="text-white">
+              <h1 class="text-5xl font-semibold">SVG Test Page</h1>
+              <p class="mt-4 text-lg">Testing SVG rendering methods</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Test Section 1: Image Tag -->
+    <section class="pb-20 bg-white -mt-24">
+      <div class="container mx-auto px-4">
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-12">
+          <h2 class="text-3xl font-semibold mb-6">Method 1: Standard Img Tag</h2>
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4">Service Tiers SVG</h3>
+            <img alt="CDOaaS Service Tiers" class="max-w-full mx-auto border border-gray-300" src="/img/service-tiers.svg">
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Test Section 2: Direct Embed -->
+    <section class="pb-20 bg-gray-100">
+      <div class="container mx-auto px-4">
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-12">
+          <h2 class="text-3xl font-semibold mb-6">Method 2: Direct SVG Embed</h2>
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4">Service Tiers SVG</h3>
+            <div class="border border-gray-300 p-4">
+              <Fragment set:html={serviceTiersSvg} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Test Section 3: Object Tag -->
+    <section class="pb-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-12">
+          <h2 class="text-3xl font-semibold mb-6">Method 3: Object Tag</h2>
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4">Service Tiers SVG</h3>
+            <div class="border border-gray-300 p-4">
+              <object data="/img/service-tiers.svg" type="image/svg+xml" width="100%" height="500">
+                Your browser does not support SVG
+              </object>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Test Section 4: Iframe -->
+    <section class="pb-20 bg-gray-100">
+      <div class="container mx-auto px-4">
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-12">
+          <h2 class="text-3xl font-semibold mb-6">Method 4: Iframe</h2>
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4">Service Tiers SVG</h3>
+            <div class="border border-gray-300 p-4">
+              <iframe src="/img/service-tiers.svg" width="100%" height="500" style="border: none;"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <Footer client:only="react" />
+  </main>
+</Layout>
+
+<script>
+  // Debug script
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('SVG Test Page Loaded');
+    
+    // Add load/error handlers to images
+    document.querySelectorAll('img[src$=".svg"]').forEach(img => {
+      img.onerror = function() {
+        console.error(`SVG load error: ${img.src}`);
+        img.style.border = '3px solid red';
+        const errorMsg = document.createElement('p');
+        errorMsg.textContent = `Error loading: ${img.src}`;
+        errorMsg.style.color = 'red';
+        img.parentNode.appendChild(errorMsg);
+      };
+      
+      img.onload = function() {
+        console.log(`SVG loaded successfully: ${img.src}`);
+        img.style.border = '3px solid green';
+      };
+    });
+    
+    // Add load/error handlers to objects
+    document.querySelectorAll('object[data$=".svg"]').forEach(obj => {
+      obj.onerror = function() {
+        console.error(`SVG object load error: ${obj.data}`);
+        obj.style.border = '3px solid red';
+      };
+      
+      obj.onload = function() {
+        console.log(`SVG object loaded successfully: ${obj.data}`);
+        obj.style.border = '3px solid green';
+      };
+    });
+  });
+</script> 

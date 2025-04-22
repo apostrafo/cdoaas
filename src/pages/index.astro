@@ -1,33 +1,323 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import HeaderPresentation from "../components/presentation/header"
-import FeaturePresentation from "../components/presentation/feature"
-import LogosPresentation from "../components/presentation/logos"
-import DevFreePresentation from "../components/presentation/developerFree"
-import PalettePresentationFree from "../components/presentation/palette"
-import CodePresentation from "../components/presentation/code"
-import FreeToProPresentation from "../components/presentation/freeToPro"
-import AstroPresentation from "../components/presentation/astro"
-import PagesFreePresentation from "../components/presentation/pagesFree"
-import GithubPresentation from "../components/presentation/github"
-import PricingPresentation from "../components/presentation/pricing"
-import FooterFreePresentation from "../components/presentation/footerFree"
-
+import Layout from "../layouts/Layout.astro";
+import CDONavbar from "../components/cdoNavbar";
+import Footer from "../components/footer.tsx";
 ---
 
-<Layout title="Presentation Page">
+<Layout title="CDO as a Service | Data Leadership for SMEs">
 	<main>
-    <HeaderPresentation client:only="react" />
-    <FeaturePresentation client:only="react" />
-    <LogosPresentation client:only="react" />
-    <DevFreePresentation client:only="react" />
-    <PalettePresentationFree client:only="react" />
-    <CodePresentation client:only="react" />
-    <FreeToProPresentation client:only="react" />
-    <AstroPresentation client:only="react" />
-    <PagesFreePresentation client:only="react" />
-    <PricingPresentation client:only="react" />
-    <GithubPresentation client:only="react" />
-    <FooterFreePresentation client:only="react" />
+		<CDONavbar client:only="react" />
+		
+		<!-- Hero section -->
+		<div class="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen">
+			<div class="absolute top-0 w-full h-full bg-center bg-cover" style="background-image: url('/img/hero-bg.jpg');">
+				<span class="w-full h-full absolute opacity-50 bg-black"></span>
+			</div>
+			<div class="container relative mx-auto">
+				<div class="items-center flex flex-wrap">
+					<div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
+						<div class="text-white">
+							<h1 class="text-5xl font-semibold" data-i18n="home.hero.title">CDO as a Service</h1>
+							<p class="mt-4 text-lg text-gray-300" data-i18n="home.hero.subtitle">Strategic data leadership for small and medium enterprises</p>
+							<a href="/contact" class="mt-8 inline-block bg-blue-500 text-white font-bold px-6 py-4 rounded hover:bg-blue-600 transition-all" data-i18n="home.hero.cta">
+								Book a Consultation
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="absolute bottom-0 w-full">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="w-full">
+					<path fill="#f3f4f6" fill-opacity="1" d="M0,288L80,277.3C160,267,320,245,480,240C640,235,800,245,960,250.7C1120,256,1280,256,1360,256L1440,256L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
+				</svg>
+			</div>
+		</div>
+		
+		<!-- Key benefits section -->
+		<section class="pb-20 bg-gray-100">
+			<div class="container mx-auto px-4">
+				<div class="flex flex-wrap items-center mt-32">
+					<div class="w-full md:w-6/12 px-4 mr-auto ml-auto">
+						<div class="text-gray-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-gray-100">
+							<i class="fas fa-chart-line text-xl"></i>
+						</div>
+						<h3 class="text-3xl mb-2 font-semibold leading-normal" data-i18n="home.benefits.title">
+							Why SMEs Choose CDOaaS
+						</h3>
+						<p class="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700" data-i18n="home.benefits.description">
+							Get C-level data leadership guidance for business growth without the cost of a full-time executive. Our fractional CDO model provides strategic direction aligned with your business goals.
+						</p>
+					</div>
+					<div class="w-full md:w-4/12 px-4 mr-auto ml-auto">
+						<div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-blue-500">
+							<img alt="Strategic Data Leadership" class="w-full align-middle rounded-t-lg" src="/img/strategic-data.jpg">
+							<blockquote class="relative p-8 mb-4">
+								<svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 583 95" class="absolute left-0 w-full block h-95-px -top-94-px">
+									<polygon points="-30,95 583,95 583,65" class="text-blue-500 fill-current"></polygon>
+								</svg>
+								<h4 class="text-xl font-bold text-white" data-i18n="home.benefits.strategicExpertise">
+									Strategic Expertise
+								</h4>
+								<p class="text-md font-light mt-2 text-white" data-i18n="home.benefits.strategicDescription">
+									Get C-level data leadership guidance for business growth without the cost of a full-time executive.
+								</p>
+							</blockquote>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<!-- Value props section -->
+		<section class="relative py-20">
+			<div class="container mx-auto px-4">
+				<div class="items-center flex flex-wrap">
+					<div class="w-full md:w-6/12 ml-auto mr-auto px-4">
+						<img alt="CDO Value" class="max-w-full rounded-lg shadow-lg" src="/img/practical-implementation.jpg">
+					</div>
+					<div class="w-full md:w-5/12 ml-auto mr-auto px-4">
+						<div class="md:pr-12">
+							<div class="text-blue-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-blue-300">
+								<i class="fas fa-cogs text-xl"></i>
+							</div>
+							<h3 class="text-3xl font-semibold" data-i18n="home.implementation.title">Practical Implementation</h3>
+							<p class="mt-4 text-lg leading-relaxed text-gray-600" data-i18n="home.implementation.description">
+								We don't just consult, we implement. From data governance systems to analytics reports, our hands-on approach ensures you achieve tangible results from your data initiatives.
+							</p>
+							<ul class="list-none mt-6">
+								<li class="py-2">
+									<div class="flex items-center">
+										<div>
+											<span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blue-600 bg-blue-200 mr-3">
+												<i class="fas fa-check"></i>
+											</span>
+										</div>
+										<div>
+											<h4 class="text-gray-900" data-i18n="home.implementation.strategy">Data Strategy Development</h4>
+										</div>
+									</div>
+								</li>
+								<li class="py-2">
+									<div class="flex items-center">
+										<div>
+											<span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blue-600 bg-blue-200 mr-3">
+												<i class="fas fa-check"></i>
+											</span>
+										</div>
+										<div>
+											<h4 class="text-gray-900" data-i18n="home.implementation.governance">Governance Implementation</h4>
+										</div>
+									</div>
+								</li>
+								<li class="py-2">
+									<div class="flex items-center">
+										<div>
+											<span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blue-600 bg-blue-200 mr-3">
+												<i class="fas fa-check"></i>
+											</span>
+										</div>
+										<div>
+											<h4 class="text-gray-900" data-i18n="home.implementation.analytics">Analytics & Insights</h4>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<!-- SME comparison section -->
+		<section class="pb-20 bg-white">
+			<div class="container mx-auto px-4">
+				<div class="flex flex-wrap items-center mt-32">
+					<div class="w-full md:w-5/12 px-4 mr-auto ml-auto">
+						<div class="text-gray-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-gray-100">
+							<i class="fas fa-money-bill-wave text-xl"></i>
+						</div>
+						<h3 class="text-3xl mb-2 font-semibold leading-normal" data-i18n="home.value.costEffective">
+							Cost-Effective
+						</h3>
+						<p class="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700" data-i18n="home.value.costDescription">
+							Get top-tier CDO expertise at a fraction of the cost of a full-time employee.
+						</p>
+						<p class="text-lg font-light leading-relaxed mt-0 mb-4 text-gray-700">
+							Our fractional CDO model delivers the right expertise, at the right time, for the right price, allowing you to scale your data leadership as needed.
+						</p>
+						<a href="/services" class="font-bold text-blue-600 hover:text-blue-800 mt-8 block">
+							See our service tiers →
+						</a>
+					</div>
+					<div class="w-full md:w-4/12 px-4 mr-auto ml-auto">
+						<img alt="Cost Comparison" class="max-w-full rounded-lg shadow-lg" src="/img/comparison-chart.svg">
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<!-- CTA section -->
+		<section class="pb-20 relative block bg-gray-900">
+			<div class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20" style="transform: translateZ(0px)">
+				<svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
+					<polygon class="text-gray-900 fill-current" points="2560 0 2560 100 0 100"></polygon>
+				</svg>
+			</div>
+			<div class="container mx-auto px-4 lg:pt-24 lg:pb-64">
+				<div class="flex flex-wrap text-center justify-center">
+					<div class="w-full lg:w-6/12 px-4">
+						<h2 class="text-4xl font-semibold text-white" data-i18n="home.cta.title">Ready to transform your data capabilities?</h2>
+						<p class="text-lg leading-relaxed mt-4 mb-4 text-gray-500" data-i18n="home.cta.description">
+							Our CDO as a Service model delivers expert data leadership at a fraction of the cost of a full-time CDO (saving 60-80% on average). Customize collaboration hours to your needs and budget.
+						</p>
+					</div>
+				</div>
+				<div class="flex flex-wrap mt-12 justify-center">
+					<div class="w-full lg:w-3/12 px-4 text-center">
+						<div class="text-gray-900 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
+							<i class="fas fa-calculator text-xl"></i>
+						</div>
+						<h6 class="text-xl mt-5 font-semibold text-white" data-i18n="home.value.costEffective">
+							Cost-Effective
+						</h6>
+						<p class="mt-2 mb-4 text-gray-500" data-i18n="home.value.costDescription">
+							Get top-tier CDO expertise at a fraction of the cost of a full-time employee.
+						</p>
+					</div>
+					<div class="w-full lg:w-3/12 px-4 text-center">
+						<div class="text-gray-900 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
+							<i class="fas fa-chart-pie text-xl"></i>
+						</div>
+						<h5 class="text-xl mt-5 font-semibold text-white" data-i18n="home.value.measurableResults">
+							Measurable Results
+						</h5>
+						<p class="mt-2 mb-4 text-gray-500" data-i18n="home.value.resultsDescription">
+							Our approach focuses on tangible business outcomes and metrics.
+						</p>
+					</div>
+					<div class="w-full lg:w-3/12 px-4 text-center">
+						<div class="text-gray-900 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
+							<i class="fas fa-rocket text-xl"></i>
+						</div>
+						<h5 class="text-xl mt-5 font-semibold text-white" data-i18n="home.value.rapidImplementation">
+							Rapid Implementation
+						</h5>
+						<p class="mt-2 mb-4 text-gray-500" data-i18n="home.value.rapidDescription">
+							Start seeing results in weeks, not months or years.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<!-- Contact section -->
+		<section class="relative block py-24 lg:pt-0 bg-gray-900">
+			<div class="container mx-auto px-4">
+				<div class="flex flex-wrap justify-center lg:-mt-64 -mt-48">
+					<div class="w-full lg:w-6/12 px-4">
+						<div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-300">
+							<div class="flex-auto p-5 lg:p-10">
+								<h4 class="text-2xl font-semibold" data-i18n="home.contact.title">Ready to get started?</h4>
+								<p class="leading-relaxed mt-1 mb-4 text-gray-600" data-i18n="home.contact.description">
+									Complete this form and we will contact you within 24 hours.
+								</p>
+								<div class="relative w-full mb-3 mt-8">
+									<label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="full-name" data-i18n="home.contact.fullName">
+										Full Name
+									</label>
+									<input type="text" class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder="Full Name" data-i18n="home.contact.fullName" style="transition: all 0.15s ease 0s;" />
+								</div>
+								<div class="relative w-full mb-3">
+									<label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="email" data-i18n="home.contact.email">
+										Email
+									</label>
+									<input type="email" class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder="Email" data-i18n="home.contact.email" style="transition: all 0.15s ease 0s;" />
+								</div>
+								<div class="relative w-full mb-3">
+									<label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="message" data-i18n="home.contact.message">
+										Message
+									</label>
+									<textarea rows="4" cols="80" class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder="Type a message..." data-i18n="home.contact.message"></textarea>
+								</div>
+								<div class="text-center mt-6">
+									<button class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1" type="button" data-i18n="home.contact.send" style="transition: all 0.15s ease 0s;">
+										Send Message
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<Footer client:only="react" />
   </main>
 </Layout>
+
+<script>
+  // Client-side script to handle translations
+  document.addEventListener('DOMContentLoaded', function() {
+    // Function to apply translations
+    function applyTranslations(language) {
+      console.log('Applying translations for language:', language);
+      fetch(`/translations/${language}.json`)
+        .then(response => response.json())
+        .then(translations => {
+          document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            if (translations[key]) {
+              if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                element.placeholder = translations[key];
+                // For labels, also update the text content
+                if (element.previousElementSibling && element.previousElementSibling.hasAttribute('for')) {
+                  element.previousElementSibling.textContent = translations[key];
+                }
+              } else if (element.tagName === 'BUTTON') {
+                element.textContent = translations[key];
+              } else {
+                element.textContent = translations[key];
+              }
+            } else {
+              console.warn(`Translation key not found: ${key}`);
+            }
+          });
+        })
+        .catch(error => {
+          console.error('Error loading translations:', error);
+        });
+    }
+    
+    // Get language preference
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get('lang');
+    const savedLang = localStorage.getItem('preferred_language');
+    
+    // Apply translations based on language preference
+    const language = langParam || savedLang || 'lt';
+    console.log('Selected language:', language);
+    applyTranslations(language);
+    
+    // Save language preference
+    if (langParam) {
+      localStorage.setItem('preferred_language', langParam);
+    }
+    
+    // Update all navigation links to include the current language
+    const currentLang = langParam || savedLang || 'lt';
+    document.querySelectorAll('a[href]').forEach(link => {
+      const href = link.getAttribute('href');
+      // Only process internal links (not external or hash links)
+      if (href && href.startsWith('/') && !href.startsWith('//')) {
+        // Don't modify if it already has a lang parameter
+        if (!href.includes('?lang=') && !href.includes('&lang=')) {
+          const hasParams = href.includes('?');
+          const newHref = hasParams 
+            ? `${href}&lang=${currentLang}` 
+            : `${href}?lang=${currentLang}`;
+          link.setAttribute('href', newHref);
+        }
+      }
+    });
+  });
+</script>
