@@ -8,7 +8,7 @@ media_folder: "public/uploads"
 public_folder: "/uploads"
 
 i18n:
-  structure: multiple_folders
+  structure: single_file
   locales: [lt, en]
   default_locale: lt
 
