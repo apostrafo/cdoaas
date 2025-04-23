@@ -1,33 +1,142 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import data from "../../public/data.json";
-import HeaderAbout from "../components/about/header"
-import FeaturesAbout from "../components/about/features"
-import TeamAbout from "../components/about/team"
-import TestimonialAbout from "../components/about/testimonials"
-import FooterAbout from "../components/about/footer"
+import Layout from "../layouts/Layout.astro";
+import CDONavbar from "../components/cdoNavbar";
+import Footer from "../components/footer.tsx";
+import { getEntryBySlug } from "astro:content";
 
-// Importuojame about.md turinį
-const aboutContent = await import('../../content/about.md');
+const about = await getEntryBySlug("about", "about");
+const { title } = about.data;
+const { Content } = await about.render();
 ---
 
-<Layout title="About Us Page">
-	<main>
-    <HeaderAbout client:only="react" />
-    <FeaturesAbout client:only="react" />
-    <TestimonialAbout client:only="react" />
-    <TeamAbout client:only="react" />
-    
-    <!-- Pridedame about.md turinį -->
-    <section class="py-12 bg-white">
-      <div class="container mx-auto px-4">
-        <div class="prose prose-lg mx-auto">
-          <h1>{aboutContent.frontmatter.title}</h1>
-          <div set:html={aboutContent.compiledContent()} />
-        </div>
-      </div>
-    </section>
-    
-    <FooterAbout client:only="react" />
-  </main>
+<Layout title="CDO as a Service | About Us">
+	<main data-sb-object-id="content/about.md">
+		<CDONavbar client:only="react" />
+		
+		<!-- page header -->
+		<div class="relative pt-20 pb-32 flex content-center items-center justify-center min-h-[75vh]">
+			<div class="absolute top-0 w-full h-full bg-center bg-cover" style="background-image: url('/img/about-bg.jpg');">
+				<span class="w-full h-full absolute opacity-50 bg-black"></span>
+			</div>
+			<div class="container relative mx-auto px-4">
+				<div class="items-center flex flex-wrap">
+					<div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
+						<div class="text-white">
+							<h1 class="text-5xl font-semibold" data-sb-field-path="title">{title}</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- About section -->
+		<section class="pb-20 bg-gray-100 -mt-24">
+			<div class="container mx-auto px-4">
+				<div class="w-full px-4 mt-16" data-sb-field-path="body">
+					<Content />
+				</div>
+			</div>
+		</section>
+		
+		<!-- Our Team section -->
+		<section class="pt-20 pb-48">
+			<div class="container mx-auto px-4">
+				<div class="flex flex-wrap justify-center text-center mb-24">
+					<div class="w-full lg:w-6/12 px-4">
+						<h2 class="text-4xl font-semibold">Mūsų Komanda</h2>
+						<p class="text-lg leading-relaxed m-4 text-gray-600">
+							Mūsų komandą sudaro patyrę duomenų ir verslo ekspertai, turintys ilgametę patirtį įvairiose pramonės šakose.
+						</p>
+					</div>
+				</div>
+				<div class="flex flex-wrap">
+					<!-- Team member -->
+					<div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
+						<div class="px-6">
+							<img alt="Team Member" src="/img/team-1.jpg" class="shadow-lg rounded-full max-w-full mx-auto" style="max-width: 120px;">
+							<div class="pt-6 text-center">
+								<h5 class="text-xl font-bold">Jonas Petraitis</h5>
+								<p class="mt-1 text-sm text-gray-500 uppercase font-semibold">Vykdantysis partneris</p>
+								<div class="mt-6">
+									<button class="bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1" type="button">
+										<i class="fab fa-linkedin-in"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
+						<div class="px-6">
+							<img alt="Team Member" src="/img/team-2.jpg" class="shadow-lg rounded-full max-w-full mx-auto" style="max-width: 120px;">
+							<div class="pt-6 text-center">
+								<h5 class="text-xl font-bold">Ieva Kazlauskienė</h5>
+								<p class="mt-1 text-sm text-gray-500 uppercase font-semibold">Duomenų strategijos vadovė</p>
+								<div class="mt-6">
+									<button class="bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1" type="button">
+										<i class="fab fa-linkedin-in"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
+						<div class="px-6">
+							<img alt="Team Member" src="/img/team-3.jpg" class="shadow-lg rounded-full max-w-full mx-auto" style="max-width: 120px;">
+							<div class="pt-6 text-center">
+								<h5 class="text-xl font-bold">Petras Jonaitis</h5>
+								<p class="mt-1 text-sm text-gray-500 uppercase font-semibold">Duomenų valdymo ekspertas</p>
+								<div class="mt-6">
+									<button class="bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1" type="button">
+										<i class="fab fa-linkedin-in"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
+						<div class="px-6">
+							<img alt="Team Member" src="/img/team-4.jpg" class="shadow-lg rounded-full max-w-full mx-auto" style="max-width: 120px;">
+							<div class="pt-6 text-center">
+								<h5 class="text-xl font-bold">Kristina Kairytė</h5>
+								<p class="mt-1 text-sm text-gray-500 uppercase font-semibold">Analitikos vadovė</p>
+								<div class="mt-6">
+									<button class="bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1" type="button">
+										<i class="fab fa-linkedin-in"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<!-- Call to Action section -->
+		<section class="pb-20 relative block bg-gray-900">
+			<div class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20" style="transform: translateZ(0px)">
+				<svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
+					<polygon class="text-gray-900 fill-current" points="2560 0 2560 100 0 100"></polygon>
+				</svg>
+			</div>
+			<div class="container mx-auto px-4 pt-12 pb-12">
+				<div class="flex flex-wrap text-center justify-center">
+					<div class="w-full lg:w-6/12 px-4">
+						<h2 class="text-4xl font-semibold text-white">Susipažinkime</h2>
+						<p class="text-lg leading-relaxed mt-4 mb-4 text-gray-500">
+							Susisiekite su mumis, kad aptartume, kaip mūsų CDO as a Service pasiūlymas gali padėti jūsų organizacijai efektyviau valdyti ir išnaudoti duomenis.
+						</p>
+					</div>
+				</div>
+				<div class="flex flex-wrap mt-12 justify-center">
+					<div class="w-full lg:w-6/12 px-4 text-center">
+						<a href="/contact" class="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blue-500 active:bg-blue-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150">
+							Susisiekite su mumis
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<Footer client:only="react" />
+	</main>
 </Layout>

@@ -1,28 +1,30 @@
-// Skriptas, kuris kopijuoja config.yml į dist/admin katalogą
-const fs = require('fs');
-const path = require('path');
+// Kopijuoja admin config failą į dist direktoriją
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-console.log('Copying admin config file...');
+// Gauti dabartinio failo ir direktorijos kelius
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// Įsitikiname, kad dist/admin katalogas egzistuoja
-const adminDir = path.join(__dirname, 'dist', 'admin');
-if (!fs.existsSync(adminDir)) {
-  console.log('Creating dist/admin directory...');
-  fs.mkdirSync(adminDir, { recursive: true });
-}
+// Nustatyti šaltinio ir tikslo kelius
+const sourcePath = path.join(__dirname, 'public', 'admin', 'config.yml');
+const targetPath = path.join(__dirname, 'dist', 'admin', 'config.yml');
 
-// Kopijuojame config.yml failą
+// Kopijuoti failą
 try {
-  const sourceConfig = path.join(__dirname, 'public', 'admin', 'config.yml');
-  const targetConfig = path.join(adminDir, 'config.yml');
+  console.log(`Copying admin config file...`);
+  console.log(`Copying from ${sourcePath} to ${targetPath}`);
   
-  if (fs.existsSync(sourceConfig)) {
-    console.log(`Copying from ${sourceConfig} to ${targetConfig}`);
-    fs.copyFileSync(sourceConfig, targetConfig);
-    console.log('Admin config file copied successfully');
-  } else {
-    console.error('Source config file does not exist at:', sourceConfig);
+  // Įsitikinti, kad tikslo direktorija egzistuoja
+  const targetDir = path.dirname(targetPath);
+  if (!fs.existsSync(targetDir)) {
+    fs.mkdirSync(targetDir, { recursive: true });
   }
+
+  // Kopijuoti failą
+  fs.copyFileSync(sourcePath, targetPath);
+  console.log(`Admin config file copied successfully`);
 } catch (error) {
-  console.error('Error copying admin config file:', error);
+  console.error(`Error copying admin config file:`, error);
 } 

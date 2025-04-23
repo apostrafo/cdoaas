@@ -20,6 +20,13 @@ export default defineConfig({
   vite: {
     build: {
       assetsInlineLimit: 0
+    },
+    assetsInclude: ['**/*.yml', '**/*.yaml'],
+    server: {
+      fs: {
+        // Leisti vite pasiekti failus už projekto šakninio katalogo
+        allow: ['..']
+      }
     }
   }
 });

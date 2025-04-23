@@ -1,0 +1,13 @@
+main:
+  - label: Pagrindinis
+    url: /
+  - label: Apie mus
+    url: /about
+  - label: Paslaugos
+    url: /services
+  - label: Mūsų požiūris
+    url: /approach
+  - label: Praktiniai pavyzdžiai
+    url: /case-studies
+  - label: Blogas
+    url: /blog 

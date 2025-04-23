@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import CDONavbar from "../components/cdoNavbar";
 import Footer from "../components/footer.tsx";
+import { getEntryBySlug } from "astro:content";
 
 // Import the SVG content directly
 import { readFileSync } from 'fs';
@@ -18,199 +19,156 @@ const projectRoot = join(__dirname, '../../');
 // Read SVG files directly
 const dataMaturitvModelSvg = readFileSync(join(projectRoot, 'public/img/data-maturity-model.svg'), 'utf-8');
 const approachPrinciplesSvg = readFileSync(join(projectRoot, 'public/img/approach-principles.svg'), 'utf-8');
+
+const approach = await getEntryBySlug("approach", "approach");
+const { title, subtitle } = approach.data;
+const { Content } = await approach.render();
 ---
 
-<Layout title="Our Approach | CDO as a Service">
-  <main>
-    <CDONavbar client:only="react" />
-    
-    <!-- page header -->
-    <div class="relative pt-20 pb-32 flex content-center items-center justify-center min-h-[75vh]">
-      <div class="absolute top-0 w-full h-full bg-center bg-cover" style="background-image: url('/img/approach-bg.jpg');">
-        <span class="w-full h-full absolute opacity-50 bg-black"></span>
-      </div>
-      <div class="container relative mx-auto px-4">
-        <div class="items-center flex flex-wrap">
-          <div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
-            <div class="text-white">
-              <h1 class="text-5xl font-semibold" data-i18n="approach.title">{approachContent.frontmatter.title}</h1>
-              <p class="mt-4 text-lg" data-i18n="approach.subtitle">{approachContent.frontmatter.subtitle}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Markdown turinys -->
-    <section class="pb-20 bg-gray-100 -mt-24">
-      <div class="container mx-auto px-4">
-        <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg p-8 mt-16">
-          <div class="prose prose-lg max-w-none">
-            <div set:html={approachContent.compiledContent()} />
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Introduction section -->
-    <section class="pb-20 bg-gray-100">
-      <div class="container mx-auto px-4">
-        <div class="flex flex-wrap">
-          <div class="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
-            <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-              <div class="px-4 py-5 flex-auto">
-                <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400">
-                  <i class="fas fa-rocket"></i>
-                </div>
-                <h6 class="text-xl font-semibold" data-i18n="approach.practical.card.title">Practical</h6>
-                <p class="mt-2 mb-4 text-gray-600" data-i18n="approach.practical.card.description">
-                  We focus on practical, implementable solutions that deliver real business value, not theoretical frameworks that gather dust on shelves.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="w-full md:w-4/12 px-4 text-center">
-            <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-              <div class="px-4 py-5 flex-auto">
-                <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-green-400">
-                  <i class="fas fa-chart-line"></i>
-                </div>
-                <h6 class="text-xl font-semibold" data-i18n="approach.business.card.title">Business-Focused</h6>
-                <p class="mt-2 mb-4 text-gray-600" data-i18n="approach.business.card.description">
-                  Every data initiative is aligned with specific business goals, ensuring that your investment in data generates measurable returns.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="pt-6 w-full md:w-4/12 px-4 text-center">
-            <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-              <div class="px-4 py-5 flex-auto">
-                <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-yellow-400">
-                  <i class="fas fa-puzzle-piece"></i>
-                </div>
-                <h6 class="text-xl font-semibold" data-i18n="approach.tailored.card.title">Tailored</h6>
-                <p class="mt-2 mb-4 text-gray-600" data-i18n="approach.tailored.card.description">
-                  We customize our approach to fit your organization's specific needs, industry context, and current data maturity level.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Data Maturity Model section -->
-    <section class="py-20">
-      <div class="container mx-auto px-4">
-        <div class="items-center flex flex-wrap">
-          <div class="w-full md:w-5/12 ml-auto px-4">
-            <div class="md:pr-12">
-              <div class="text-blue-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-blue-300">
-                <i class="fas fa-sitemap text-xl"></i>
-              </div>
-              <h3 class="text-3xl font-semibold" data-i18n="approach.maturity.heading">Data Maturity Model</h3>
-              <p class="mt-4 text-lg leading-relaxed text-gray-600" data-i18n="approach.maturity.description">
-                Our data maturity model provides a roadmap for organizations at any stage of their data journey. We help you assess your current maturity and develop a realistic plan to advance to the next level.
-              </p>
-              <ul class="list-none mt-6">
-                <li class="py-2">
-                  <div class="flex items-center">
-                    <div>
-                      <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blue-600 bg-blue-200 mr-3">
-                        <i class="fas fa-database"></i>
-                      </span>
-                    </div>
-                    <div>
-                      <h4 class="text-gray-600" data-i18n="approach.foundation.title">Foundation: Establishing basic data infrastructure and governance</h4>
-                    </div>
-                  </div>
-                </li>
-                <li class="py-2">
-                  <div class="flex items-center">
-                    <div>
-                      <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blue-600 bg-blue-200 mr-3">
-                        <i class="fas fa-chart-bar"></i>
-                      </span>
-                    </div>
-                    <div>
-                      <h4 class="text-gray-600" data-i18n="approach.analytics.title">Analytics: Developing reporting and BI capabilities</h4>
-                    </div>
-                  </div>
-                </li>
-                <li class="py-2">
-                  <div class="flex items-center">
-                    <div>
-                      <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blue-600 bg-blue-200 mr-3">
-                        <i class="fas fa-brain"></i>
-                      </span>
-                    </div>
-                    <div>
-                      <h4 class="text-gray-600" data-i18n="approach.aiml.title">AI/ML: Implementing advanced analytics and automation</h4>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="w-full md:w-6/12 ml-auto mr-auto px-4">
-            <div class="md:pr-12">
-              <!-- Directly embed SVG with improved container -->
-              <div class="max-w-full rounded-lg shadow-lg overflow-hidden" style="height: auto; min-height: 600px;">
-                <Fragment set:html={dataMaturitvModelSvg} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Core Principles section -->
-    <section class="pb-20 bg-gray-100">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl font-semibold" data-i18n="approach.principles.heading">Our Core Principles</h2>
-          <p class="text-lg text-gray-600 mt-4" data-i18n="approach.principles.subheading">
-            Every CDOaaS engagement is guided by these fundamental principles
-          </p>
-        </div>
-        <div class="flex flex-wrap items-center">
-          <div class="w-full mx-auto">
-            <!-- Directly embed SVG with improved container -->
-            <div class="max-w-full mx-auto overflow-hidden" style="height: auto; min-height: 600px;">
-              <Fragment set:html={approachPrinciplesSvg} />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Call to Action section -->
-    <section class="pb-20 relative block bg-gray-900">
-      <div class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20" style="transform: translateZ(0px)">
-        <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
-          <polygon class="text-gray-900 fill-current" points="2560 0 2560 100 0 100"></polygon>
-        </svg>
-      </div>
-      <div class="container mx-auto px-4 pt-12 pb-12">
-        <div class="flex flex-wrap text-center justify-center">
-          <div class="w-full lg:w-6/12 px-4">
-            <h2 class="text-4xl font-semibold text-white" data-i18n="approach.ready.heading">Ready to Start Your Data Transformation?</h2>
-            <p class="text-lg leading-relaxed mt-4 mb-4 text-gray-400" data-i18n="approach.ready.subheading">
-              Contact us to learn how our approach can be tailored to your organization's specific needs and goals.
-            </p>
-          </div>
-        </div>
-        <div class="flex flex-wrap mt-12 justify-center">
-          <div class="w-full lg:w-6/12 px-4 text-center">
-            <a href="/contact" class="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blue-500 active:bg-blue-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150" data-i18n="approach.consultation.cta">
-              Schedule a Consultation
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <Footer client:only="react" />
-  </main>
-</Layout> 
+<Layout title="CDO as a Service | Our Approach">
+	<main data-sb-object-id="content/approach.md">
+		<CDONavbar client:only="react" />
+		
+		<!-- page header -->
+		<div class="relative pt-20 pb-32 flex content-center items-center justify-center min-h-[75vh]">
+			<div class="absolute top-0 w-full h-full bg-center bg-cover" style="background-image: url('/img/approach-bg.jpg');">
+				<span class="w-full h-full absolute opacity-50 bg-black"></span>
+			</div>
+			<div class="container relative mx-auto px-4">
+				<div class="items-center flex flex-wrap">
+					<div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
+						<div class="text-white">
+							<h1 class="text-5xl font-semibold" data-sb-field-path="title">{title}</h1>
+							<p class="mt-4 text-lg" data-sb-field-path="subtitle">{subtitle}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Approach section -->
+		<section class="pb-20 bg-gray-100 -mt-24">
+			<div class="container mx-auto px-4">
+				<div class="flex flex-wrap">
+					<div class="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
+						<div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+							<div class="px-4 py-5 flex-auto">
+								<div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
+									<i class="fas fa-award"></i>
+								</div>
+								<h6 class="text-xl font-semibold">Orientacija į verslą</h6>
+								<p class="mt-2 mb-4 text-gray-600">
+									Mūsų pagrindinis prioritetas – jūsų verslo rezultatai. Visas darbas su duomenimis turi padėti siekti verslo tikslų ir kurti realią vertę.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="w-full md:w-4/12 px-4 text-center">
+						<div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+							<div class="px-4 py-5 flex-auto">
+								<div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400">
+									<i class="fas fa-retweet"></i>
+								</div>
+								<h6 class="text-xl font-semibold">Strategija ir vykdymas</h6>
+								<p class="mt-2 mb-4 text-gray-600">
+									Apjungiame strateginę viziją su praktiniu įgyvendinimu. Ne tik patarti, bet ir padėti įgyvendinti – tai mūsų požiūrio esmė.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="pt-6 w-full md:w-4/12 px-4 text-center">
+						<div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+							<div class="px-4 py-5 flex-auto">
+								<div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-green-400">
+									<i class="fas fa-fingerprint"></i>
+								</div>
+								<h6 class="text-xl font-semibold">Pragmatinis požiūris</h6>
+								<p class="mt-2 mb-4 text-gray-600">
+									Siekiame praktinių rezultatų – ne tobulų teorijų. Pradedame nuo paprastų, greitų sprendimų, kurie sukuria vertę, ir palaipsniui judame prie sudėtingesnių.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Principles section -->
+				<div class="flex flex-wrap items-center mt-12">
+					<div class="w-full md:w-5/12 px-4 mr-auto ml-auto mb-8">
+						<div class="text-gray-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-gray-100">
+							<i class="fas fa-compass text-xl"></i>
+						</div>
+						<h3 class="text-3xl mb-2 font-semibold leading-normal">
+							Duomenų lyderystės principai
+						</h3>
+						<p class="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700">
+							Mūsų darbas paremtas penkiais pagrindiniais principais, kurie užtikrina sėkmingą duomenų strategijos įgyvendinimą. Šie principai pritaikomi kiekvienos organizacijos unikaliam kontekstui.
+						</p>
+						<p class="text-lg font-light leading-relaxed mt-0 mb-4 text-gray-700">
+							Pradedame nuo aiškaus verslo tikslo, kuriame tvirtas pagrindas, įtraukiame visus suinteresuotus asmenis, sukuriame kultūrą ir viską pritaikome jūsų organizacijos poreikiams.
+						</p>
+					</div>
+					<div class="w-full md:w-6/12 px-4 mr-auto ml-auto mb-8">
+						<div class="relative flex flex-col min-w-0 break-words bg-white w-full shadow-lg rounded-lg p-6">
+							<img src="/img/approach-principles.svg" alt="Duomenų lyderystės principai" class="w-full" />
+						</div>
+					</div>
+				</div>
+				
+				<!-- Data Maturity section -->
+				<div class="flex flex-wrap items-center mt-12">
+					<div class="w-full md:w-6/12 px-4 mr-auto ml-auto mb-8">
+						<div class="relative flex flex-col min-w-0 break-words bg-white w-full shadow-lg rounded-lg p-6">
+							<img src="/img/data-maturity-model.svg" alt="Duomenų brandumo modelis" class="w-full" />
+						</div>
+					</div>
+					<div class="w-full md:w-5/12 px-4 mr-auto ml-auto mb-8">
+						<div class="text-gray-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-gray-100">
+							<i class="fas fa-chart-line text-xl"></i>
+						</div>
+						<h3 class="text-3xl mb-2 font-semibold leading-normal">
+							Duomenų brandumo kelionė
+						</h3>
+						<p class="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700">
+							Kiekviena organizacija yra skirtingame duomenų brandumo etape. Mūsų metodika padeda nustatyti, kur esate dabar, ir sukurti realų planą, kaip pasiekti aukštesnį lygį.
+						</p>
+						<p class="text-lg font-light leading-relaxed mt-0 mb-4 text-gray-700">
+							Nuo pradinių žingsnių iki pažangių, duomenimis valdomų procesų – mes padedame įveikti kiekvieną etapą užtikrintai ir efektyviai.
+						</p>
+					</div>
+				</div>
+				
+				<div class="w-full px-4 mt-12" data-sb-field-path="body">
+					<Content />
+				</div>
+			</div>
+		</section>
+		
+		<!-- Call to Action section -->
+		<section class="pb-20 relative block bg-gray-900">
+			<div class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20" style="transform: translateZ(0px)">
+				<svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
+					<polygon class="text-gray-900 fill-current" points="2560 0 2560 100 0 100"></polygon>
+				</svg>
+			</div>
+			<div class="container mx-auto px-4 pt-12 pb-12">
+				<div class="flex flex-wrap text-center justify-center">
+					<div class="w-full lg:w-6/12 px-4">
+						<h2 class="text-4xl font-semibold text-white" data-i18n="approach.ready.heading">Ready to Start Your Data Transformation?</h2>
+						<p class="text-lg leading-relaxed mt-4 mb-4 text-gray-500" data-i18n="approach.ready.subheading">
+							Contact us to learn how our approach can be tailored to your organization's specific needs and goals.
+						</p>
+					</div>
+				</div>
+				<div class="flex flex-wrap mt-12 justify-center">
+					<div class="w-full lg:w-6/12 px-4 text-center">
+						<a href="/contact" class="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blue-500 active:bg-blue-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150" data-i18n="approach.consultation.cta">
+							Schedule a Consultation
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<Footer client:only="react" />
+	</main>
 </Layout> 
