@@ -3,8 +3,8 @@ backend:
   repo: apostrafo/cdoaas
   branch: main
   auth_type: implicit
-  auth_endpoint: https://github.com/login/oauth/authorize
-  app_id: # Reikia įkelti GitHub OAuth App ID
+  auth_endpoint: auth-provider
+  app_id: Iv1.5a96c52a4998dc5d
 
 # Media ir viešas kelias
 media_folder: "public/uploads"
@@ -67,7 +67,7 @@ collections:
 
       - name: "case-studies"
         label: "Praktiniai pavyzdžiai"
-        file: "content/case-studies.md"
+        file: "src/content/case-studies/case-studies.md"
         i18n: true
         fields:
           - {label: "Antraštė", name: "title", widget: "string", i18n: true}
@@ -84,6 +84,39 @@ collections:
               - {label: "Iššūkiai", name: "challenges", widget: "text", i18n: true}
               - {label: "Sprendimai", name: "solutions", widget: "text", i18n: true}
               - {label: "Rezultatai", name: "results", widget: "text", i18n: true}
+
+      - name: "tools"
+        label: "Įrankiai"
+        file: "src/content/tools/tools.md"
+        i18n: true
+        fields:
+          - {label: "Antraštė", name: "title", widget: "string", i18n: true}
+          - {label: "Poraštė", name: "subtitle", widget: "string", i18n: true}
+          - {label: "Turinys", name: "body", widget: "markdown", i18n: true}
+          - label: "Įrankiai"
+            name: "tools"
+            widget: "list"
+            i18n: true
+            fields:
+              - {label: "Pavadinimas", name: "name", widget: "string", i18n: true}
+              - {label: "Kategorija", name: "category", widget: "string", i18n: true}
+              - {label: "Aprašymas", name: "description", widget: "text", i18n: true}
+              - {label: "Ikonos pavadinimas", name: "icon", widget: "string", i18n: false, required: false}
+              - {label: "URL", name: "url", widget: "string", i18n: false, required: false}
+
+      - name: "contact"
+        label: "Kontaktai"
+        file: "src/content/contact/contact.md"
+        i18n: true
+        fields:
+          - {label: "Antraštė", name: "title", widget: "string", i18n: true}
+          - {label: "Poraštė", name: "subtitle", widget: "string", i18n: true, required: false}
+          - {label: "Adresas", name: "address", widget: "text", i18n: true, required: false}
+          - {label: "El. paštas", name: "email", widget: "string", i18n: false, required: false}
+          - {label: "Telefonas", name: "phone", widget: "string", i18n: false, required: false}
+          - {label: "Formos antraštė", name: "form_title", widget: "string", i18n: true, required: false}
+          - {label: "Formos poraštė", name: "form_subtitle", widget: "text", i18n: true, required: false}
+          - {label: "Turinys", name: "body", widget: "markdown", i18n: true}
 
   # Blog kolekcija
   - name: "blog"
@@ -103,7 +136,7 @@ collections:
   # Kitos atskirtos kolekcijos
   - name: "team"
     label: "Komandos nariai"
-    folder: "content/team"
+    folder: "src/content/team"
     create: true
     i18n: true
     fields:
