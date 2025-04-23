@@ -2,9 +2,33 @@
 import Layout from "../layouts/Layout.astro";
 import CDONavbar from "../components/cdoNavbar";
 import Footer from "../components/footer.tsx";
+import { getTranslation } from '../utils/translations';
+import { getCollection } from 'astro:content';
+
+// Get language from URL parameter or default to English
+const lang = Astro.url.searchParams.get('lang') || 'en';
+const isLt = lang === 'lt';
+
+// Create translation function with current language
+const t = (key) => getTranslation(key, lang);
+
+// Get contact content based on language
+const contentEntries = await getCollection('contact');
+const contentEntry = isLt 
+  ? contentEntries.find(entry => !entry.id.endsWith('.en.md')) 
+  : contentEntries.find(entry => entry.id.endsWith('.en.md'));
+
+// Extract needed content
+const title = contentEntry?.data.title || t('contact.title');
+const subtitle = contentEntry?.data.subtitle || t('contact.subtitle');
+const address = contentEntry?.data.address || "123 Data Street, Suite 456, Technology Park, CA 94107";
+const email = contentEntry?.data.email || "info@cdoaas.com";
+const phone = contentEntry?.data.phone || "(555) 123-4567";
+const formTitle = contentEntry?.data.form_title || t('contact.form.title');
+const formSubtitle = contentEntry?.data.form_subtitle || t('contact.form.description');
 ---
 
-<Layout title="Contact Us | CDO as a Service">
+<Layout title={`${title} | CDO as a Service`}>
   <main>
     <CDONavbar client:only="react" />
     
@@ -17,8 +41,8 @@ import Footer from "../components/footer.tsx";
         <div class="items-center flex flex-wrap">
           <div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
             <div class="text-white">
-              <h1 class="text-5xl font-semibold" data-i18n="contact.title">Contact Us</h1>
-              <p class="mt-4 text-lg" data-i18n="contact.subtitle">Get in touch to discuss your data leadership needs</p>
+              <h1 class="text-5xl font-semibold" data-i18n="contact.title">{title}</h1>
+              <p class="mt-4 text-lg" data-i18n="contact.subtitle">{subtitle}</p>
             </div>
           </div>
         </div>
@@ -32,43 +56,43 @@ import Footer from "../components/footer.tsx";
           <div class="w-full lg:w-8/12 px-4 mx-auto">
             <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-white">
               <div class="flex-auto p-5 lg:p-10">
-                <h4 class="text-2xl font-semibold" data-i18n="contact.form.title">Want to work with us?</h4>
+                <h4 class="text-2xl font-semibold" data-i18n="contact.form.title">{formTitle}</h4>
                 <p class="leading-relaxed mt-1 mb-4 text-gray-600" data-i18n="contact.form.description">
-                  Complete this form and we will get back to you within 24 hours.
+                  {formSubtitle}
                 </p>
                 <div class="relative w-full mb-3 mt-8">
                   <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="full-name" data-i18n="contact.form.fullName">
-                    Full Name
+                    {t('contact.form.fullName')}
                   </label>
-                  <input type="text" class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder="Full Name" data-i18n="contact.form.fullName" style="transition: all 0.15s ease 0s;" />
+                  <input type="text" class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder={t('contact.form.fullName')} style="transition: all 0.15s ease 0s;" />
                 </div>
                 <div class="relative w-full mb-3">
                   <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="company" data-i18n="contact.form.company">
-                    Company
+                    {t('contact.form.company')}
                   </label>
-                  <input type="text" class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder="Company" data-i18n="contact.form.company" style="transition: all 0.15s ease 0s;" />
+                  <input type="text" class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder={t('contact.form.company')} style="transition: all 0.15s ease 0s;" />
                 </div>
                 <div class="relative w-full mb-3">
                   <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="email" data-i18n="contact.form.email">
-                    Email
+                    {t('contact.form.email')}
                   </label>
-                  <input type="email" class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder="Email" data-i18n="contact.form.email" style="transition: all 0.15s ease 0s;" />
+                  <input type="email" class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder={t('contact.form.email')} style="transition: all 0.15s ease 0s;" />
                 </div>
                 <div class="relative w-full mb-3">
                   <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="phone" data-i18n="contact.form.phone">
-                    Phone
+                    {t('contact.form.phone')}
                   </label>
-                  <input type="text" class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder="Phone" data-i18n="contact.form.phone" style="transition: all 0.15s ease 0s;" />
+                  <input type="text" class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder={t('contact.form.phone')} style="transition: all 0.15s ease 0s;" />
                 </div>
                 <div class="relative w-full mb-3">
                   <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="message" data-i18n="contact.form.message">
-                    Message
+                    {t('contact.form.message')}
                   </label>
-                  <textarea rows="4" cols="80" class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder="Type a message..." data-i18n="contact.form.message"></textarea>
+                  <textarea rows="4" cols="80" class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder={t('contact.form.message')}></textarea>
                 </div>
                 <div class="text-center mt-6">
                   <button class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1" type="button" data-i18n="contact.form.send" style="transition: all 0.15s ease 0s;">
-                    Send Message
+                    {t('contact.form.send')}
                   </button>
                 </div>
               </div>
@@ -87,10 +111,10 @@ import Footer from "../components/footer.tsx";
               <i class="fas fa-map-marker-alt text-xl"></i>
             </div>
             <h3 class="text-3xl mb-2 font-semibold leading-normal" data-i18n="contact.info.title">
-              Contact Information
+              {t('contact.info.title')}
             </h3>
             <p class="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700" data-i18n="contact.info.description">
-              Reach out to discuss how our CDO as a Service approach can help your organization unlock the strategic value of your data.
+              {t('contact.info.description')}
             </p>
             <div class="flex flex-wrap">
               <div class="w-full md:w-6/12 px-4">
@@ -100,8 +124,8 @@ import Footer from "../components/footer.tsx";
                       <i class="far fa-envelope text-xl text-gray-500"></i>
                     </div>
                     <div>
-                      <h4 class="text-gray-900 text-lg font-bold" data-i18n="contact.info.email">Email</h4>
-                      <p class="mb-4 text-gray-600">info@cdoaas.com</p>
+                      <h4 class="text-gray-900 text-lg font-bold" data-i18n="contact.info.email">{t('contact.info.email')}</h4>
+                      <p class="mb-4 text-gray-600">{email}</p>
                     </div>
                   </div>
                 </div>
@@ -111,8 +135,8 @@ import Footer from "../components/footer.tsx";
                       <i class="fas fa-phone text-xl text-gray-500"></i>
                     </div>
                     <div>
-                      <h4 class="text-gray-900 text-lg font-bold" data-i18n="contact.info.phone">Phone</h4>
-                      <p class="mb-4 text-gray-600">(555) 123-4567</p>
+                      <h4 class="text-gray-900 text-lg font-bold" data-i18n="contact.info.phone">{t('contact.info.phone')}</h4>
+                      <p class="mb-4 text-gray-600">{phone}</p>
                     </div>
                   </div>
                 </div>
@@ -124,8 +148,8 @@ import Footer from "../components/footer.tsx";
                       <i class="fas fa-map-marker-alt text-xl text-gray-500"></i>
                     </div>
                     <div>
-                      <h4 class="text-gray-900 text-lg font-bold" data-i18n="contact.info.office">Office</h4>
-                      <p class="mb-4 text-gray-600">123 Data Street, Suite 456<br>Technology Park, CA 94107</p>
+                      <h4 class="text-gray-900 text-lg font-bold" data-i18n="contact.info.office">{t('contact.info.office')}</h4>
+                      <p class="mb-4 text-gray-600">{address}</p>
                     </div>
                   </div>
                 </div>
@@ -135,8 +159,8 @@ import Footer from "../components/footer.tsx";
                       <i class="far fa-clock text-xl text-gray-500"></i>
                     </div>
                     <div>
-                      <h4 class="text-gray-900 text-lg font-bold" data-i18n="contact.info.hours">Hours</h4>
-                      <p class="mb-4 text-gray-600">Monday - Friday: 9AM - 5PM<br>Saturday - Sunday: Closed</p>
+                      <h4 class="text-gray-900 text-lg font-bold" data-i18n="contact.info.hours">{t('contact.info.hours')}</h4>
+                      <p class="mb-4 text-gray-600">{t('contact.info.hoursDetails')}</p>
                     </div>
                   </div>
                 </div>
@@ -151,13 +175,13 @@ import Footer from "../components/footer.tsx";
                   <polygon points="-30,95 583,95 583,65" class="text-blue-500 fill-current"></polygon>
                 </svg>
                 <h4 class="text-xl font-bold text-white" data-i18n="contact.consultation.title">
-                  Book a Free Consultation
+                  {t('contact.consultation.title')}
                 </h4>
                 <p class="text-md font-light mt-2 text-white" data-i18n="contact.consultation.description">
-                  Schedule a 30-minute free consultation with one of our data leadership experts to discuss your specific needs and challenges.
+                  {t('contact.consultation.description')}
                 </p>
                 <button class="mt-4 bg-white text-blue-500 active:bg-blue-100 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1" type="button" data-i18n="contact.consultation.book" style="transition: all 0.15s ease 0s;">
-                  Book Now
+                  {t('contact.consultation.book')}
                 </button>
               </blockquote>
             </div>
