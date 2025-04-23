@@ -1,175 +1,156 @@
 backend:
   name: github
   repo: apostrafo/cdoaas
+  app_id: Ov23liHXwzadGRhXBw2y
   branch: main
-  auth_type: implicit
-  auth_endpoint: https://github.com/login/oauth/authorize
-  app_id: # Reikia įkelti GitHub OAuth App ID
+  auth_endpoint: auth
+  api_root: https://api.github.com
+  cms_label_prefix: netlify-cms/
+  commit_messages:
+    create: "Create {{collection}} \"{{slug}}\""
+    update: "Update {{collection}} \"{{slug}}\""
+    delete: "Delete {{collection}} \"{{slug}}\""
 
 # Media ir viešas kelias
 media_folder: "public/uploads"
 public_folder: "/uploads"
 
-# Publikuoti režimas (redaktoriui būtina patvirtinti prieš pakeitimų publikavimą)
+# Publikuoti režimas
 publish_mode: editorial_workflow
 
 # Daugiakalbystės konfigūracija
 i18n:
-  # Pagrindinė (numatytoji) kalba
-  default_locale: lt
-  # Palaikomos kalbos
+  structure: multiple_folders
   locales: [lt, en]
-  # Lauko vertimų lokalizavimo strategija
-  localization:
-    allow_global_fallback: true
-    allow_field_fallback: true
+  default_locale: lt
 
 # Kolekcijos
 collections:
-  # Bendros puslapių kolekcijos
-  - name: "pages"
-    label: "Puslapiai"
-    files:
-      - name: "home"
-        label: "Pagrindinis puslapis"
-        file: "content/index.md"
-        i18n: true
-        fields:
-          - {label: "Antraštė", name: "title", widget: "string", i18n: true}
-          - {label: "Poraštė", name: "subtitle", widget: "string", i18n: true}
-          - {label: "Turinys", name: "body", widget: "markdown", i18n: true}
-
-      - name: "about"
-        label: "Apie mus"
-        file: "src/content/about/about.md"
-        i18n: true
-        fields:
-          - {label: "Antraštė", name: "title", widget: "string", i18n: true}
-          - {label: "Turinys", name: "body", widget: "markdown", i18n: true}
-
-      - name: "services"
-        label: "Paslaugos"
-        file: "src/content/services/services.md"
-        i18n: true
-        fields:
-          - {label: "Antraštė", name: "title", widget: "string", i18n: true}
-          - {label: "Poraštė", name: "subtitle", widget: "string", i18n: true}
-          - {label: "Turinys", name: "body", widget: "markdown", i18n: true}
-
-      - name: "approach"
-        label: "Mūsų požiūris"
-        file: "src/content/approach/approach.md"
-        i18n: true
-        fields:
-          - {label: "Antraštė", name: "title", widget: "string", i18n: true}
-          - {label: "Poraštė", name: "subtitle", widget: "string", i18n: true}
-          - {label: "Turinys", name: "body", widget: "markdown", i18n: true}
-
-      - name: "case-studies"
-        label: "Praktiniai pavyzdžiai"
-        file: "src/content/case-studies/case-studies.md"
-        i18n: true
-        fields:
-          - {label: "Antraštė", name: "title", widget: "string", i18n: true}
-          - {label: "Poraštė", name: "subtitle", widget: "string", i18n: true}
-          - {label: "Turinys", name: "body", widget: "markdown", i18n: true}
-          - label: "Praktiniai pavyzdžiai"
-            name: "cases"
-            widget: "list"
-            i18n: true
-            fields:
-              - {label: "Pavadinimas", name: "name", widget: "string", i18n: true}
-              - {label: "Logotipas", name: "logo", widget: "image", i18n: true, required: false}
-              - {label: "Aprašymas", name: "description", widget: "text", i18n: true}
-              - {label: "Iššūkiai", name: "challenges", widget: "text", i18n: true}
-              - {label: "Sprendimai", name: "solutions", widget: "text", i18n: true}
-              - {label: "Rezultatai", name: "results", widget: "text", i18n: true}
-
-      - name: "tools"
-        label: "Įrankiai"
-        file: "src/content/tools/tools.md"
-        i18n: true
-        fields:
-          - {label: "Antraštė", name: "title", widget: "string", i18n: true}
-          - {label: "Poraštė", name: "subtitle", widget: "string", i18n: true}
-          - {label: "Turinys", name: "body", widget: "markdown", i18n: true}
-          - label: "Įrankiai"
-            name: "tools"
-            widget: "list"
-            i18n: true
-            fields:
-              - {label: "Pavadinimas", name: "name", widget: "string", i18n: true}
-              - {label: "Kategorija", name: "category", widget: "string", i18n: true}
-              - {label: "Aprašymas", name: "description", widget: "text", i18n: true}
-              - {label: "Ikonos pavadinimas", name: "icon", widget: "string", i18n: false, required: false}
-              - {label: "URL", name: "url", widget: "string", i18n: false, required: false}
-
-      - name: "contact"
-        label: "Kontaktai"
-        file: "src/content/contact/contact.md"
-        i18n: true
-        fields:
-          - {label: "Antraštė", name: "title", widget: "string", i18n: true}
-          - {label: "Poraštė", name: "subtitle", widget: "string", i18n: true, required: false}
-          - {label: "Adresas", name: "address", widget: "text", i18n: true, required: false}
-          - {label: "El. paštas", name: "email", widget: "string", i18n: false, required: false}
-          - {label: "Telefonas", name: "phone", widget: "string", i18n: false, required: false}
-          - {label: "Formos antraštė", name: "form_title", widget: "string", i18n: true, required: false}
-          - {label: "Formos poraštė", name: "form_subtitle", widget: "text", i18n: true, required: false}
-          - {label: "Turinys", name: "body", widget: "markdown", i18n: true}
-
-  # Blog kolekcija
-  - name: "blog"
-    label: "Blog įrašai"
-    folder: "src/content/blog"
+  # Atskiri puslapiai
+  - name: "case-studies"
+    label: "Sėkmės istorijos"
+    folder: "src/content/case-studies"
     create: true
-    slug: "{{slug}}{{language_suffix}}"
+    slug: "{{slug}}"
     i18n: true
     fields:
-      - {label: "Antraštė", name: "title", widget: "string", i18n: true}
-      - {label: "Data", name: "date", widget: "datetime", i18n: false}
-      - {label: "Autorius", name: "author", widget: "string", i18n: false}
-      - {label: "Paveikslėlis", name: "image", widget: "image", i18n: true, required: false}
-      - {label: "Santrauka", name: "excerpt", widget: "text", i18n: true}
+      - {label: "Pavadinimas", name: "title", widget: "string", i18n: true}
+      - {label: "Poraštė", name: "subtitle", widget: "string", i18n: true}
+      - {label: "Turinys", name: "body", widget: "markdown", i18n: true}
+  
+  - name: "tools"
+    label: "Įrankiai"
+    folder: "src/content/tools"
+    create: true
+    slug: "{{slug}}"
+    i18n: true
+    fields:
+      - {label: "Pavadinimas", name: "title", widget: "string", i18n: true}
+      - {label: "Poraštė", name: "subtitle", widget: "string", i18n: true}
+      - {label: "Turinys", name: "body", widget: "markdown", i18n: true}
+  
+  - name: "contact"
+    label: "Kontaktai"
+    folder: "src/content/contact"
+    create: true
+    slug: "{{slug}}"
+    i18n: true
+    fields:
+      - {label: "Pavadinimas", name: "title", widget: "string", i18n: true}
+      - {label: "Poraštė", name: "subtitle", widget: "string", i18n: true}
+      - {label: "Adresas", name: "address", widget: "string", i18n: true, required: false}
+      - {label: "El. paštas", name: "email", widget: "string", i18n: true, required: false}
+      - {label: "Telefonas", name: "phone", widget: "string", i18n: true, required: false}
+      - {label: "Formos pavadinimas", name: "form_title", widget: "string", i18n: true, required: false}
+      - {label: "Formos aprašymas", name: "form_subtitle", widget: "string", i18n: true, required: false}
+      - {label: "Turinys", name: "body", widget: "markdown", i18n: true}
+  
+  - name: "about"
+    label: "Apie mus"
+    folder: "src/content/about"
+    create: true
+    slug: "{{slug}}"
+    i18n: true
+    fields:
+      - {label: "Pavadinimas", name: "title", widget: "string", i18n: true}
+      - {label: "Poraštė", name: "subtitle", widget: "string", i18n: true}
+      - {label: "Turinys", name: "body", widget: "markdown", i18n: true}
+  
+  - name: "services"
+    label: "Paslaugos"
+    folder: "src/content/services"
+    create: true
+    slug: "{{slug}}"
+    i18n: true
+    fields:
+      - {label: "Pavadinimas", name: "title", widget: "string", i18n: true}
+      - {label: "Poraštė", name: "subtitle", widget: "string", i18n: true}
+      - {label: "Turinys", name: "body", widget: "markdown", i18n: true}
+  
+  - name: "approach"
+    label: "Mūsų požiūris"
+    folder: "src/content/approach"
+    create: true
+    slug: "{{slug}}"
+    i18n: true
+    fields:
+      - {label: "Pavadinimas", name: "title", widget: "string", i18n: true}
+      - {label: "Poraštė", name: "subtitle", widget: "string", i18n: true}
       - {label: "Turinys", name: "body", widget: "markdown", i18n: true}
 
-  # Kitos atskirtos kolekcijos
-  - name: "team"
-    label: "Komandos nariai"
-    folder: "src/content/team"
+  # Blog kolekcija (folder)
+  - name: "blog"
+    label: "Blogas"
+    folder: "src/content/blog"
     create: true
+    slug: "{{slug}}"
     i18n: true
     fields:
-      - {label: "Vardas", name: "name", widget: "string", i18n: false}
-      - {label: "Pareigos", name: "position", widget: "string", i18n: true}
-      - {label: "Nuotrauka", name: "photo", widget: "image", i18n: false}
-      - {label: "LinkedIn", name: "linkedin", widget: "string", i18n: false, required: false}
-      - {label: "Aprašymas", name: "bio", widget: "text", i18n: true}
-      - {label: "Rodymo eilė", name: "order", widget: "number", i18n: false}
+      - {label: "Pavadinimas", name: "title", widget: "string", i18n: true}
+      - {label: "Data", name: "date", widget: "datetime", i18n: true}
+      - {label: "Autorius", name: "author", widget: "string", i18n: true}
+      - {label: "Nuotrauka", name: "image", widget: "image", i18n: true}
+      - {label: "Trumpas aprašymas", name: "excerpt", widget: "text", i18n: true}
+      - {label: "Turinys", name: "body", widget: "markdown", i18n: true}
 
-  # Nustatymų kolekcija
+  # Komandos narių kolekcija (folder)
+  - name: "team"
+    label: "Komanda"
+    folder: "src/content/team"
+    create: true
+    slug: "{{slug}}"
+    i18n: true
+    fields:
+      - {label: "Vardas Pavardė", name: "name", widget: "string", i18n: true}
+      - {label: "Pareigos", name: "position", widget: "string", i18n: true}
+      - {label: "Nuotrauka", name: "photo", widget: "image", i18n: true}
+      - {label: "LinkedIn", name: "linkedin", widget: "string", required: false, i18n: true}
+      - {label: "Bio", name: "bio", widget: "text", i18n: true}
+      - {label: "Eilės tvarka", name: "order", widget: "number", i18n: true}
+
+  # Nustatymų kolekcija (files)
   - name: "settings"
     label: "Nustatymai"
     files:
-      - name: "navigation"
+      - file: "src/content/settings/navigation.md"
         label: "Navigacija"
-        file: "content/settings/navigation.yml"
+        name: "navigation"
         i18n: true
         fields:
-          - label: "Pagrindinė navigacija"
+          - label: "Pagrindinis meniu"
             name: "main"
             widget: "list"
             i18n: true
             fields:
-              - {label: "Etiketė", name: "label", widget: "string", i18n: true}
-              - {label: "URL", name: "url", widget: "string", i18n: false}
-
-      - name: "site"
+              - {label: "Pavadinimas", name: "label", widget: "string", i18n: true}
+              - {label: "URL", name: "url", widget: "string", i18n: true}
+      
+      - file: "src/content/settings/site.md"
         label: "Svetainės informacija"
-        file: "content/settings/site.yml"
+        name: "site"
         i18n: true
         fields:
           - {label: "Svetainės pavadinimas", name: "title", widget: "string", i18n: true}
           - {label: "Aprašymas", name: "description", widget: "text", i18n: true}
-          - {label: "Pagrindinis el. paštas", name: "email", widget: "string", i18n: false}
-          - {label: "Telefonas", name: "phone", widget: "string", i18n: false} 
+          - {label: "El. paštas", name: "email", widget: "string", i18n: true}
+          - {label: "Telefonas", name: "phone", widget: "string", i18n: true} 

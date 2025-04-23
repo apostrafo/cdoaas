@@ -1,29 +1,11 @@
 ---
-title: Tools & Resources
-subtitle: Useful resources for your data journey
-tools:
-  - name: Data Maturity Assessment
-    category: assessment
-    description: Evaluate your organization's current data maturity level with this quick self-assessment tool.
-    icon: chart-line
-    url: "#"
-  
-  - name: ROI Calculator
-    category: calculator
-    description: Calculate the potential return on investment from data-driven decisions with this interactive calculator.
-    icon: shield-alt
-    url: "#"
-  
-  - name: Data Governance Handbook
-    category: handbook
-    description: Download our free guide on data governance best practices for small and medium enterprises.
-    icon: chart-pie
-    url: "#"
+title: "Our Tools"
+subtitle: "How we achieve results with modern technologies"
 ---
 
-# Tools & Resources
+# Data Management Tools
 
-On this page, you'll find useful tools and resources to help you better understand and manage your data. From diagnostic tools to self-service models, these utilities will help you work more effectively with your data.
+We use a variety of cutting-edge tools that help us achieve results faster and more efficiently. Here are some of the key tools we work with.
 
 ## Coming Soon
 

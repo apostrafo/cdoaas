@@ -1,6 +1,6 @@
 ---
-title: Case Studies
-subtitle: Our success stories across various industry sectors
+title: "Success Stories"
+subtitle: "How we help organizations achieve results with data"
 cases:
   - name: Industrial Equipment Failure Prediction at HighTech Manufacturing
     logo: /img/case-study1.jpg
@@ -31,9 +31,9 @@ cases:
     results: Results achieved - 65% reduction in compliance work, 22% reduction in credit losses, and 8% growth in new loan volume.
 ---
 
-# Case Studies
+# Our Client Success Stories
 
-Our success stories across various industry sectors.
+We work with organizations of various sizes, helping them achieve business goals through data-driven solutions. Here are some of our client success stories.
 
 ## About Our Case Studies
 
