@@ -3,8 +3,8 @@ backend:
   repo: apostrafo/cdoaas
   branch: main
   auth_type: implicit
-  auth_endpoint: https://github.com/login/oauth/authorize
-  app_id: # Reikia įkelti GitHub OAuth App ID
+  auth_endpoint: auth-provider
+  app_id: Iv1.5a96c52a4998dc5d
 
 # Media ir viešas kelias
 media_folder: "public/uploads"
