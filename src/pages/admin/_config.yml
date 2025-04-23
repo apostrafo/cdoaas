@@ -1,5 +1,0 @@
----
-# Šis failas pervadintas į _config.yml, kad būtų ignoruojamas Astro
----
-# Šis failas pašalintas, naudojamas public/admin/config.yml
-# Valydamas pagal _config.astro 

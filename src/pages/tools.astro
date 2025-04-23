@@ -2,12 +2,29 @@
 import Layout from "../layouts/Layout.astro";
 import CDONavbar from "../components/cdoNavbar";
 import Footer from "../components/footer.tsx";
+import { getTranslation } from '../utils/translations';
+import { getCollection } from 'astro:content';
 
-// Importuojame tools.json duomenis
-import toolsData from "../../data/tools.json";
+// Get language from URL parameter or default to English
+const lang = Astro.url.searchParams.get('lang') || 'en';
+const isLt = lang === 'lt';
+
+// Create translation function with current language
+const t = (key) => getTranslation(key, lang);
+
+// Get tools content based on language
+const contentEntries = await getCollection('tools');
+const contentEntry = isLt 
+  ? contentEntries.find(entry => !entry.id.endsWith('.en.md')) 
+  : contentEntries.find(entry => entry.id.endsWith('.en.md'));
+
+// Use data from CMS or fallback to translation keys
+const title = contentEntry?.data.title || t('tools.title');
+const subtitle = contentEntry?.data.subtitle || t('tools.subtitle');
+const toolsList = contentEntry?.data.tools || [];
 ---
 
-<Layout title="Tools & Resources | CDO as a Service">
+<Layout title={`${title} | CDO as a Service`}>
   <main>
     <CDONavbar client:only="react" />
     
@@ -20,8 +37,8 @@ import toolsData from "../../data/tools.json";
         <div class="items-center flex flex-wrap">
           <div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
             <div class="text-white">
-              <h1 class="text-5xl font-semibold" data-i18n="tools.title">Tools & Resources</h1>
-              <p class="mt-4 text-lg" data-i18n="tools.subtitle">Useful resources for your data journey</p>
+              <h1 class="text-5xl font-semibold" data-i18n="tools.title">{title}</h1>
+              <p class="mt-4 text-lg" data-i18n="tools.subtitle">{subtitle}</p>
             </div>
           </div>
         </div>
@@ -34,13 +51,13 @@ import toolsData from "../../data/tools.json";
         <div class="flex flex-wrap items-center mt-32">
           <div class="w-full md:w-5/12 px-4 mr-auto ml-auto">
             <h3 class="text-3xl mb-2 font-semibold leading-normal" data-i18n="tools.comingSoon">
-              Coming Soon
+              {t('tools.comingSoon')}
             </h3>
             <p class="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700" data-i18n="tools.description">
-              On this page, you'll find useful tools and resources to help you better understand and manage your data. From diagnostic tools to self-service models, these utilities will help you work more effectively with your data.
+              {t('tools.description')}
             </p>
             <p class="text-lg font-light leading-relaxed mt-0 mb-4 text-gray-700" data-i18n="tools.comingSoonMessage">
-              We're currently preparing a suite of useful tools. Check back later to access these new resources.
+              {t('tools.comingSoonMessage')}
             </p>
           </div>
           <div class="w-full md:w-4/12 px-4 mr-auto ml-auto">
@@ -71,30 +88,30 @@ import toolsData from "../../data/tools.json";
         <div class="flex flex-wrap items-center">
           <div class="w-full md:w-6/12 px-4 mr-auto ml-auto mb-12">
             <div class="text-center">
-              <h3 class="text-3xl font-semibold" data-i18n="tools.categories.title">Categories of Tools</h3>
+              <h3 class="text-3xl font-semibold" data-i18n="tools.categories.title">{t('tools.categories.title')}</h3>
               <p class="mt-4 text-lg text-gray-600" data-i18n="tools.categories.subtitle">
-                Browse our resources by category to find what you need
+                {t('tools.categories.subtitle')}
               </p>
             </div>
           </div>
         </div>
         
         <div class="flex flex-wrap">
-          {/* Dinamiškai generuojame įrankių korteles iš tools.json */}
-          {toolsData.tools.map((tool) => (
+          {/* Render tools from CMS content */}
+          {toolsList.map((tool) => (
             <div class="w-full md:w-4/12 px-4 mb-8">
               <div class="relative flex flex-col min-w-0 break-words bg-white w-full shadow-lg rounded-lg">
                 <div class="px-6 py-6">
                   <div class="text-center">
-                    <div class={`inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-${tool.background}`}>
-                      <i class={`fas fa-${tool.icon} text-2xl text-${tool.iconColor}`}></i>
+                    <div class="inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-blue-100">
+                      <i class={`fas fa-${tool.icon} text-2xl text-blue-500`}></i>
                     </div>
-                    <h5 class="text-xl font-bold" data-i18n={`tools.${tool.category}`}>{tool.title}</h5>
-                    <p class="mt-2 mb-4 text-gray-600" data-i18n={`tools.${tool.category}Description`}>
+                    <h5 class="text-xl font-bold">{tool.name}</h5>
+                    <p class="mt-2 mb-4 text-gray-600">
                       {tool.description}
                     </p>
                     <a href={tool.url} class="text-blue-500 hover:text-blue-700 font-semibold" data-i18n="tools.viewResources">
-                      View Resources →
+                      {t('tools.viewResources')}
                     </a>
                   </div>
                 </div>
@@ -115,9 +132,9 @@ import toolsData from "../../data/tools.json";
       <div class="container mx-auto px-4 pt-12">
         <div class="flex flex-wrap text-center justify-center">
           <div class="w-full lg:w-6/12 px-4">
-            <h2 class="text-4xl font-semibold text-white" data-i18n="tools.comingSoon">Coming Soon</h2>
+            <h2 class="text-4xl font-semibold text-white" data-i18n="tools.comingSoon">{t('tools.comingSoon')}</h2>
             <p class="text-lg leading-relaxed mt-4 mb-4 text-gray-500" data-i18n="tools.comingSoonMessage">
-              We're currently preparing a suite of useful tools. Check back later to access these new resources.
+              {t('tools.comingSoonMessage')}
             </p>
           </div>
         </div>

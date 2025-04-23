@@ -63,128 +63,128 @@ const { Content } = await services.render();
 
 <Layout title="CDO as a Service | Services">
 	<main data-sb-object-id="content/services.md">
-		<CDONavbar client:only="react" />
-		
-		<!-- page header -->
-		<div class="relative pt-20 pb-32 flex content-center items-center justify-center min-h-[75vh]">
-			<div class="absolute top-0 w-full h-full bg-center bg-cover" style="background-image: url('/img/services-bg.jpg');">
-				<span class="w-full h-full absolute opacity-50 bg-black"></span>
-			</div>
-			<div class="container relative mx-auto px-4">
-				<div class="items-center flex flex-wrap">
-					<div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
-						<div class="text-white">
+    <CDONavbar client:only="react" />
+    
+    <!-- page header -->
+    <div class="relative pt-20 pb-32 flex content-center items-center justify-center min-h-[75vh]">
+      <div class="absolute top-0 w-full h-full bg-center bg-cover" style="background-image: url('/img/services-bg.jpg');">
+        <span class="w-full h-full absolute opacity-50 bg-black"></span>
+      </div>
+      <div class="container relative mx-auto px-4">
+        <div class="items-center flex flex-wrap">
+          <div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
+            <div class="text-white">
 							<h1 class="text-5xl font-semibold" data-sb-field-path="title">{title}</h1>
 							<p class="mt-4 text-lg" data-sb-field-path="subtitle">{subtitle}</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
 		<!-- Services section -->
-		<section class="pb-20 bg-gray-100 -mt-24">
-			<div class="container mx-auto px-4">
-				<div class="flex flex-wrap">
-					<div class="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
-						<div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-							<div class="px-4 py-5 flex-auto">
+    <section class="pb-20 bg-gray-100 -mt-24">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-wrap">
+          <div class="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
+            <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+              <div class="px-4 py-5 flex-auto">
 								<div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
 									<i class="fas fa-sitemap"></i>
-								</div>
+                </div>
 								<h6 class="text-xl font-semibold">Strateginis CDO konsultavimas</h6>
 								<p class="mt-2 mb-4 text-gray-600">
 									Ekspertinės konsultacijos duomenų strategijos, valdymo ir analitikos srityse. Padėsime suformuoti jūsų organizacijos duomenų viziją.
-								</p>
-							</div>
-						</div>
-					</div>
+                </p>
+              </div>
+            </div>
+          </div>
 					<div class="w-full md:w-4/12 px-4 text-center">
-						<div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-							<div class="px-4 py-5 flex-auto">
+            <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+              <div class="px-4 py-5 flex-auto">
 								<div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400">
 									<i class="fas fa-cogs"></i>
-								</div>
+                </div>
 								<h6 class="text-xl font-semibold">Implementacijos paslaugos</h6>
 								<p class="mt-2 mb-4 text-gray-600">
 									Nuo strategijos iki įgyvendinimo. Padėsime sukurti duomenų valdymo struktūras, procesus ir įrankius jūsų organizacijoje.
-								</p>
-							</div>
-						</div>
-					</div>
+                </p>
+              </div>
+            </div>
+          </div>
 					<div class="pt-6 w-full md:w-4/12 px-4 text-center">
-						<div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-							<div class="px-4 py-5 flex-auto">
+            <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+              <div class="px-4 py-5 flex-auto">
 								<div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-green-400">
 									<i class="fas fa-users"></i>
-								</div>
+                </div>
 								<h6 class="text-xl font-semibold">Komandos ugdymas</h6>
 								<p class="mt-2 mb-4 text-gray-600">
 									Apmokome jūsų darbuotojus duomenų valdymo ir analitikos srityse, kad galėtumėte savarankiškai tęsti sėkmingą duomenų strategijos įgyvendinimą.
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
 				
 				<!-- Service tiers section -->
 				<div class="flex flex-wrap items-center mt-12">
 					<div class="w-full md:w-5/12 px-4 mr-auto ml-auto mb-8">
 						<div class="text-gray-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-gray-100">
 							<i class="fas fa-medal text-xl"></i>
-						</div>
+                </div>
 						<h3 class="text-3xl mb-2 font-semibold leading-normal">
 							Pasirinkite jums tinkamą paslaugų paketą
 						</h3>
 						<p class="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700">
 							Mūsų paslaugos pritaikomos pagal jūsų verslo poreikius ir biudžetą. Nuo bazinių konsultacijų iki pilno CDO funkcijų perdavimo - pasirinkite jums tinkamą variantą.
-						</p>
+                </p>
 						<p class="text-lg font-light leading-relaxed mt-0 mb-4 text-gray-700">
 							Visi paketai apima lankstų bendradarbiavimą ir žinių perdavimą jūsų komandai, kad galėtumėte savarankiškai tęsti duomenų strategijos įgyvendinimą.
 						</p>
 						<a href="/contact" class="font-bold text-blue-600 hover:text-blue-800 mt-8 block">
 							Susisiekite dėl individualaus pasiūlymo →
 						</a>
-					</div>
+              </div>
 					<div class="w-full md:w-6/12 px-4 mr-auto ml-auto mb-8">
 						<div class="relative flex flex-col min-w-0 break-words bg-white w-full shadow-lg rounded-lg p-6">
 							<img src="/img/service-tiers.svg" alt="Paslaugų paketai" class="w-full" />
-						</div>
-					</div>
-				</div>
+              </div>
+            </div>
+          </div>
 				
 				<div class="w-full px-4 mt-12" data-sb-field-path="body">
 					<Content />
-				</div>
-			</div>
-		</section>
-		
-		<!-- Call to Action section -->
-		<section class="pb-20 relative block bg-gray-900">
-			<div class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20" style="transform: translateZ(0px)">
-				<svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
-					<polygon class="text-gray-900 fill-current" points="2560 0 2560 100 0 100"></polygon>
-				</svg>
-			</div>
-			<div class="container mx-auto px-4 pt-12 pb-12">
-				<div class="flex flex-wrap text-center justify-center">
-					<div class="w-full lg:w-6/12 px-4">
+        </div>
+      </div>
+    </section>
+    
+    <!-- Call to Action section -->
+    <section class="pb-20 relative block bg-gray-900">
+      <div class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20" style="transform: translateZ(0px)">
+        <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
+          <polygon class="text-gray-900 fill-current" points="2560 0 2560 100 0 100"></polygon>
+        </svg>
+      </div>
+      <div class="container mx-auto px-4 pt-12 pb-12">
+        <div class="flex flex-wrap text-center justify-center">
+          <div class="w-full lg:w-6/12 px-4">
 						<h2 class="text-4xl font-semibold text-white">Pasirengę pradėti?</h2>
 						<p class="text-lg leading-relaxed mt-4 mb-4 text-gray-500">
 							Susisiekite su mumis, kad aptartume, kaip galime padėti jūsų organizacijai efektyviau valdyti ir išnaudoti duomenis.
-						</p>
-					</div>
-				</div>
-				<div class="flex flex-wrap mt-12 justify-center">
+            </p>
+          </div>
+        </div>
+        <div class="flex flex-wrap mt-12 justify-center">
 					<div class="w-full lg:w-6/12 px-4 text-center">
 						<a href="/contact" class="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blue-500 active:bg-blue-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150">
 							Užsakyti konsultaciją
-						</a>
-					</div>
-				</div>
-			</div>
-		</section>
-		
-		<Footer client:only="react" />
-	</main>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <Footer client:only="react" />
+  </main>
 </Layout> 

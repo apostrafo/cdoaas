@@ -81,6 +81,46 @@ const teamCollection = defineCollection({
   }),
 });
 
+// Contact collection schema
+const contactCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    subtitle: z.string().optional(),
+    address: z.string().optional(),
+    email: z.string().optional(),
+    phone: z.string().optional(),
+    form_title: z.string().optional(),
+    form_subtitle: z.string().optional(),
+  }),
+});
+
+// Tools collection schema
+const toolsCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    subtitle: z.string().optional(),
+    tools: z
+      .array(
+        z.object({
+          name: z.string(),
+          category: z.string(),
+          description: z.string(),
+          icon: z.string().optional(),
+          url: z.string().optional(),
+        })
+      )
+      .optional(),
+  }),
+});
+
+// Settings collection schema
+const settingsCollection = defineCollection({
+  type: 'data',
+  schema: z.object({}).passthrough(),
+});
+
 // Export collections
 export const collections = {
   'blog': blogCollection,
@@ -89,4 +129,7 @@ export const collections = {
   'approach': approachCollection,
   'case-studies': caseStudiesCollection,
   'team': teamCollection,
+  'contact': contactCollection,
+  'tools': toolsCollection,
+  'settings': settingsCollection,
 }; 

@@ -26,77 +26,72 @@ i18n:
 
 # Kolekcijos
 collections:
-  # Atskiri puslapiai
-  - name: "case-studies"
-    label: "Sėkmės istorijos"
-    folder: "src/content/case-studies"
-    create: true
-    slug: "{{slug}}"
-    i18n: true
-    fields:
-      - {label: "Pavadinimas", name: "title", widget: "string", i18n: true}
-      - {label: "Poraštė", name: "subtitle", widget: "string", i18n: true}
-      - {label: "Turinys", name: "body", widget: "markdown", i18n: true}
-  
-  - name: "tools"
-    label: "Įrankiai"
-    folder: "src/content/tools"
-    create: true
-    slug: "{{slug}}"
-    i18n: true
-    fields:
-      - {label: "Pavadinimas", name: "title", widget: "string", i18n: true}
-      - {label: "Poraštė", name: "subtitle", widget: "string", i18n: true}
-      - {label: "Turinys", name: "body", widget: "markdown", i18n: true}
-  
-  - name: "contact"
-    label: "Kontaktai"
-    folder: "src/content/contact"
-    create: true
-    slug: "{{slug}}"
-    i18n: true
-    fields:
-      - {label: "Pavadinimas", name: "title", widget: "string", i18n: true}
-      - {label: "Poraštė", name: "subtitle", widget: "string", i18n: true}
-      - {label: "Adresas", name: "address", widget: "string", i18n: true, required: false}
-      - {label: "El. paštas", name: "email", widget: "string", i18n: true, required: false}
-      - {label: "Telefonas", name: "phone", widget: "string", i18n: true, required: false}
-      - {label: "Formos pavadinimas", name: "form_title", widget: "string", i18n: true, required: false}
-      - {label: "Formos aprašymas", name: "form_subtitle", widget: "string", i18n: true, required: false}
-      - {label: "Turinys", name: "body", widget: "markdown", i18n: true}
-  
-  - name: "about"
-    label: "Apie mus"
-    folder: "src/content/about"
-    create: true
-    slug: "{{slug}}"
-    i18n: true
-    fields:
-      - {label: "Pavadinimas", name: "title", widget: "string", i18n: true}
-      - {label: "Poraštė", name: "subtitle", widget: "string", i18n: true}
-      - {label: "Turinys", name: "body", widget: "markdown", i18n: true}
-  
-  - name: "services"
-    label: "Paslaugos"
-    folder: "src/content/services"
-    create: true
-    slug: "{{slug}}"
-    i18n: true
-    fields:
-      - {label: "Pavadinimas", name: "title", widget: "string", i18n: true}
-      - {label: "Poraštė", name: "subtitle", widget: "string", i18n: true}
-      - {label: "Turinys", name: "body", widget: "markdown", i18n: true}
-  
-  - name: "approach"
-    label: "Mūsų požiūris"
-    folder: "src/content/approach"
-    create: true
-    slug: "{{slug}}"
-    i18n: true
-    fields:
-      - {label: "Pavadinimas", name: "title", widget: "string", i18n: true}
-      - {label: "Poraštė", name: "subtitle", widget: "string", i18n: true}
-      - {label: "Turinys", name: "body", widget: "markdown", i18n: true}
+  # Bendros puslapių kolekcijos (files)
+  - name: "pages"
+    label: "Puslapiai"
+    files:
+      - file: "content/index.md"
+        label: "Pagrindinis"
+        name: "home"
+        i18n: true
+        fields:
+          - {label: "Pavadinimas", name: "title", widget: "string", i18n: true}
+          - {label: "Poraštė", name: "subtitle", widget: "string", i18n: true}
+          - {label: "Turinys", name: "body", widget: "markdown", i18n: true}
+      
+      - file: "content/about.md"
+        label: "Apie mus"
+        name: "about"
+        i18n: true
+        fields:
+          - {label: "Pavadinimas", name: "title", widget: "string", i18n: true}
+          - {label: "Poraštė", name: "subtitle", widget: "string", i18n: true}
+          - {label: "Turinys", name: "body", widget: "markdown", i18n: true}
+      
+      - file: "content/services.md"
+        label: "Paslaugos"
+        name: "services"
+        i18n: true
+        fields:
+          - {label: "Pavadinimas", name: "title", widget: "string", i18n: true}
+          - {label: "Poraštė", name: "subtitle", widget: "string", i18n: true}
+          - {label: "Turinys", name: "body", widget: "markdown", i18n: true}
+      
+      - file: "content/approach.md"
+        label: "Mūsų požiūris"
+        name: "approach"
+        i18n: true
+        fields:
+          - {label: "Pavadinimas", name: "title", widget: "string", i18n: true}
+          - {label: "Poraštė", name: "subtitle", widget: "string", i18n: true}
+          - {label: "Turinys", name: "body", widget: "markdown", i18n: true}
+          
+      - file: "content/case-studies.md"
+        label: "Sėkmės istorijos"
+        name: "case-studies"
+        i18n: true
+        fields:
+          - {label: "Pavadinimas", name: "title", widget: "string", i18n: true}
+          - {label: "Poraštė", name: "subtitle", widget: "string", i18n: true}
+          - {label: "Turinys", name: "body", widget: "markdown", i18n: true}
+          
+      - file: "content/tools.md"
+        label: "Įrankiai"
+        name: "tools"
+        i18n: true
+        fields:
+          - {label: "Pavadinimas", name: "title", widget: "string", i18n: true}
+          - {label: "Poraštė", name: "subtitle", widget: "string", i18n: true}
+          - {label: "Turinys", name: "body", widget: "markdown", i18n: true}
+          
+      - file: "content/contact.md"
+        label: "Kontaktai"
+        name: "contact"
+        i18n: true
+        fields:
+          - {label: "Pavadinimas", name: "title", widget: "string", i18n: true}
+          - {label: "Poraštė", name: "subtitle", widget: "string", i18n: true}
+          - {label: "Turinys", name: "body", widget: "markdown", i18n: true}
 
   # Blog kolekcija (folder)
   - name: "blog"

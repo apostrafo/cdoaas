@@ -3,14 +3,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CDOaaS Turinio valdymo sistema</title>
+    <meta name="robots" content="noindex" />
+    <title>Turinio valdymas</title>
+    <!-- Use the link tag for config instead of JS variable -->
+    <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url">
+    <!-- Include the Netlify Identity script -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body>
     <!-- Include the script that builds the page and powers Decap CMS -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-
+    
+    <!-- Lithuanian locale -->
     <script>
-      // Pridėti Lithuanian (lt) kalbos palaikymą
       const lt = {
         app: {
           header: {
@@ -210,22 +215,17 @@
       }
     </script>
 
-    <!-- Konfigūruojamas OAuth autentifikavimo procesas -->
+    <!-- Netlify Identity Widget įjungimas -->
     <script>
-      // Nustatome, kad Decap CMS naudotų OAuth autentifikavimą per git-gateway
-      window.decapCmsConfig = {
-        load_config_file: true,
-        backend: {
-          name: 'git-gateway',
-          repo: 'apostrafo/cdoaas',
-          branch: 'main',
-          auth_type: 'implicit', // OAuth implicit flow
-          app_id: '', // Nenurodyta, nes tai nustatoma Netlify/GitHub konfigūracijoje
-          auth_endpoint: 'https://github.com/login/oauth/authorize',
-          base_url: 'https://api.github.com',
-          auth_scope: 'repo',
-        }
-      };
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
     </script>
   </body>
 </html> 
