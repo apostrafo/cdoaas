@@ -18,8 +18,14 @@ export default defineConfig({
     assets: 'assets'
   },
   vite: {
+    ssr: {
+      external: ["@material-tailwind/react"]
+    },
     build: {
-      assetsInlineLimit: 0
+      assetsInlineLimit: 0,
+      rollupOptions: {
+        external: ["@material-tailwind/react"]
+      }
     },
     assetsInclude: ['**/*.yml', '**/*.yaml'],
     server: {

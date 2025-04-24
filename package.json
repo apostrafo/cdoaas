@@ -26,6 +26,7 @@
     "@docsearch/react": "^3.5.2",
     "@headlessui/react": "^1.7.19",
     "@heroicons/react": "^2.0.16",
+    "@material-tailwind/react": "^2.1.10",
     "@types/react": "^18.2.59",
     "@types/react-dom": "^18.2.19",
     "astro": "^5.7.0",

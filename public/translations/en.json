@@ -235,9 +235,9 @@
 
   "tools.title": "Tools & Resources",
   "tools.subtitle": "Free tools and templates to enhance your data capabilities",
-  "tools.description": "Explore our suite of data tools designed to help your organization make better decisions.",
+  "tools.description": "Explore our specialized tools and resources for effective data leadership",
   "tools.comingSoon": "Coming Soon",
-  "tools.comingSoonMessage": "We're working on a variety of data tools and templates that will be available for download soon. Check back regularly for updates!",
+  "tools.comingSoonMessage": "We're working on adding helpful tools and resources. Check back soon!",
   "tools.assessment": "Data Maturity Assessment",
   "tools.assessmentDescription": "Evaluate your organization's current data maturity level with this quick self-assessment tool.",
   "tools.calculator": "ROI Calculator",
@@ -261,7 +261,7 @@
   "blog.subscribeButton": "Subscribe",
 
   "tools.categories.title": "Tool Categories",
-  "tools.categories.subtitle": "Our tools are organized into categories to help you find what you need",
+  "tools.categories.subtitle": "Discover tools tailored for different aspects of data leadership",
   "tools.viewResources": "View Resources",
   
   "blog.newsletterDesc": "Get the latest insights on data leadership, governance, and analytics delivered to your inbox.",
