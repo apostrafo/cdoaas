@@ -1,11 +1,15 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import CleanLayout from '../layouts/CleanLayout.astro';
+import CleanNavbar from '../components/CleanNavbar';
+import CleanFooter from '../components/CleanFooter';
 import SignUp from "../components/signup"
 
 ---
 
-<Layout title="Sign Up">
+<CleanLayout title="Sign Up">
+	<CleanNavbar client:load />
 	<main>
     <SignUp client:only="react" />
   </main>
-</Layout>
+	<CleanFooter />
+</CleanLayout>

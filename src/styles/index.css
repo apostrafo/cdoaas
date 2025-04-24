@@ -1,3 +1,6 @@
+/* Import theme variables and styles */
+@import './theme.css';
+
 /* Local styles based on Material Tailwind but without Creative Tim dependencies */
 
 @tailwind base;

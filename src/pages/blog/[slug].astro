@@ -1,7 +1,7 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import CDONavbar from "../../components/cdoNavbar";
-import Footer from "../../components/footer.tsx";
+import CleanLayout from "../../layouts/CleanLayout.astro";
+import CleanNavbar from '../../components/CleanNavbar';
+import CleanFooter from '../../components/CleanFooter';
 
 // Gauti [slug] parametrą iš URL
 export async function getStaticPaths() {
@@ -20,9 +20,9 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 ---
 
-<Layout title={`${post.frontmatter.title} | CDO as a Service Blog`}>
+<CleanLayout title={`${post.frontmatter.title} | CDO as a Service Blog`}>
   <main>
-    <CDONavbar client:only="react" />
+    <CleanNavbar client:load />
     
     <!-- Blog post header -->
     <div class="relative pt-20 pb-32 flex content-center items-center justify-center min-h-[50vh]">
@@ -94,6 +94,6 @@ const { post } = Astro.props;
       </div>
     </section>
     
-    <Footer client:only="react" />
+    <CleanFooter />
   </main>
-</Layout> 
+</CleanLayout> 

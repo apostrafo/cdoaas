@@ -1,5 +1,7 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import CleanLayout from '../layouts/CleanLayout.astro';
+import CleanNavbar from '../components/CleanNavbar';
+import CleanFooter from '../components/CleanFooter';
 import data from "../../public/data.json";
 import HeaderAbout from "../components/about/header"
 import FeaturesAbout from "../components/about/features"
@@ -9,7 +11,8 @@ import FooterAbout from "../components/about/footer"
 ---
 
 
-<Layout title="About Us Page">
+<CleanLayout title="About Us Page">
+	<CleanNavbar client:load />
 	<main>
     <HeaderAbout client:only="react" />
     <FeaturesAbout client:only="react" />
@@ -17,4 +20,5 @@ import FooterAbout from "../components/about/footer"
     <TeamAbout client:only="react" />
     <FooterAbout client:only="react" />
   </main>
-</Layout>
+  <CleanFooter />
+</CleanLayout>

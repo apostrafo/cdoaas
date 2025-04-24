@@ -1,7 +1,7 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import CDONavbar from "../components/cdoNavbar";
-import Footer from "../components/footer.tsx";
+import CleanLayout from "../layouts/CleanLayout.astro";
+import CleanNavbar from '../components/CleanNavbar';
+import CleanFooter from '../components/CleanFooter';
 import { getTranslation } from '../utils/translations';
 import { getCollection } from 'astro:content';
 
@@ -24,20 +24,20 @@ const subtitle = contentEntry?.data.subtitle || t('tools.subtitle');
 const toolsList = contentEntry?.data.tools || [];
 ---
 
-<Layout title={`${title} | CDO as a Service`}>
+<CleanLayout title={`${title} | CDO as a Service`}>
   <main>
-    <CDONavbar client:only="react" />
+    <CleanNavbar client:load />
     
     <!-- page header -->
     <div class="relative pt-20 pb-32 flex content-center items-center justify-center min-h-[75vh]">
       <div class="absolute top-0 w-full h-full bg-center bg-cover" style="background-image: url('/img/tools-bg.jpg');">
         <span class="w-full h-full absolute opacity-50 bg-black"></span>
       </div>
-      <div class="container relative mx-auto px-4">
+      <div class="container relative">
         <div class="items-center flex flex-wrap">
-          <div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
+          <div class="w-full lg:w-6/12 mx-auto text-center">
             <div class="text-white">
-              <h1 class="text-5xl font-semibold" data-i18n="tools.title">{title}</h1>
+              <h1 class="text-white" data-i18n="tools.title">{title}</h1>
               <p class="mt-4 text-lg" data-i18n="tools.subtitle">{subtitle}</p>
             </div>
           </div>
@@ -46,32 +46,32 @@ const toolsList = contentEntry?.data.tools || [];
     </div>
     
     <!-- Tools intro section -->
-    <section class="pb-20 bg-gray-100 -mt-24">
-      <div class="container mx-auto px-4">
+    <section class="bg-bg-secondary -mt-24 section">
+      <div class="container">
         <div class="flex flex-wrap items-center mt-32">
           <div class="w-full md:w-5/12 px-4 mr-auto ml-auto">
-            <h3 class="text-3xl mb-2 font-semibold leading-normal" data-i18n="tools.comingSoon">
+            <h3 data-i18n="tools.comingSoon">
               {t('tools.comingSoon')}
             </h3>
-            <p class="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700" data-i18n="tools.description">
+            <p class="text-lg mt-4 mb-4 text-secondary" data-i18n="tools.description">
               {t('tools.description')}
             </p>
-            <p class="text-lg font-light leading-relaxed mt-0 mb-4 text-gray-700" data-i18n="tools.comingSoonMessage">
+            <p class="text-lg mt-0 mb-4 text-secondary" data-i18n="tools.comingSoonMessage">
               {t('tools.comingSoonMessage')}
             </p>
           </div>
           <div class="w-full md:w-4/12 px-4 mr-auto ml-auto">
-            <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-blue-500">
-              <div class="px-6 py-6">
-                <div class="text-center text-white">
+            <div class="card bg-primary text-white">
+              <div class="card-body px-6 py-6">
+                <div class="text-center">
                   <h4 class="text-3xl font-bold">15+</h4>
                   <p>Free Tools & Templates</p>
                 </div>
-                <div class="text-center text-white mt-4">
+                <div class="text-center mt-4">
                   <h4 class="text-3xl font-bold">8</h4>
                   <p>Assessment Frameworks</p>
                 </div>
-                <div class="text-center text-white mt-4">
+                <div class="text-center mt-4">
                   <h4 class="text-3xl font-bold">100%</h4>
                   <p>Practical & Actionable</p>
                 </div>
@@ -83,37 +83,31 @@ const toolsList = contentEntry?.data.tools || [];
     </section>
     
     <!-- Tools categories section -->
-    <section class="relative py-20">
-      <div class="container mx-auto px-4">
-        <div class="flex flex-wrap items-center">
-          <div class="w-full md:w-6/12 px-4 mr-auto ml-auto mb-12">
-            <div class="text-center">
-              <h3 class="text-3xl font-semibold" data-i18n="tools.categories.title">{t('tools.categories.title')}</h3>
-              <p class="mt-4 text-lg text-gray-600" data-i18n="tools.categories.subtitle">
-                {t('tools.categories.subtitle')}
-              </p>
-            </div>
-          </div>
+    <section class="section">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h3 data-i18n="tools.categories.title">{t('tools.categories.title')}</h3>
+          <p class="mt-4 text-lg text-secondary" data-i18n="tools.categories.subtitle">
+            {t('tools.categories.subtitle')}
+          </p>
         </div>
         
-        <div class="flex flex-wrap">
+        <div class="flex flex-wrap -mx-4">
           {/* Render tools from CMS content */}
           {toolsList.map((tool) => (
             <div class="w-full md:w-4/12 px-4 mb-8">
-              <div class="relative flex flex-col min-w-0 break-words bg-white w-full shadow-lg rounded-lg">
-                <div class="px-6 py-6">
-                  <div class="text-center">
-                    <div class="inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-blue-100">
-                      <i class={`fas fa-${tool.icon} text-2xl text-blue-500`}></i>
-                    </div>
-                    <h5 class="text-xl font-bold">{tool.name}</h5>
-                    <p class="mt-2 mb-4 text-gray-600">
-                      {tool.description}
-                    </p>
-                    <a href={tool.url} class="text-blue-500 hover:text-blue-700 font-semibold" data-i18n="tools.viewResources">
-                      {t('tools.viewResources')}
-                    </a>
+              <div class="card h-full">
+                <div class="card-body text-center">
+                  <div class="bg-blue-100 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow rounded-full">
+                    <i class={`fas fa-${tool.icon} text-2xl text-primary`}></i>
                   </div>
+                  <h5 class="card-title">{tool.name}</h5>
+                  <p class="card-text mb-4">
+                    {tool.description}
+                  </p>
+                  <a href={tool.url} class="text-primary hover:text-primary-dark font-semibold" data-i18n="tools.viewResources">
+                    {t('tools.viewResources')}
+                  </a>
                 </div>
               </div>
             </div>
@@ -122,18 +116,18 @@ const toolsList = contentEntry?.data.tools || [];
       </div>
     </section>
     
-    <!-- Featured tools section -->
-    <section class="pb-20 relative block bg-gray-900">
+    <!-- Featured tools section (Coming Soon Message) -->
+    <section class="bg-bg-accent section relative">
       <div class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20" style="transform: translateZ(0px)">
         <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
-          <polygon class="text-gray-900 fill-current" points="2560 0 2560 100 0 100"></polygon>
+          <polygon class="fill-current text-bg-primary" points="2560 0 2560 100 0 100"></polygon>
         </svg>
       </div>
-      <div class="container mx-auto px-4 pt-12">
-        <div class="flex flex-wrap text-center justify-center">
-          <div class="w-full lg:w-6/12 px-4">
-            <h2 class="text-4xl font-semibold text-white" data-i18n="tools.comingSoon">{t('tools.comingSoon')}</h2>
-            <p class="text-lg leading-relaxed mt-4 mb-4 text-gray-500" data-i18n="tools.comingSoonMessage">
+      <div class="container pt-12">
+        <div class="text-center">
+          <div class="w-full lg:w-6/12 mx-auto">
+            <h2 class="text-white" data-i18n="tools.comingSoon">{t('tools.comingSoon')}</h2>
+            <p class="text-lg mt-4 mb-4 text-blue-200" data-i18n="tools.comingSoonMessage">
               {t('tools.comingSoonMessage')}
             </p>
           </div>
@@ -141,6 +135,6 @@ const toolsList = contentEntry?.data.tools || [];
       </div>
     </section>
     
-    <Footer client:only="react" />
+    <CleanFooter />
   </main>
-</Layout> 
+</CleanLayout> 

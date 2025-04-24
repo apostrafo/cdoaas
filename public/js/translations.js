@@ -6,6 +6,10 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch(`/translations/${language}.json`)
       .then(response => response.json())
       .then(translations => {
+        // Create a global translations object for React components to access
+        window.siteTranslations = translations;
+        
+        // Apply translations to DOM elements with data-i18n attributes
         document.querySelectorAll('[data-i18n]').forEach(element => {
           const key = element.getAttribute('data-i18n');
           if (translations[key]) {
@@ -24,6 +28,10 @@ document.addEventListener('DOMContentLoaded', function() {
             console.warn(`Translation key not found: ${key}`);
           }
         });
+
+        // Dispatch an event that React components can listen for
+        const event = new CustomEvent('translationsLoaded', { detail: { translations, language } });
+        document.dispatchEvent(event);
       })
       .catch(error => {
         console.error('Error loading translations:', error);

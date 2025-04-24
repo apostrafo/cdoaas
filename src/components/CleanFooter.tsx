@@ -63,8 +63,8 @@ export default function CleanFooter() {
                     </a>
                   </li>
                   <li>
-                    <a href="/case-studies" className="text-base text-gray-400 hover:text-white" data-i18n="case_studies_footer">
-                      Case Studies
+                    <a href="/tools" className="text-base text-gray-400 hover:text-white" data-i18n="tools_footer">
+                      Tools
                     </a>
                   </li>
                 </ul>
@@ -80,8 +80,8 @@ export default function CleanFooter() {
                     </a>
                   </li>
                   <li>
-                    <a href="/tools" className="text-base text-gray-400 hover:text-white" data-i18n="tools">
-                      Tools
+                    <a href="/contact" className="text-base text-gray-400 hover:text-white" data-i18n="contact_us_footer">
+                      Contact Us
                     </a>
                   </li>
                 </ul>

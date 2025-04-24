@@ -1,7 +1,7 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import CDONavbar from "../components/cdoNavbar";
-import Footer from "../components/footer.tsx";
+import CleanLayout from "../layouts/CleanLayout.astro";
+import CleanNavbar from '../components/CleanNavbar';
+import CleanFooter from '../components/CleanFooter';
 
 // Fetch SVG contents directly
 import { readFileSync } from 'fs';
@@ -19,9 +19,9 @@ const dataMaturitvModelSvg = readFileSync(join(projectRoot, 'public/img/data-mat
 const approachPrinciplesSvg = readFileSync(join(projectRoot, 'public/img/approach-principles.svg'), 'utf-8');
 ---
 
-<Layout title="SVG Test | CDO as a Service">
+<CleanLayout title="SVG Test | CDO as a Service">
   <main>
-    <CDONavbar client:only="react" />
+    <CleanNavbar client:load />
     
     <!-- page header -->
     <div class="relative pt-20 pb-32 flex content-center items-center justify-center min-h-[50vh]">
@@ -100,9 +100,9 @@ const approachPrinciplesSvg = readFileSync(join(projectRoot, 'public/img/approac
       </div>
     </section>
     
-    <Footer client:only="react" />
+    <CleanFooter />
   </main>
-</Layout>
+</CleanLayout>
 
 <script>
   // Debug script

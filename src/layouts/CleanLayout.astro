@@ -5,6 +5,10 @@ export interface Props {
 }
 
 const { title = "CDO as a Service", metaDescription } = Astro.props;
+
+// Import the styles
+import '../styles/index.css';
+import '../styles/theme.css';
 ---
 
 <!DOCTYPE html>
@@ -89,7 +93,7 @@ const { title = "CDO as a Service", metaDescription } = Astro.props;
       });
     </script>
   </head>
-  <body class="antialiased bg-white">
+  <body class="antialiased dark-theme">
     <slot />
     <script>
       // Debug script to check for image loading issues

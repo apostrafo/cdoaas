@@ -1,5 +1,7 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import CleanLayout from '../layouts/CleanLayout.astro';
+import CleanNavbar from '../components/CleanNavbar';
+import CleanFooter from '../components/CleanFooter';
 import HeaderPresentation from "../components/presentation/header"
 import FeaturePresentation from "../components/presentation/feature"
 import LogosPresentation from "../components/presentation/logos"
@@ -15,19 +17,21 @@ import FooterFreePresentation from "../components/presentation/footerFree"
 
 ---
 
-<Layout title="Presentation Page">
+<CleanLayout title="Presentation Page">
+	<CleanNavbar client:load />
 	<main>
-    <HeaderPresentation client:only="react" />
-    <FeaturePresentation client:only="react" />
-    <LogosPresentation client:only="react" />
-    <DevFreePresentation client:only="react" />
-    <PalettePresentationFree client:only="react" />
-    <CodePresentation client:only="react" />
-    <FreeToProPresentation client:only="react" />
-    <AstroPresentation client:only="react" />
-    <PagesFreePresentation client:only="react" />
-    <PricingPresentation client:only="react" />
-    <GithubPresentation client:only="react" />
-    <FooterFreePresentation client:only="react" />
-  </main>
-</Layout>
+		<HeaderPresentation client:only="react" />
+		<FeaturePresentation client:only="react" />
+		<LogosPresentation client:only="react" />
+		<DevFreePresentation client:only="react" />
+		<PalettePresentationFree client:only="react" />
+		<CodePresentation client:only="react" />
+		<FreeToProPresentation client:only="react" />
+		<AstroPresentation client:only="react" />
+		<PagesFreePresentation client:only="react" />
+		<PricingPresentation client:only="react" />
+		<GithubPresentation client:only="react" />
+		<FooterFreePresentation client:only="react" />
+	</main>
+	<CleanFooter />
+</CleanLayout>

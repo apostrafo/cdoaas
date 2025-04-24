@@ -1,27 +1,27 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import CDONavbar from "../components/cdoNavbar";
-import Footer from "../components/footer.tsx";
+import CleanLayout from "../layouts/CleanLayout.astro";
+import CleanNavbar from '../components/CleanNavbar';
+import CleanFooter from '../components/CleanFooter';
 
 // Importuojame visus blog įrašus iš content/blog katalogo
 const blogPosts = await Astro.glob('../../content/blog/*.md');
 const hasPosts = blogPosts.length > 0;
 ---
 
-<Layout title="Blog | CDO as a Service">
+<CleanLayout title="Blog | CDO as a Service">
   <main>
-    <CDONavbar client:only="react" />
+    <CleanNavbar client:load />
     
     <!-- page header -->
     <div class="relative pt-20 pb-32 flex content-center items-center justify-center min-h-[75vh]">
       <div class="absolute top-0 w-full h-full bg-center bg-cover" style="background-image: url('/img/blog-header.jpg');">
         <span class="w-full h-full absolute opacity-50 bg-black"></span>
       </div>
-      <div class="container relative mx-auto px-4">
+      <div class="container relative">
         <div class="items-center flex flex-wrap">
-          <div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
+          <div class="w-full lg:w-6/12 mx-auto text-center">
             <div class="text-white">
-              <h1 class="text-5xl font-semibold" data-i18n="blog.title">Blog</h1>
+              <h1 class="text-white" data-i18n="blog.title">Blog</h1>
               <p class="mt-4 text-lg" data-i18n="blog.subtitle">Insights on data leadership</p>
             </div>
           </div>
@@ -30,12 +30,12 @@ const hasPosts = blogPosts.length > 0;
     </div>
     
     <!-- Blog Posts Grid -->
-    <section class="pt-20 pb-48 bg-gray-100 -mt-24">
-      <div class="container mx-auto px-4">
-        <div class="flex flex-wrap justify-center text-center mb-24">
-          <div class="w-full lg:w-6/12 px-4">
-            <h2 class="text-4xl font-semibold" data-i18n="blog.featuredPosts">Featured Posts</h2>
-            <p class="text-lg leading-relaxed m-4 text-gray-600" data-i18n="blog.featuredPostsDescription">
+    <section class="bg-bg-secondary -mt-24 section">
+      <div class="container">
+        <div class="text-center mb-24">
+          <div class="w-full lg:w-6/12 mx-auto">
+            <h2 data-i18n="blog.featuredPosts">Featured Posts</h2>
+            <p class="text-lg mt-4 text-secondary" data-i18n="blog.featuredPostsDescription">
               Our most popular articles and insights on data leadership
             </p>
           </div>
@@ -43,10 +43,10 @@ const hasPosts = blogPosts.length > 0;
         
         {/* Blog įrašų rodymas jei jie egzistuoja */}
         {hasPosts ? (
-          <div class="flex flex-wrap">
+          <div class="flex flex-wrap -mx-4">
             {blogPosts.map((post) => (
               <div class="w-full md:w-4/12 px-4 mb-8">
-                <div class="relative flex flex-col min-w-0 break-words bg-white w-full shadow-lg rounded-lg">
+                <div class="card h-full flex flex-col">
                   {post.frontmatter.image && (
                     <img 
                       src={post.frontmatter.image} 
@@ -54,13 +54,13 @@ const hasPosts = blogPosts.length > 0;
                       class="w-full align-middle rounded-t-lg"
                     />
                   )}
-                  <div class="p-6">
-                    <h4 class="text-xl font-bold mb-2">{post.frontmatter.title}</h4>
-                    <p class="text-gray-500 text-sm mb-4">
+                  <div class="card-body flex-grow flex flex-col">
+                    <h4 class="card-title flex-grow">{post.frontmatter.title}</h4>
+                    <p class="text-secondary text-sm mb-4">
                       {new Date(post.frontmatter.date).toLocaleDateString()} - {post.frontmatter.author}
                     </p>
-                    <p class="text-gray-600 mb-4">{post.frontmatter.excerpt}</p>
-                    <a href={`/blog/${post.file.split('/').pop().replace('.md', '')}`} class="text-blue-500 font-semibold hover:text-blue-700">
+                    <p class="card-text mb-4">{post.frontmatter.excerpt}</p>
+                    <a href={`/blog/${post.file.split('/').pop().replace('.md', '')}`} class="text-primary font-semibold hover:text-primary-dark mt-auto">
                       Read More →
                     </a>
                   </div>
@@ -72,11 +72,11 @@ const hasPosts = blogPosts.length > 0;
           <!-- Empty state - Coming Soon -->
           <div class="flex flex-wrap justify-center">
             <div class="w-full text-center py-16">
-              <div class="inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-gray-100">
-                <i class="fas fa-clock text-xl text-gray-500"></i>
+              <div class="bg-bg-secondary p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow rounded-full">
+                <i class="fas fa-clock text-xl text-secondary"></i>
               </div>
-              <h5 class="text-xl font-bold" data-i18n="blog.comingSoon">Coming Soon</h5>
-              <p class="mt-2 text-gray-600 max-w-lg mx-auto" data-i18n="blog.comingSoonMessage">
+              <h5 data-i18n="blog.comingSoon">Coming Soon</h5>
+              <p class="mt-2 text-secondary max-w-lg mx-auto" data-i18n="blog.comingSoonMessage">
                 In the meantime, sign up for our newsletter to receive our latest articles and insights directly in your inbox.
               </p>
             </div>
@@ -86,38 +86,37 @@ const hasPosts = blogPosts.length > 0;
     </section>
     
     <!-- Newsletter Section -->
-    <section class="pb-20 relative block bg-gray-900">
+    <section class="bg-bg-accent section relative">
       <div class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20" style="transform: translateZ(0px)">
         <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
-          <polygon class="text-gray-900 fill-current" points="2560 0 2560 100 0 100"></polygon>
+          <polygon class="fill-current text-bg-primary" points="2560 0 2560 100 0 100"></polygon>
         </svg>
       </div>
-      <div class="container mx-auto px-4 pt-12">
+      <div class="container pt-12">
         <div class="flex flex-wrap justify-center">
           <div class="w-full lg:w-6/12 px-4">
-            <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg">
-              <div class="flex-auto p-8">
-                <h4 class="text-2xl font-bold text-center">Subscribe to our Newsletter</h4>
-                <p class="leading-relaxed mt-1 mb-4 text-gray-600 text-center">
+            <div class="card mb-6">
+              <div class="card-body p-8">
+                <h4 class="card-title text-center">Subscribe to our Newsletter</h4>
+                <p class="card-text text-center">
                   Get the latest insights on data leadership directly to your inbox
                 </p>
                 <form>
-                  <div class="relative w-full mb-3">
-                    <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="email">
+                  <div class="form-group">
+                    <label class="form-label uppercase text-xs font-bold" for="newsletter-email">
                       Email
                     </label>
                     <input
                       type="email"
-                      class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                      id="newsletter-email"
+                      class="form-control"
                       placeholder="Email"
-                      style="transition: all 0.15s ease 0s;"
                     />
                   </div>
                   <div class="text-center mt-6">
                     <button
-                      class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-                      type="button"
-                      style="transition: all 0.15s ease 0s;"
+                      class="btn btn-primary"
+                      type="submit"
                     >
                       Subscribe
                     </button>
@@ -130,6 +129,6 @@ const hasPosts = blogPosts.length > 0;
       </div>
     </section>
     
-    <Footer client:only="react" />
+    <CleanFooter />
   </main>
-</Layout> 
+</CleanLayout> 

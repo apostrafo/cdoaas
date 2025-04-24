@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from "react";
 
+// Add TypeScript declaration for window.siteTranslations
+declare global {
+  interface Window {
+    siteTranslations?: Record<string, string>;
+  }
+}
+
 export default function CleanNavbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [language, setLanguage] = useState('lt');
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
+  const [translations, setTranslations] = useState<Record<string, string>>({});
 
   useEffect(() => {
     // Get language preference from URL or localStorage
@@ -13,13 +21,48 @@ export default function CleanNavbar() {
     
     const currentLang = langParam || savedLang || 'lt';
     setLanguage(currentLang);
+    
+    // Load translations for the current language
+    loadTranslations(currentLang);
+    
+    // Listen for translation loaded events from the global script
+    const handleTranslationsLoaded = (event: CustomEvent) => {
+      const { translations, language } = event.detail;
+      setTranslations(translations);
+      setLanguage(language);
+    };
+    
+    document.addEventListener('translationsLoaded', handleTranslationsLoaded as EventListener);
+    
+    // Check if window.siteTranslations is already available
+    if (window.siteTranslations) {
+      setTranslations(window.siteTranslations);
+    }
+    
+    return () => {
+      document.removeEventListener('translationsLoaded', handleTranslationsLoaded as EventListener);
+    };
   }, []);
+  
+  const loadTranslations = (lang: string) => {
+    fetch(`/translations/${lang}.json`)
+      .then(response => response.json())
+      .then(data => {
+        setTranslations(data);
+      })
+      .catch(error => {
+        console.error('Error loading translations:', error);
+      });
+  };
 
   const changeLanguage = (newLang: string) => {
     // Save language preference
     localStorage.setItem('preferred_language', newLang);
     setLanguage(newLang);
     setShowLanguageDropdown(false);
+    
+    // Load new translations
+    loadTranslations(newLang);
     
     // Reload page with new language parameter
     const url = new URL(window.location.href);
@@ -33,28 +76,28 @@ export default function CleanNavbar() {
         <div className="flex justify-between h-16">
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
-              <a href="/" className="text-2xl font-bold text-white">
-                CDO as a Service
+              <a href="/" className="text-2xl font-bold text-white" data-i18n="hero_title">
+                {translations?.hero_title || "CDO as a Service"}
               </a>
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-              <a href="/about" className="border-transparent text-gray-300 hover:border-blue-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                About
+              <a href="/about" className="border-transparent text-gray-300 hover:border-blue-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-i18n="nav_about">
+                {translations?.nav_about || "About"}
               </a>
-              <a href="/services" className="border-transparent text-gray-300 hover:border-blue-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                Services
+              <a href="/services" className="border-transparent text-gray-300 hover:border-blue-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-i18n="nav_services">
+                {translations?.nav_services || "Services"}
               </a>
-              <a href="/approach" className="border-transparent text-gray-300 hover:border-blue-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                Approach
+              <a href="/approach" className="border-transparent text-gray-300 hover:border-blue-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-i18n="nav_approach">
+                {translations?.nav_approach || "Approach"}
               </a>
-              <a href="/case-studies" className="border-transparent text-gray-300 hover:border-blue-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                Case Studies
+              <a href="/tools" className="border-transparent text-gray-300 hover:border-blue-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-i18n="nav_tools">
+                {translations?.nav_tools || "Tools"}
               </a>
-              <a href="/blog" className="border-transparent text-gray-300 hover:border-blue-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                Blog
+              <a href="/blog" className="border-transparent text-gray-300 hover:border-blue-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-i18n="nav_blog">
+                {translations?.nav_blog || "Blog"}
               </a>
-              <a href="/contact" className="border-transparent text-gray-300 hover:border-blue-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                Contact
+              <a href="/contact" className="border-transparent text-gray-300 hover:border-blue-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-i18n="nav_contact">
+                {translations?.nav_contact || "Contact"}
               </a>
             </div>
           </div>
@@ -91,12 +134,15 @@ export default function CleanNavbar() {
               )}
             </div>
             
-            <a href="/login" className="px-4 py-2 text-sm font-medium text-gray-300 hover:text-white">
-              Sign in
-            </a>
-            <a href="/signup" className="ml-2 px-4 py-2 text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 rounded-md">
-              Sign up
-            </a>
+            {/* Sign in and Sign up buttons hidden with display: none */}
+            <div className="hidden">
+              <a href="/login" className="px-4 py-2 text-sm font-medium text-gray-300 hover:text-white">
+                Sign in
+              </a>
+              <a href="/signup" className="ml-2 px-4 py-2 text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 rounded-md">
+                Sign up
+              </a>
+            </div>
           </div>
           <div className="-mr-2 flex items-center sm:hidden">
             <button
@@ -123,23 +169,23 @@ export default function CleanNavbar() {
       {isOpen && (
         <div className="sm:hidden bg-dark-500">
           <div className="pt-2 pb-3 space-y-1">
-            <a href="/about" className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-300 hover:bg-dark-400 hover:border-blue-500 hover:text-white">
-              About
+            <a href="/about" className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-300 hover:bg-dark-400 hover:border-blue-500 hover:text-white" data-i18n="nav_about">
+              {translations?.nav_about || "About"}
             </a>
-            <a href="/services" className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-300 hover:bg-dark-400 hover:border-blue-500 hover:text-white">
-              Services
+            <a href="/services" className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-300 hover:bg-dark-400 hover:border-blue-500 hover:text-white" data-i18n="nav_services">
+              {translations?.nav_services || "Services"}
             </a>
-            <a href="/approach" className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-300 hover:bg-dark-400 hover:border-blue-500 hover:text-white">
-              Approach
+            <a href="/approach" className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-300 hover:bg-dark-400 hover:border-blue-500 hover:text-white" data-i18n="nav_approach">
+              {translations?.nav_approach || "Approach"}
             </a>
-            <a href="/case-studies" className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-300 hover:bg-dark-400 hover:border-blue-500 hover:text-white">
-              Case Studies
+            <a href="/tools" className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-300 hover:bg-dark-400 hover:border-blue-500 hover:text-white" data-i18n="nav_tools">
+              {translations?.nav_tools || "Tools"}
             </a>
-            <a href="/blog" className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-300 hover:bg-dark-400 hover:border-blue-500 hover:text-white">
-              Blog
+            <a href="/blog" className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-300 hover:bg-dark-400 hover:border-blue-500 hover:text-white" data-i18n="nav_blog">
+              {translations?.nav_blog || "Blog"}
             </a>
-            <a href="/contact" className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-300 hover:bg-dark-400 hover:border-blue-500 hover:text-white">
-              Contact
+            <a href="/contact" className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-300 hover:bg-dark-400 hover:border-blue-500 hover:text-white" data-i18n="nav_contact">
+              {translations?.nav_contact || "Contact"}
             </a>
             
             {/* Mobile Language Switcher */}
@@ -158,7 +204,8 @@ export default function CleanNavbar() {
               </button>
             </div>
           </div>
-          <div className="pt-4 pb-3 border-t border-gray-700">
+          {/* Hide sign in and sign up buttons in mobile view too */}
+          <div className="hidden pt-4 pb-3 border-t border-gray-700">
             <div className="flex items-center px-4">
               <a href="/login" className="block px-4 py-2 text-base font-medium text-gray-300 hover:text-white">
                 Sign in

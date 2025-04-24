@@ -1,7 +1,7 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import CDONavbar from "../components/cdoNavbar";
-import Footer from "../components/footer.tsx";
+import CleanLayout from "../layouts/CleanLayout.astro";
+import CleanNavbar from '../components/CleanNavbar';
+import CleanFooter from '../components/CleanFooter';
 import { getTranslation } from '../utils/translations';
 
 // Get language from URL parameter or default to English
@@ -17,8 +17,8 @@ if (Astro.request.method === "GET") {
 }
 ---
 
-<Layout title={`${t('login.title')} | CDO as a Service`}>
-  <CDONavbar client:only="react" />
+<CleanLayout title={`${t('login.title')} | CDO as a Service`}>
+  <CleanNavbar client:load />
   <div class="flex items-center justify-center min-h-screen bg-gray-100">
     <div class="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
       <div class="text-center">
@@ -35,8 +35,8 @@ if (Astro.request.method === "GET") {
       </div>
     </div>
   </div>
-  <Footer client:only="react" />
-</Layout>
+  <CleanFooter />
+</CleanLayout>
 
 <script>
   // Redirect to admin after brief delay

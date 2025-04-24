@@ -1,11 +1,15 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import CleanLayout from '../layouts/CleanLayout.astro';
+import CleanNavbar from '../components/CleanNavbar';
+import CleanFooter from '../components/CleanFooter';
 import Content404 from "../components/404/content"
 
 ---
 
-<Layout title="404 Error Page">
+<CleanLayout title="404 Error Page">
+	<CleanNavbar client:load />
 	<main>
     <Content404 client:only="react" />
   </main>
-</Layout>
+	<CleanFooter />
+</CleanLayout>

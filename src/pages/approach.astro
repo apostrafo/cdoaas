@@ -1,7 +1,7 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import CDONavbar from "../components/cdoNavbar";
-import Footer from "../components/footer.tsx";
+import CleanLayout from "../layouts/CleanLayout.astro";
+import CleanNavbar from '../components/CleanNavbar';
+import CleanFooter from '../components/CleanFooter';
 import { getEntryBySlug } from "astro:content";
 
 // Import the SVG content directly
@@ -17,7 +17,7 @@ const __dirname = dirname(__filename);
 const projectRoot = join(__dirname, '../../');
 
 // Read SVG files directly
-const dataMaturitvModelSvg = readFileSync(join(projectRoot, 'public/img/data-maturity-model.svg'), 'utf-8');
+const dataMaturityModelSvg = readFileSync(join(projectRoot, 'public/img/data-maturity-model.svg'), 'utf-8');
 const approachPrinciplesSvg = readFileSync(join(projectRoot, 'public/img/approach-principles.svg'), 'utf-8');
 
 const approach = await getEntryBySlug("approach", "approach");
@@ -25,20 +25,20 @@ const { title, subtitle } = approach.data;
 const { Content } = await approach.render();
 ---
 
-<Layout title="CDO as a Service | Our Approach">
+<CleanLayout title="CDO as a Service | Our Approach">
 	<main data-sb-object-id="content/approach.md">
-		<CDONavbar client:only="react" />
+		<CleanNavbar client:load />
 		
 		<!-- page header -->
 		<div class="relative pt-20 pb-32 flex content-center items-center justify-center min-h-[75vh]">
 			<div class="absolute top-0 w-full h-full bg-center bg-cover" style="background-image: url('/img/approach-bg.jpg');">
 				<span class="w-full h-full absolute opacity-50 bg-black"></span>
 			</div>
-			<div class="container relative mx-auto px-4">
+			<div class="container relative">
 				<div class="items-center flex flex-wrap">
-					<div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
+					<div class="w-full lg:w-6/12 mx-auto text-center">
 						<div class="text-white">
-							<h1 class="text-5xl font-semibold" data-sb-field-path="title">{title}</h1>
+							<h1 class="text-white" data-sb-field-path="title">{title}</h1>
 							<p class="mt-4 text-lg" data-sb-field-path="subtitle">{subtitle}</p>
 						</div>
 					</div>
@@ -47,43 +47,43 @@ const { Content } = await approach.render();
 		</div>
 		
 		<!-- Approach section -->
-		<section class="pb-20 bg-gray-100 -mt-24">
-			<div class="container mx-auto px-4">
-				<div class="flex flex-wrap">
+		<section class="bg-bg-secondary -mt-24 section">
+			<div class="container">
+				<div class="flex flex-wrap -mx-4">
 					<div class="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
-						<div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-							<div class="px-4 py-5 flex-auto">
-								<div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
+						<div class="card">
+							<div class="card-body">
+								<div class="bg-primary text-white p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4 mx-auto">
 									<i class="fas fa-award"></i>
 								</div>
-								<h6 class="text-xl font-semibold">Orientacija į verslą</h6>
-								<p class="mt-2 mb-4 text-gray-600">
+								<h3 class="card-title" data-i18n="business_orientation">Orientacija į verslą</h3>
+								<p class="card-text" data-i18n="business_orientation_description">
 									Mūsų pagrindinis prioritetas – jūsų verslo rezultatai. Visas darbas su duomenimis turi padėti siekti verslo tikslų ir kurti realią vertę.
 								</p>
 							</div>
 						</div>
 					</div>
 					<div class="w-full md:w-4/12 px-4 text-center">
-						<div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-							<div class="px-4 py-5 flex-auto">
-								<div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400">
+						<div class="card">
+							<div class="card-body">
+								<div class="bg-primary text-white p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4 mx-auto">
 									<i class="fas fa-retweet"></i>
 								</div>
-								<h6 class="text-xl font-semibold">Strategija ir vykdymas</h6>
-								<p class="mt-2 mb-4 text-gray-600">
+								<h3 class="card-title" data-i18n="strategy_and_execution">Strategija ir vykdymas</h3>
+								<p class="card-text" data-i18n="strategy_and_execution_description">
 									Apjungiame strateginę viziją su praktiniu įgyvendinimu. Ne tik patarti, bet ir padėti įgyvendinti – tai mūsų požiūrio esmė.
 								</p>
 							</div>
 						</div>
 					</div>
 					<div class="pt-6 w-full md:w-4/12 px-4 text-center">
-						<div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-							<div class="px-4 py-5 flex-auto">
-								<div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-green-400">
+						<div class="card">
+							<div class="card-body">
+								<div class="bg-primary text-white p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4 mx-auto">
 									<i class="fas fa-fingerprint"></i>
 								</div>
-								<h6 class="text-xl font-semibold">Pragmatinis požiūris</h6>
-								<p class="mt-2 mb-4 text-gray-600">
+								<h3 class="card-title" data-i18n="pragmatic_approach">Pragmatinis požiūris</h3>
+								<p class="card-text" data-i18n="pragmatic_approach_description">
 									Siekiame praktinių rezultatų – ne tobulų teorijų. Pradedame nuo paprastų, greitų sprendimų, kurie sukuria vertę, ir palaipsniui judame prie sudėtingesnių.
 								</p>
 							</div>
@@ -94,22 +94,20 @@ const { Content } = await approach.render();
 				<!-- Principles section -->
 				<div class="flex flex-wrap items-center mt-12">
 					<div class="w-full md:w-5/12 px-4 mr-auto ml-auto mb-8">
-						<div class="text-gray-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-gray-100">
-							<i class="fas fa-compass text-xl"></i>
+						<div class="bg-bg-secondary p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow rounded-full">
+							<i class="fas fa-compass text-xl text-primary"></i>
 						</div>
-						<h3 class="text-3xl mb-2 font-semibold leading-normal">
-							Duomenų lyderystės principai
-						</h3>
-						<p class="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700">
+						<h3 data-i18n="data_leadership_principles">Duomenų lyderystės principai</h3>
+						<p class="text-lg mt-4 mb-4 text-secondary" data-i18n="data_leadership_principles_description">
 							Mūsų darbas paremtas penkiais pagrindiniais principais, kurie užtikrina sėkmingą duomenų strategijos įgyvendinimą. Šie principai pritaikomi kiekvienos organizacijos unikaliam kontekstui.
 						</p>
-						<p class="text-lg font-light leading-relaxed mt-0 mb-4 text-gray-700">
+						<p class="text-lg mt-0 mb-4 text-secondary" data-i18n="data_leadership_principles_description2">
 							Pradedame nuo aiškaus verslo tikslo, kuriame tvirtas pagrindas, įtraukiame visus suinteresuotus asmenis, sukuriame kultūrą ir viską pritaikome jūsų organizacijos poreikiams.
 						</p>
 					</div>
 					<div class="w-full md:w-6/12 px-4 mr-auto ml-auto mb-8">
-						<div class="relative flex flex-col min-w-0 break-words bg-white w-full shadow-lg rounded-lg p-6">
-							<img src="/img/approach-principles.svg" alt="Duomenų lyderystės principai" class="w-full" />
+						<div class="card card-body">
+							<div set:html={approachPrinciplesSvg} />
 						</div>
 					</div>
 				</div>
@@ -117,58 +115,54 @@ const { Content } = await approach.render();
 				<!-- Data Maturity section -->
 				<div class="flex flex-wrap items-center mt-12">
 					<div class="w-full md:w-6/12 px-4 mr-auto ml-auto mb-8">
-						<div class="relative flex flex-col min-w-0 break-words bg-white w-full shadow-lg rounded-lg p-6">
-							<img src="/img/data-maturity-model.svg" alt="Duomenų brandumo modelis" class="w-full" />
+						<div class="card card-body">
+							<div set:html={dataMaturityModelSvg} />
 						</div>
 					</div>
 					<div class="w-full md:w-5/12 px-4 mr-auto ml-auto mb-8">
-						<div class="text-gray-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-gray-100">
-							<i class="fas fa-chart-line text-xl"></i>
+						<div class="bg-bg-secondary p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow rounded-full">
+							<i class="fas fa-chart-line text-xl text-primary"></i>
 						</div>
-						<h3 class="text-3xl mb-2 font-semibold leading-normal">
-							Duomenų brandumo kelionė
-						</h3>
-						<p class="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700">
+						<h3 data-i18n="data_maturity_journey">Duomenų brandumo kelionė</h3>
+						<p class="text-lg mt-4 mb-4 text-secondary" data-i18n="data_maturity_journey_description">
 							Kiekviena organizacija yra skirtingame duomenų brandumo etape. Mūsų metodika padeda nustatyti, kur esate dabar, ir sukurti realų planą, kaip pasiekti aukštesnį lygį.
 						</p>
-						<p class="text-lg font-light leading-relaxed mt-0 mb-4 text-gray-700">
+						<p class="text-lg mt-0 mb-4 text-secondary" data-i18n="data_maturity_journey_description2">
 							Nuo pradinių žingsnių iki pažangių, duomenimis valdomų procesų – mes padedame įveikti kiekvieną etapą užtikrintai ir efektyviai.
 						</p>
 					</div>
 				</div>
 				
-				<div class="w-full px-4 mt-12" data-sb-field-path="body">
+				<div class="w-full px-4 mt-12 card card-body" data-sb-field-path="body">
 					<Content />
 				</div>
 			</div>
 		</section>
 		
 		<!-- Call to Action section -->
-		<section class="pb-20 relative block bg-gray-900">
+		<section class="bg-bg-accent section relative">
 			<div class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20" style="transform: translateZ(0px)">
 				<svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
-					<polygon class="text-gray-900 fill-current" points="2560 0 2560 100 0 100"></polygon>
+					<polygon class="fill-current text-bg-primary" points="2560 0 2560 100 0 100"></polygon>
 				</svg>
 			</div>
-			<div class="container mx-auto px-4 pt-12 pb-12">
-				<div class="flex flex-wrap text-center justify-center">
-					<div class="w-full lg:w-6/12 px-4">
-						<h2 class="text-4xl font-semibold text-white" data-i18n="approach.ready.heading">Ready to Start Your Data Transformation?</h2>
-						<p class="text-lg leading-relaxed mt-4 mb-4 text-gray-500" data-i18n="approach.ready.subheading">
+			<div class="container pt-12 pb-12">
+				<div class="text-center">
+					<div class="w-full lg:w-6/12 mx-auto">
+						<h2 class="text-white" data-i18n="approach.ready.heading">Ready to Start Your Data Transformation?</h2>
+						<p class="text-lg mt-4 mb-4 text-blue-200" data-i18n="approach.ready.subheading">
 							Contact us to learn how our approach can be tailored to your organization's specific needs and goals.
 						</p>
 					</div>
 				</div>
-				<div class="flex flex-wrap mt-12 justify-center">
-					<div class="w-full lg:w-6/12 px-4 text-center">
-						<a href="/contact" class="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blue-500 active:bg-blue-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150" data-i18n="approach.consultation.cta">
-							Schedule a Consultation
-						</a>
-					</div>
+				<div class="mt-12 text-center">
+					<a href="/contact" class="btn btn-primary bg-white text-primary hover:bg-gray-100" data-i18n="approach.consultation.cta">
+						Schedule a Consultation
+					</a>
 				</div>
 			</div>
 		</section>
 		
-		<Footer client:only="react" />
+		<CleanFooter />
 	</main>
-</Layout> 
+</CleanLayout> 
