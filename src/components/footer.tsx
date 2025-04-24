@@ -7,8 +7,7 @@ export default function Footer() {
           © <script>
             document.write(new Date().getFullYear()) 
           </script>
-          &nbsp;AstroLaunch UI by
-          <a href="https://www.creative-tim.com" className="text-secondary ms-1" target="_blank">Creative Tim</a>.
+          &nbsp;CDO as a Service
         </div>
       </footer>
     </>

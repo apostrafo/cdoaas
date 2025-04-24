@@ -20,10 +20,8 @@ import {
   XMarkIcon,
   Square3Stack3DIcon,
 } from "@heroicons/react/24/outline";
+import { CustomThemeProvider } from "./custom-theme-provider";
 
-import ThemeProvider from "./theme-provider";
-
- 
 const colors = {
   blue: "bg-blue-50 text-blue-500",
   orange: "bg-orange-50 text-orange-500",
@@ -34,7 +32,7 @@ const colors = {
   cyan: "bg-cyan-50 text-cyan-500",
   pink: "bg-pink-50 text-pink-500",
 };
- 
+
 // account pages menu
 const accountItems = [
   {
@@ -182,7 +180,7 @@ function NavList() {
       <AccountListMenu />
       <Typography
         as="a"
-        href="https://www.creative-tim.com/learning-lab/astro/quick-start/astro-launch-ui/"
+        href="/docs"
         variant="small"
         color="blue-gray"
         className="font-normal"
@@ -207,27 +205,27 @@ export default function Example() {
   }, []);
  
   return (
-    <ThemeProvider>
+    <CustomThemeProvider>
       <Navbar className="absolute mx-auto left-0 right-0 top-3 max-w-screen-xl px-4 py-2 z-10">
         <div className="flex items-center justify-between text-blue-gray-900">
           <Typography
             as="a"
-            href="/astro-launch-ui/"
+            href="/"
             variant="h6"
             className="mr-4 cursor-pointer py-1.5 lg:ml-2"
           >
-            AstroLaunch UI
+            CDO as a Service
           </Typography>
           <div className="hidden lg:block">
             <NavList />
           </div>
           <div className="hidden gap-2 lg:flex">
-            <a href="./login">
+            <a href="/login">
               <Button variant="text" size="sm" color="blue-gray">
                 Sign In
               </Button>
             </a>
-            <a href="/astro-launch-ui/signup">
+            <a href="/signup">
               <Button size="sm" color="dark">
                 Sign Up
               </Button>
@@ -249,12 +247,12 @@ export default function Example() {
         <Collapse open={openNav}>
           <NavList />
           <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-            <a href="/astro-launch-ui/login">
+            <a href="/login">
               <Button variant="outlined" size="sm" color="dark" fullWidth>
                 Sign In
               </Button>
             </a>
-            <a href="/astro-launch-ui/signup">
+            <a href="/signup">
               <Button size="sm" fullWidth color="dark">
                 Sign Up
               </Button>
@@ -262,6 +260,6 @@ export default function Example() {
           </div>
         </Collapse>
       </Navbar>
-    </ThemeProvider>
+    </CustomThemeProvider>
   );
 }

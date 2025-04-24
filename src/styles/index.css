@@ -1,0 +1,19 @@
+/* Local styles based on Material Tailwind but without Creative Tim dependencies */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Additional styling for banner removal */
+.ct-docs-navbar-top, 
+.fixed-top.ct-docs-navbar,
+div[style*="position: fixed"][style*="top:0"]:has(a[href*="creative-tim"]),
+nav[style*="position: fixed"][style*="top:0"]:has(a[href*="creative-tim"]),
+header[style*="position: fixed"][style*="top:0"]:has(a[href*="creative-tim"]),
+.promo-banner, 
+.announcement-bar, 
+.top-banner, 
+.promo-bar, 
+.ct-promo {
+  display: none !important;
+} 
