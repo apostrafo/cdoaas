@@ -5,8 +5,8 @@ import CleanFooter from '../components/CleanFooter';
 import { getTranslation } from '../utils/translations';
 import { getCollection } from 'astro:content';
 
-// Get language from URL parameter or default to English
-const lang = Astro.url.searchParams.get('lang') || 'en';
+// Get language from URL parameter or default to Lithuanian
+const lang = Astro.url.searchParams.get('lang') || 'lt';
 const isLt = lang === 'lt';
 
 // Create translation function with current language

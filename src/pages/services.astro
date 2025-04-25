@@ -16,8 +16,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const projectRoot = join(__dirname, '../../');
 
-// Get language from URL parameter or default to English
-const lang = Astro.url.searchParams.get('lang') || 'en';
+// Get language from URL parameter or default to Lithuanian
+const lang = Astro.url.searchParams.get('lang') || 'lt';
 const isLt = lang === 'lt';
 
 console.log("Current language from URL:", lang);
@@ -41,11 +41,11 @@ try {
   console.log(`Service tiers SVG content starts with: ${serviceTiersToUse.substring(0, 50)}...`);
 } catch (error) {
   console.error("Error loading SVG files:", error);
-  // Fallback to English in case of error
+  // Fallback to Lithuanian in case of error
   try {
-    serviceTiersToUse = readFileSync(join(projectRoot, 'public/img/service-tiers.svg'), 'utf-8');
-    comparisonChartToUse = readFileSync(join(projectRoot, 'public/img/comparison-chart.svg'), 'utf-8');
-    console.log("Falling back to English SVGs due to error");
+    serviceTiersToUse = readFileSync(join(projectRoot, 'public/img/service-tiers-lt.svg'), 'utf-8');
+    comparisonChartToUse = readFileSync(join(projectRoot, 'public/img/comparison-chart-lt.svg'), 'utf-8');
+    console.log("Falling back to Lithuanian SVGs due to error");
   } catch (fallbackError) {
     console.error("Error loading fallback SVG files:", fallbackError);
     serviceTiersToUse = '<svg><text>Error loading SVG</text></svg>';
